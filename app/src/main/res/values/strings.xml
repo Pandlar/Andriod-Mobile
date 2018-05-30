@@ -27,4 +27,8 @@
     // Strings für SharedPreferences
     <string name="sharedPrefsFirstRun">FirstRun</string>
     <string name="sharedPrefsFirstRunString">true</string>
+
+    // Strings Passwort geändert
+    <string name="passwort_geaendert">Ok!</string>
+
 </resources>

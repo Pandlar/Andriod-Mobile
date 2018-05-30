@@ -3,7 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorkaki">#5FBEC3</color>
+    <color name="colorblack">#181818</color>
 
     <!-- Button color -->
-    <color name="button_color">#bdbdbd</color>
+    <color name="button_color">#ffffff</color>
+
+    <!-- Text color -->
+    <color name="text_color">#181818</color>
+
 </resources>

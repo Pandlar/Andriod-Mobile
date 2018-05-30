@@ -3,13 +3,17 @@ package com.example.sonja.ui;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -25,10 +29,39 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     EditText txt_ankunftszeit;
     Button btn_switch;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    Intent intentHome = new Intent(NeueFahrt1.this, MainActivity.class);
+                    startActivityForResult(intentHome, 0);
+                    return true;
+                case R.id.navigation_offer:
+                    Intent intentOffer = new Intent(NeueFahrt1.this, NeueFahrt1.class);
+                    startActivityForResult(intentOffer, 0);
+                    return true;
+                case R.id.navigation_profile:
+                    Intent intentProfile = new Intent(NeueFahrt1.this, Confirm.class);
+                    startActivityForResult(intentProfile, 0);
+                    return true;
+            }
+            return false;
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neue_fahrt1);
+
+// Bottom Navigation initialisieren
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
 
 
         // Buttons OnClickListener

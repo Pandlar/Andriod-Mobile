@@ -4,8 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,26 +31,39 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     EditText txt_ankunftszeit;
     Button btn_switch_back;
 
+    // Bottom Navigation aktivieren
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    Intent intentHome = new Intent(NeueFahrt2.this, MainActivity.class);
+                    startActivityForResult(intentHome, 0);
+                    return true;
+                case R.id.navigation_offer:
+                    Intent intentOffer = new Intent(NeueFahrt2.this, NeueFahrt1.class);
+                    startActivityForResult(intentOffer, 0);
+                    return true;
+                case R.id.navigation_profile:
+                    Intent intentProfile = new Intent(NeueFahrt2.this, Confirm.class);
+                    startActivityForResult(intentProfile, 0);
+                    return true;
+            }
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neue_fahrt2);
-/* Daten aus NeueFahrt1 auslesen - nicht ready
-        Intent intent = new Intent();
-        NeueFahrt1 f = new NeueFahrt1();
-        if (NeueFahrt1.mitfahrer == 1){
-            mitfahrer = 1;
-            btn_search.setBackgroundResource(R.drawable.button_style_clicked);
-        }
-        if (NeueFahrt1.fahrer == 1){
-            fahrer = 1;
-            btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
-        }
-        if (NeueFahrt1.both == 1){
-            both = 1;
-            btn_both.setBackgroundResource(R.drawable.button_style_clicked);
-        }
-*/
+
+        // Bottom Navigation initialisieren
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         // Buttons OnClickListener
         btn_weiter_screen3 = findViewById(R.id.btn_weiter_screen3);
         btn_weiter_screen3.setOnClickListener(this);

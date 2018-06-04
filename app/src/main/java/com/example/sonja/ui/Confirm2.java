@@ -7,8 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
-public class Confirm2 extends AppCompatActivity {
+
+public class Confirm2 extends AppCompatActivity implements View.OnClickListener {
+
+    Button btn_weiter_bewertung;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -41,7 +46,26 @@ public class Confirm2 extends AppCompatActivity {
         // Bottom Navigation initialisieren
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //Button Bewertung
+        btn_weiter_bewertung = findViewById(R.id.btn_weiter_ok);
+        btn_weiter_bewertung.setOnClickListener(this);
+
     }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.btn_weiter_ok:
+                // auf ... weiterleiten
+                    Intent intent = new Intent(this, Bewertung1.class);
+                    startActivity(intent);
+                    this.finish();
+                break;
+
+            default:
+                break;
+                }}
 
    /* public void onClick(View v) {
         switch (v.getId()) {

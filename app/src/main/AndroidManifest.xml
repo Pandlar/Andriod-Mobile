@@ -26,7 +26,14 @@
         <activity android:name=".NeueFahrt1" />
         <activity android:name=".NeueFahrt2" />
         <activity android:name=".Confirm" />
-        <activity android:name=".Confirm2"></activity>
+        <activity android:name=".Confirm2" />
+        <activity android:name=".Bewertung1" />
+        <activity android:name=".Bewertung2" />
+        <activity android:name=".Home1" />
+        <activity android:name=".Home2" />
+        <activity android:name=".Home3" />
+        <activity android:name=".Home4" />
+        <activity android:name=".Home5"></activity>
     </application>
 
 </manifest>

@@ -26,7 +26,10 @@
         <activity android:name=".NeueFahrt1" />
         <activity android:name=".NeueFahrt2" />
         <activity android:name=".Confirm" />
-        <activity android:name=".Confirm2"></activity>
+        <activity android:name=".Confirm2" />
+        <activity android:name=".account01" />
+        <activity android:name=".AccountSettings03" />
+        <activity android:name=".AccountCar02"></activity>
     </application>
 
 </manifest>

@@ -59,4 +59,11 @@
     // Strings für SharedPreferences
     <string name="sharedPrefsFirstRun">FirstRun</string>
     <string name="sharedPrefsFirstRunString">true</string>
+
+
+    // Strings für Accountmenu
+    <string name="account_profile">Account</string>
+    <string name="account_car">Fahrzeuginformationen</string>
+    <string name="account_settings">Einstellungen</string>
+
 </resources>

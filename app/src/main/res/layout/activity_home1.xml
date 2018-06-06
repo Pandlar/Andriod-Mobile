@@ -107,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textKommentar"
+        android:id="@+id/textKommentar2"
         android:layout_width="206dp"
         android:layout_height="41dp"
         android:layout_marginBottom="100dp"
@@ -129,13 +129,12 @@
         app:srcCompat="@drawable/plus_blau" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_Fahrt_anlegen"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="419dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginStart="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

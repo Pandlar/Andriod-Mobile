@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class Bewertung1 extends AppCompatActivity implements View.OnClickListener {
 
     Button btn_Veroeffentlichen;

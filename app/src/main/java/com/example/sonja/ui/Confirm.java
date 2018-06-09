@@ -43,6 +43,8 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
             from_earliest_hour = extras.getInt("from_earliest_hour");
             from_latest_minute = extras.getInt("from_latest_minute");
             from_latest_hour = extras.getInt("from_latest_hour");
+            System.out.println("###### empfange, confirm, to earliest" +to_earliest_hour+":"+to_earliest_minute);
+            System.out.println("###### empfange, confirm, to latest" +to_latest_hour+":"+to_latest_minute);
         }
         setContentView(R.layout.activity_confirm);
 
@@ -50,16 +52,16 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         ankunft1 = findViewById(R.id.txt_ankunft1);
         sitze1 = findViewById(R.id.txt_sitze1);
 
-        abfahrt1.setText(to_earliest_hour + ":" + to_earliest_minute);
-        ankunft1.setText("09:00 Uhr");
+        abfahrt1.setText(addLeadingZeros(to_earliest_hour) + ":" + addLeadingZeros(to_earliest_minute)+" Uhr");
+        ankunft1.setText(addLeadingZeros(to_latest_hour) + ":" + addLeadingZeros(to_latest_minute)+" Uhr");
         sitze1.setText("1");
 
         abfahrt2 = findViewById(R.id.txt_abfahrt2);
         ankunft2 = findViewById(R.id.txt_ankunft2);
         sitze2 = findViewById(R.id.txt_sitze2);
 
-        abfahrt2.setText("16:00 Uhr");
-        ankunft2.setText("17:00 Uhr");
+        abfahrt2.setText(addLeadingZeros(from_earliest_hour) + ":" + addLeadingZeros(from_earliest_minute)+" Uhr");
+        ankunft2.setText(addLeadingZeros(from_latest_hour) + ":" + addLeadingZeros(from_latest_minute)+" Uhr");
         sitze2.setText("1");
 
         // Buttons OnClickListener
@@ -94,5 +96,17 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
             startActivity(intent);
             this.finish();
         }
+
+    /**
+     * adds a leading zero to integers lower than 10
+     * @param x
+     * @return
+     */
+    public String addLeadingZeros(int x){
+        if(x<10){
+            return "0"+x;
+        }
+        return ""+x;
+    }
     }
 

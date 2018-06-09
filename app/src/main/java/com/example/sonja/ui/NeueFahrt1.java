@@ -85,7 +85,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         intent.putExtra("to_latest_minute", to_latest_minute);
         intent.putExtra("to_latest_hour", to_latest_hour);
         intent.putExtra("requestRole", requestRole.toString());
-        System.out.println("intent, neuefahrt1" +to_earliest_hour+":"+to_earliest_minute);
+        System.out.println("###### send, neuefahrt1, to earliest" +to_earliest_hour+":"+to_earliest_minute);
+        System.out.println("###### send, neuefahrt1, to latest" +to_latest_hour+":"+to_latest_minute);
         switch (v.getId()) {
 
             case R.id.btn_weiter_screen2:
@@ -155,20 +156,20 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
                 //TODO ich muss noch einstellen dass die uhrzeit nicht null ist und Uhrzeit schön darstellen
                 to_earliest_hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 to_earliest_minute = mcurrentTime.get(Calendar.MINUTE);
-System.out.println("hour plus minute, neuefahrt1" +to_earliest_hour+":"+to_earliest_minute);
                 TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        txt_abfahrtszeit.setText( selectedHour + ":" + selectedMinute + "  Uhr");
+                        txt_abfahrtszeit.setText( addLeadingZeros(selectedHour) + ":" + addLeadingZeros(selectedMinute) + "  Uhr");
                     }
-                }, to_earliest_hour, to_earliest_minute, true);
+                },to_earliest_hour, to_earliest_minute, true);
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
                 break;
 
             case R.id.txt_ankunftszeit:
                 // Ankunftszeit Time Picker dialogue
+
                 Calendar ncurrentTime = Calendar.getInstance();
                 to_latest_hour = ncurrentTime.get(Calendar.HOUR_OF_DAY);
                 to_latest_minute = ncurrentTime.get(Calendar.MINUTE);
@@ -177,11 +178,12 @@ System.out.println("hour plus minute, neuefahrt1" +to_earliest_hour+":"+to_earli
                 nTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker ntimePicker, int nselectedHour, int nselectedMinute) {
-                        txt_ankunftszeit.setText( nselectedHour + ":" + nselectedMinute + "  Uhr");
+                        txt_ankunftszeit.setText( addLeadingZeros(nselectedHour) + ":" + addLeadingZeros(nselectedMinute) + "  Uhr");
                     }
                 }, to_latest_hour, to_latest_minute, true);
                 nTimePicker.setTitle("Select Time");
                 nTimePicker.show();
+
                 break;
 
             default:
@@ -197,5 +199,16 @@ System.out.println("hour plus minute, neuefahrt1" +to_earliest_hour+":"+to_earli
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
+    }
+    /**
+     * adds a leading zero to integers lower than 10
+     * @param x
+     * @return
+     */
+    public String addLeadingZeros(int x){
+        if(x<10){
+            return "0"+x;
+        }
+        return ""+x;
     }
 }

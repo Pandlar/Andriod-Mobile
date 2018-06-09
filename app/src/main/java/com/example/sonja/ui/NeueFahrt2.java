@@ -97,10 +97,9 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             to_latest_hour = extras.getInt("to_latest_hour");
             requestRole = NeueFahrt1.RequestRole.valueOf(extras.getString("requestRole"));
         }
-        System.out.println("##################################");
+        System.out.println("###### empfange, neuefahrt2, to earliest" +to_earliest_hour+":"+to_earliest_minute);
+        System.out.println("###### empfange, neuefahrt2, to latest" +to_latest_hour+":"+to_latest_minute);
 
-        System.out.println(requestRole.toString());
-        System.out.println("##################################");
         if (requestRole == NeueFahrt1.RequestRole.DRIVER){
             btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
             btn_both.setBackgroundResource(R.drawable.button_style);
@@ -146,7 +145,9 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         intent.putExtra("to_latest_minute", to_latest_minute);
         intent.putExtra("to_latest_hour", to_latest_hour);
         intent.putExtra("requestRole", requestRole.toString());
-        System.out.println("intent, neuefahrt2" +to_earliest_hour+":"+to_earliest_minute);
+        System.out.println("###### send, neuefahrt2, to earliest" +to_earliest_hour+":"+to_earliest_minute);
+        System.out.println("###### send, neuefahrt2, to latest" +to_latest_hour+":"+to_latest_minute);
+
         switch (v.getId()) {
 
             case R.id.btn_weiter_screen3:
@@ -234,7 +235,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                 mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        txt_abfahrtszeit.setText( selectedHour + ":" + selectedMinute + "  Uhr");
+                        txt_abfahrtszeit.setText( addLeadingZeros(selectedHour) + ":" + addLeadingZeros(selectedMinute) + "  Uhr");
 
                     }
                 }, from_earliest_hour, from_earliest_minute, true);
@@ -253,7 +254,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                 nTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker ntimePicker, int nselectedHour, int nselectedMinute) {
-                        txt_ankunftszeit.setText( nselectedHour + ":" + nselectedMinute + "  Uhr");
+                        txt_ankunftszeit.setText( addLeadingZeros(nselectedHour) + ":" + addLeadingZeros(nselectedMinute) + "  Uhr");
                     }
                 }, from_latest_hour, from_latest_minute, true);
                 nTimePicker.setTitle("Select Time");
@@ -273,5 +274,17 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         Intent intent = new Intent(this, NeueFahrt1.class);
         startActivity(intent);
         this.finish();
+    }
+
+    /**
+     * adds a leading zero to integers lower than 10
+     * @param x
+     * @return
+     */
+    public String addLeadingZeros(int x){
+        if(x<10){
+            return "0"+x;
+        }
+        return ""+x;
     }
 }

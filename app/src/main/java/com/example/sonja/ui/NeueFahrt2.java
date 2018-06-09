@@ -19,7 +19,7 @@ import java.util.Calendar;
 
 public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListener {
 
-    Integer mitfahrer=0, fahrer=0, both=0;
+
     Button btn_weiter_screen3;
     Button btn_search;
     Button btn_offer;
@@ -28,8 +28,26 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     EditText txt_ankunftszeit;
     Button btn_switch_back;
 
+    // Zwischenspeicher Variablen
+    int to_earliest_minute;
+    int to_earliest_hour;
+    int to_latest_minute ;
+    int to_latest_hour ;
+    NeueFahrt1.RequestRole requestRole ;
+    // Zwischenspeicher Variablen
+    int from_earliest_minute;
+    int from_earliest_hour;
+    int from_latest_minute ;
+    int from_latest_hour ;
+
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neue_fahrt2);
 /* Daten aus NeueFahrt1 auslesen - nicht ready
@@ -48,7 +66,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             btn_both.setBackgroundResource(R.drawable.button_style_clicked);
         }
 */
-        // Buttons OnClickListener
+// Buttons OnClickListener
         btn_weiter_screen3 = findViewById(R.id.btn_weiter_screen3);
         btn_weiter_screen3.setOnClickListener(this);
 
@@ -70,6 +88,36 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         btn_switch_back = findViewById(R.id.btn_switch_back);
         btn_switch_back.setOnClickListener(this);
 
+        // Daten übernehmen aus NeueFahrt1
+        Bundle extras = getIntent().getExtras();
+        if(extras!= null) {
+            to_earliest_minute = extras.getInt("to_earliest_minute");
+            to_earliest_hour = extras.getInt("to_earliest_hour");
+            to_latest_minute = extras.getInt("to_latest_minute");
+            to_latest_hour = extras.getInt("to_latest_hour");
+            requestRole = NeueFahrt1.RequestRole.valueOf(extras.getString("requestRole"));
+        }
+        System.out.println("##################################");
+
+        System.out.println(requestRole.toString());
+        System.out.println("##################################");
+        if (requestRole == NeueFahrt1.RequestRole.DRIVER){
+            btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
+            btn_both.setBackgroundResource(R.drawable.button_style);
+            btn_search.setBackgroundResource(R.drawable.button_style);
+        } else if (requestRole == NeueFahrt1.RequestRole.PASSENGER){
+            btn_offer.setBackgroundResource(R.drawable.button_style);
+            btn_both.setBackgroundResource(R.drawable.button_style);
+            btn_search.setBackgroundResource(R.drawable.button_style_clicked);
+        } else if (requestRole == NeueFahrt1.RequestRole.DRIVERORPASSENGER){
+            btn_offer.setBackgroundResource(R.drawable.button_style);
+            btn_both.setBackgroundResource(R.drawable.button_style_clicked);
+            btn_search.setBackgroundResource(R.drawable.button_style);
+        } else {
+            requestRole = NeueFahrt1.RequestRole.NOTDECIDED;
+        }
+
+
         //get the spinner from the xml.
         Spinner dropdown = findViewById(R.id.spinner_anzahl_sitze);
         //create a list of items for the spinner.
@@ -87,25 +135,35 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+
+        Intent intent = new Intent(this, Confirm.class);
+        intent.putExtra("from_earliest_minute", from_earliest_minute);
+        intent.putExtra("from_earliest_hour", from_earliest_hour);
+        intent.putExtra("from_latest_minute", from_latest_minute);
+        intent.putExtra("from_latest_hour", from_latest_hour);
+        intent.putExtra("to_earliest_minute", to_earliest_minute);
+        intent.putExtra("to_earliest_hour", to_earliest_hour);
+        intent.putExtra("to_latest_minute", to_latest_minute);
+        intent.putExtra("to_latest_hour", to_latest_hour);
+        intent.putExtra("requestRole", requestRole.toString());
+        System.out.println("intent, neuefahrt2" +to_earliest_hour+":"+to_earliest_minute);
         switch (v.getId()) {
 
             case R.id.btn_weiter_screen3:
                 // auf Screen Confirm weiterleiten
-                if (mitfahrer == 1) {
-                    Intent intent = new Intent(this, Confirm.class);
+                if (requestRole == NeueFahrt1.RequestRole.PASSENGER) {
                     startActivity(intent);
                     this.finish();
                 }
-                if (fahrer == 1) {
-                    Intent intent = new Intent(this, Confirm.class);
+                else if (requestRole == NeueFahrt1.RequestRole.DRIVER) {
                     startActivity(intent);
                     this.finish();
                 }
-                if (both == 1) {
-                    Intent intent = new Intent(this, Confirm.class);
+                else if (requestRole == NeueFahrt1.RequestRole.DRIVERORPASSENGER) {
                     startActivity(intent);
                     this.finish();
                 }
+                //TODO logik überlegen
                 else {
                     System.out.println("Bitte Angabe machen.");
                 }
@@ -117,9 +175,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                 btn_offer.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style);
                 btn_search.setBackgroundResource(R.drawable.button_style_clicked);
-                mitfahrer = 1;
-                fahrer = 0;
-                both = 0;
+                requestRole = NeueFahrt1.RequestRole.PASSENGER;
                 break;
 
             case R.id.btn_offer:
@@ -127,9 +183,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                 btn_search.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style);
                 btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
-                mitfahrer = 0;
-                fahrer = 1;
-                both = 0;
+                requestRole = NeueFahrt1.RequestRole.DRIVER;
                 break;
 
             case R.id.btn_both:
@@ -137,9 +191,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                 btn_search.setBackgroundResource(R.drawable.button_style);
                 btn_offer.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style_clicked);
-                mitfahrer = 0;
-                fahrer = 0;
-                both = 1;
+                requestRole = NeueFahrt1.RequestRole.DRIVERORPASSENGER;
                 break;
 
 
@@ -174,8 +226,8 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             case R.id.txt_abfahrtszeit:
                 // Abfahrtszeit Time Picker dialogue
                 Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
+                from_earliest_hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                from_earliest_minute = mcurrentTime.get(Calendar.MINUTE);
 
 
                 TimePickerDialog mTimePicker;
@@ -185,7 +237,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                         txt_abfahrtszeit.setText( selectedHour + ":" + selectedMinute + "  Uhr");
 
                     }
-                }, hour, minute, true);
+                }, from_earliest_hour, from_earliest_minute, true);
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
 
@@ -194,8 +246,8 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             case R.id.txt_ankunftszeit:
                 // Ankunftszeit Time Picker dialogue
                 Calendar ncurrentTime = Calendar.getInstance();
-                int nhour = ncurrentTime.get(Calendar.HOUR_OF_DAY);
-                int nminute = ncurrentTime.get(Calendar.MINUTE);
+                from_latest_hour = ncurrentTime.get(Calendar.HOUR_OF_DAY);
+                from_latest_minute = ncurrentTime.get(Calendar.MINUTE);
 
                 TimePickerDialog nTimePicker;
                 nTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
@@ -203,7 +255,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                     public void onTimeSet(TimePicker ntimePicker, int nselectedHour, int nselectedMinute) {
                         txt_ankunftszeit.setText( nselectedHour + ":" + nselectedMinute + "  Uhr");
                     }
-                }, nhour, nminute, true);
+                }, from_latest_hour, from_latest_minute, true);
                 nTimePicker.setTitle("Select Time");
                 nTimePicker.show();
                 break;

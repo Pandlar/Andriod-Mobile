@@ -2,7 +2,6 @@ package com.example.sonja.ui;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +15,12 @@ import java.util.Calendar;
 
 public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListener{
 
-    static Integer mitfahrer=0, fahrer=0, both=0;
+
+    public enum RequestRole{
+        DRIVER, PASSENGER, DRIVERORPASSENGER, NOTDECIDED
+    }
+
+    RequestRole requestRole = RequestRole.NOTDECIDED;
     Button btn_weiter_screen2;
     Button btn_search;
     Button btn_offer;
@@ -24,6 +28,10 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     EditText txt_abfahrtszeit;
     EditText txt_ankunftszeit;
     Button btn_switch;
+    int to_earliest_hour = 0;
+    int to_earliest_minute = 0;
+    int to_latest_hour = 0;
+    int to_latest_minute = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,22 +78,29 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+
+        Intent intent = new Intent(this, NeueFahrt2.class);
+        intent.putExtra("to_earliest_minute", to_earliest_minute);
+        intent.putExtra("to_earliest_hour", to_earliest_hour);
+        intent.putExtra("to_latest_minute", to_latest_minute);
+        intent.putExtra("to_latest_hour", to_latest_hour);
+        intent.putExtra("requestRole", requestRole.toString());
+        System.out.println("intent, neuefahrt1" +to_earliest_hour+":"+to_earliest_minute);
         switch (v.getId()) {
 
             case R.id.btn_weiter_screen2:
                 // auf ... weiterleiten
-                if (mitfahrer == 1) {
-                    Intent intent = new Intent(this, NeueFahrt2.class);
+
+                if (requestRole == RequestRole.PASSENGER) {
                     startActivity(intent);
+
                     this.finish();
             }
-                if (fahrer == 1) {
-                    Intent intent = new Intent(this, NeueFahrt2.class);
+                if (requestRole == RequestRole.DRIVER) {
                     startActivity(intent);
                     this.finish();
                 }
-                if (both == 1) {
-                    Intent intent = new Intent(this, NeueFahrt2.class);
+                if (requestRole == RequestRole.DRIVERORPASSENGER) {
                     startActivity(intent);
                     this.finish();
                 }
@@ -100,9 +115,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
                 btn_offer.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style);
                 btn_search.setBackgroundResource(R.drawable.button_style_clicked);
-                mitfahrer = 1;
-                fahrer = 0;
-                both = 0;
+                requestRole = RequestRole.PASSENGER;
                 break;
 
             case R.id.btn_offer:
@@ -110,9 +123,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
                 btn_search.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style);
                 btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
-                mitfahrer = 0;
-                fahrer = 1;
-                both = 0;
+                requestRole = RequestRole.DRIVER;
                 break;
 
             case R.id.btn_both:
@@ -120,43 +131,38 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
                 btn_search.setBackgroundResource(R.drawable.button_style);
                 btn_offer.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style_clicked);
-                mitfahrer = 0;
-                fahrer = 0;
-                both = 1;
+                requestRole = RequestRole.DRIVERORPASSENGER;
                 break;
 
             case R.id.btn_switch:
                 // auf NeueFahrt2 weiterleiten
-                    Intent intent = new Intent(this, NeueFahrt2.class);
-                    startActivity(intent);
+
+                startActivity(intent);
                     this.finish();
-                    if (mitfahrer == 1){
-                        NeueFahrt2 a = new NeueFahrt2();
-                        a.mitfahrer = 1;
+                    if (requestRole == RequestRole.PASSENGER){
                     }
-                    if (fahrer == 1){
-                        NeueFahrt2 b = new NeueFahrt2();
-                        b.fahrer = 1;
+                    if (requestRole == RequestRole.DRIVER){
+                       //TODO
                     }
-                     if (both == 1){
-                        NeueFahrt2 b = new NeueFahrt2();
-                        b.both = 1;
+                     if (requestRole == RequestRole.DRIVERORPASSENGER){
+
                     }
                     break;
 
             case R.id.txt_abfahrtszeit:
                 // Abfahrtszeit Time Picker dialogue
                 Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-
+                //TODO ich muss noch einstellen dass die uhrzeit nicht null ist und Uhrzeit schön darstellen
+                to_earliest_hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                to_earliest_minute = mcurrentTime.get(Calendar.MINUTE);
+System.out.println("hour plus minute, neuefahrt1" +to_earliest_hour+":"+to_earliest_minute);
                 TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         txt_abfahrtszeit.setText( selectedHour + ":" + selectedMinute + "  Uhr");
                     }
-                }, hour, minute, true);
+                }, to_earliest_hour, to_earliest_minute, true);
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
                 break;
@@ -164,8 +170,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
             case R.id.txt_ankunftszeit:
                 // Ankunftszeit Time Picker dialogue
                 Calendar ncurrentTime = Calendar.getInstance();
-                int nhour = ncurrentTime.get(Calendar.HOUR_OF_DAY);
-                int nminute = ncurrentTime.get(Calendar.MINUTE);
+                to_latest_hour = ncurrentTime.get(Calendar.HOUR_OF_DAY);
+                to_latest_minute = ncurrentTime.get(Calendar.MINUTE);
 
                 TimePickerDialog nTimePicker;
                 nTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
@@ -173,7 +179,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
                     public void onTimeSet(TimePicker ntimePicker, int nselectedHour, int nselectedMinute) {
                         txt_ankunftszeit.setText( nselectedHour + ":" + nselectedMinute + "  Uhr");
                     }
-                }, nhour, nminute, true);
+                }, to_latest_hour, to_latest_minute, true);
                 nTimePicker.setTitle("Select Time");
                 nTimePicker.show();
                 break;

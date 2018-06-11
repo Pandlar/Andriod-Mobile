@@ -145,8 +145,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         intent.putExtra("to_latest_minute", to_latest_minute);
         intent.putExtra("to_latest_hour", to_latest_hour);
         intent.putExtra("requestRole", requestRole.toString());
-        System.out.println("###### send, neuefahrt2, to earliest" +to_earliest_hour+":"+to_earliest_minute);
-        System.out.println("###### send, neuefahrt2, to latest" +to_latest_hour+":"+to_latest_minute);
 
         switch (v.getId()) {
 
@@ -227,18 +225,19 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             case R.id.txt_abfahrtszeit:
                 // Abfahrtszeit Time Picker dialogue
                 Calendar mcurrentTime = Calendar.getInstance();
-                from_earliest_hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                from_earliest_minute = mcurrentTime.get(Calendar.MINUTE);
-
 
                 TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         txt_abfahrtszeit.setText( addLeadingZeros(selectedHour) + ":" + addLeadingZeros(selectedMinute) + "  Uhr");
+                        from_earliest_hour =selectedHour;
+                        from_earliest_minute = selectedMinute;
+                        System.out.println(from_latest_hour);
+                        System.out.println(from_latest_hour);
 
                     }
-                }, from_earliest_hour, from_earliest_minute, true);
+                }, mcurrentTime.get(Calendar.HOUR_OF_DAY), mcurrentTime.get(Calendar.MINUTE), true);
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
 
@@ -247,16 +246,17 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             case R.id.txt_ankunftszeit:
                 // Ankunftszeit Time Picker dialogue
                 Calendar ncurrentTime = Calendar.getInstance();
-                from_latest_hour = ncurrentTime.get(Calendar.HOUR_OF_DAY);
-                from_latest_minute = ncurrentTime.get(Calendar.MINUTE);
+
 
                 TimePickerDialog nTimePicker;
                 nTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker ntimePicker, int nselectedHour, int nselectedMinute) {
                         txt_ankunftszeit.setText( addLeadingZeros(nselectedHour) + ":" + addLeadingZeros(nselectedMinute) + "  Uhr");
+                        from_latest_hour =nselectedHour;
+                        from_latest_minute = nselectedMinute;
                     }
-                }, from_latest_hour, from_latest_minute, true);
+                }, ncurrentTime.get(Calendar.HOUR_OF_DAY), ncurrentTime.get(Calendar.MINUTE), true);
                 nTimePicker.setTitle("Select Time");
                 nTimePicker.show();
                 break;
@@ -270,7 +270,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
     // When clicking back you get redirected to starting screen.
     public void onBackPressed(){
-        System.out.println("MainActivity onBackPressed() aufgerufen.");
         Intent intent = new Intent(this, NeueFahrt1.class);
         startActivity(intent);
         this.finish();

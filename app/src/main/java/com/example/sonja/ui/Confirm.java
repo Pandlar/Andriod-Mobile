@@ -43,8 +43,6 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
             from_earliest_hour = extras.getInt("from_earliest_hour");
             from_latest_minute = extras.getInt("from_latest_minute");
             from_latest_hour = extras.getInt("from_latest_hour");
-            System.out.println("###### empfange, confirm, to earliest" +to_earliest_hour+":"+to_earliest_minute);
-            System.out.println("###### empfange, confirm, to latest" +to_latest_hour+":"+to_latest_minute);
         }
         setContentView(R.layout.activity_confirm);
 
@@ -72,7 +70,6 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
 
         // Daten übernehmen aus NeueFahrt1
 
-        System.out.println("##################################");
     }
 
 
@@ -91,7 +88,6 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
 
         // When clicking back you get redirected to starting screen.
         public void onBackPressed() {
-            System.out.println("Neue Fahrt2 onBackPressed() aufgerufen.");
             Intent intent = new Intent(this, NeueFahrt2.class);
             startActivity(intent);
             this.finish();

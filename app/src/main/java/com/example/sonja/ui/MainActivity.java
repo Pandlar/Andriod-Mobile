@@ -14,8 +14,15 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity  {
+import com.example.sonja.ui.aws.AWSLoginHandler;
+import com.example.sonja.ui.aws.AWSLoginModel;
+
+public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
+
+    AWSLoginModel awsLoginModel;
 
     Button btn_logIn;
     Button btn_forgotPassword;
@@ -33,6 +40,9 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //addPreferencesFromResource(R.xml.preferences);
+
+        // instantiating AWSLoginModel(context, callback)
+        awsLoginModel = new AWSLoginModel(this, this);
 
         btn_logIn = findViewById(R.id.btn_login);
         btn_logIn.getBackground().setAlpha(1);
@@ -57,6 +67,43 @@ public class MainActivity extends AppCompatActivity  {
           clear.clear().apply();
           System.out.println("reset firstrun: " + getString(R.string.sharedPrefsFirstRunString));*/
 
+    }
+
+    @Override
+    public void onRegisterSuccess(boolean mustConfirmToComplete) {
+        if (mustConfirmToComplete) {
+            Toast.makeText(MainActivity.this, "Almost done! Confirm code to complete registration", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(MainActivity.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onRegisterConfirmed() {
+        Toast.makeText(MainActivity.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSignInSuccess() {
+        MainActivity.this.startActivity(new Intent(MainActivity.this, NeueFahrt1.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
+
+    @Override
+    public void onFailure(int process, Exception exception) {
+        exception.printStackTrace();
+        String whatProcess = "";
+        switch (process) {
+            case AWSLoginModel.PROCESS_SIGN_IN:
+                whatProcess = "Sign In:";
+                break;
+            case AWSLoginModel.PROCESS_REGISTER:
+                whatProcess = "Registration:";
+                break;
+            case AWSLoginModel.PROCESS_CONFIRM_REGISTRATION:
+                whatProcess = "Registration Confirmation:";
+                break;
+        }
+        Toast.makeText(MainActivity.this, whatProcess + exception.getMessage(), Toast.LENGTH_LONG).show();
     }
 
 
@@ -85,10 +132,10 @@ public class MainActivity extends AppCompatActivity  {
 
     public void onClickLogin(View v) {
         //ruft NeueFahrt1 auf
-        Intent intent = new Intent(this, NeueFahrt1.class);
-        startActivity(intent);
-        this.finish();
-
+        //Intent intent = new Intent(this, NeueFahrt1.class);
+        //startActivity(intent);
+        //this.finish();
+        loginAction();
     }
 
     public void onClick(View v) {
@@ -113,6 +160,14 @@ public class MainActivity extends AppCompatActivity  {
         startActivity(intent);
         this.finish();
 
+    }
+
+    private void loginAction() {
+        EditText userOrEmail = findViewById(R.id.Username);
+        EditText password = findViewById(R.id.Password);
+
+        // do sign in and handles on interface
+        awsLoginModel.signInUser(userOrEmail.getText().toString(), password.getText().toString());
     }
 
 

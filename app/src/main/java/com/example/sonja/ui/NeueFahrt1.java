@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,19 +16,26 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.example.sonja.ui.aws.AWSLoginHandler;
+import com.example.sonja.ui.aws.AWSLoginModel;
 
 import java.util.Calendar;
 
-public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListener{
+public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListener, AWSLoginHandler {
 
     static Integer mitfahrer=0, fahrer=0, both=0;
     Button btn_weiter_screen2;
     Button btn_search;
     Button btn_offer;
     Button btn_both;
+    Button btn_log_out;
     EditText txt_abfahrtszeit;
     EditText txt_ankunftszeit;
     Button btn_switch;
+
+    AWSLoginModel awsLoginModel;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -57,6 +65,23 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neue_fahrt1);
+
+        // instantiating AWSLoginModel(context, callback)
+        awsLoginModel = new AWSLoginModel(this, this);
+
+        btn_log_out = (Button) findViewById(R.id.btn_log_out);
+
+        btn_log_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("myTag", "Log Out function called!");
+
+                // do sign out and handles on interface
+                awsLoginModel.signOutUser();
+
+                NeueFahrt1.this.startActivity(new Intent(NeueFahrt1.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
+        });
 
 // Bottom Navigation initialisieren
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -98,6 +123,43 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         dropdown.setAdapter(adapter);
 
 
+    }
+
+    @Override
+    public void onRegisterSuccess(boolean mustConfirmToComplete) {
+        if (mustConfirmToComplete) {
+            Toast.makeText(NeueFahrt1.this, "Almost done! Confirm code to complete registration", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(NeueFahrt1.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onRegisterConfirmed() {
+        Toast.makeText(NeueFahrt1.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSignInSuccess() {
+        NeueFahrt1.this.startActivity(new Intent(NeueFahrt1.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
+
+    @Override
+    public void onFailure(int process, Exception exception) {
+        exception.printStackTrace();
+        String whatProcess = "";
+        switch (process) {
+            case AWSLoginModel.PROCESS_SIGN_IN:
+                whatProcess = "Sign In:";
+                break;
+            case AWSLoginModel.PROCESS_REGISTER:
+                whatProcess = "Registration:";
+                break;
+            case AWSLoginModel.PROCESS_CONFIRM_REGISTRATION:
+                whatProcess = "Registration Confirmation:";
+                break;
+        }
+        Toast.makeText(NeueFahrt1.this, whatProcess + exception.getMessage(), Toast.LENGTH_LONG).show();
     }
 
 

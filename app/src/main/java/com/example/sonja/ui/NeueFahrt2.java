@@ -27,6 +27,8 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     EditText txt_abfahrtszeit;
     EditText txt_ankunftszeit;
     Button btn_switch_back;
+    TextView txt_anzahl_sitze;
+
 
     // Zwischenspeicher Variablen
     int to_earliest_minute;
@@ -88,6 +90,8 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         btn_switch_back = findViewById(R.id.btn_switch_back);
         btn_switch_back.setOnClickListener(this);
 
+        txt_anzahl_sitze = findViewById(R.id.txt_anzahl_sitze);
+
         // Daten übernehmen aus NeueFahrt1
         Bundle extras = getIntent().getExtras();
         if(extras!= null) {
@@ -101,14 +105,17 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         System.out.println("###### empfange, neuefahrt2, to latest" +to_latest_hour+":"+to_latest_minute);
 
         if (requestRole == NeueFahrt1.RequestRole.DRIVER){
+            txt_anzahl_sitze.setVisibility(View.VISIBLE);
             btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
             btn_both.setBackgroundResource(R.drawable.button_style);
             btn_search.setBackgroundResource(R.drawable.button_style);
         } else if (requestRole == NeueFahrt1.RequestRole.PASSENGER){
+            txt_anzahl_sitze.setVisibility(View.INVISIBLE);
             btn_offer.setBackgroundResource(R.drawable.button_style);
             btn_both.setBackgroundResource(R.drawable.button_style);
             btn_search.setBackgroundResource(R.drawable.button_style_clicked);
         } else if (requestRole == NeueFahrt1.RequestRole.DRIVERORPASSENGER){
+            txt_anzahl_sitze.setVisibility(View.VISIBLE);
             btn_offer.setBackgroundResource(R.drawable.button_style);
             btn_both.setBackgroundResource(R.drawable.button_style_clicked);
             btn_search.setBackgroundResource(R.drawable.button_style);

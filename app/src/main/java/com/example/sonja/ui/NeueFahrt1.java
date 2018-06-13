@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -27,7 +28,9 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     Button btn_both;
     EditText txt_abfahrtszeit;
     EditText txt_ankunftszeit;
+    TextView txt_anzahl_sitze;
     Button btn_switch;
+    Spinner dropdown;
     int to_earliest_hour = 0;
     int to_earliest_minute = 0;
     int to_latest_hour = 0;
@@ -61,8 +64,9 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         btn_switch = findViewById(R.id.btn_switch);
         btn_switch.setOnClickListener(this);
 
+        txt_anzahl_sitze = findViewById(R.id.txt_anzahl_sitze);
         //get the spinner from the xml.
-        Spinner dropdown = findViewById(R.id.spinner_anzahl_sitze);
+        dropdown = findViewById(R.id.spinner_anzahl_sitze);
         //create a list of items for the spinner.
         String[] items = new String[]{"1", "2", "3"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
@@ -70,7 +74,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 
         //set the spinners adapter to the previously created one.
-        dropdown.setAdapter(adapter);
+         dropdown.setAdapter(adapter);
 
 
     }
@@ -101,6 +105,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
                 }
                 if (requestRole == RequestRole.DRIVERORPASSENGER) {
                     startActivity(intent);
+
                     this.finish();
                 }
                 else {
@@ -111,6 +116,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_search:
                 // do your code
+                txt_anzahl_sitze.setVisibility(View.INVISIBLE);
+                dropdown.setVisibility(View.INVISIBLE);
                 btn_offer.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style);
                 btn_search.setBackgroundResource(R.drawable.button_style_clicked);
@@ -119,6 +126,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_offer:
                 // do your code
+                txt_anzahl_sitze.setVisibility(View.VISIBLE);
+                dropdown.setVisibility(View.VISIBLE);
                 btn_search.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style);
                 btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
@@ -127,6 +136,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_both:
                 // do your code
+                txt_anzahl_sitze.setVisibility(View.VISIBLE);
+                dropdown.setVisibility(View.VISIBLE);
                 btn_search.setBackgroundResource(R.drawable.button_style);
                 btn_offer.setBackgroundResource(R.drawable.button_style);
                 btn_both.setBackgroundResource(R.drawable.button_style_clicked);

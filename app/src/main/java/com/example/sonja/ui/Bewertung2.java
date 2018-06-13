@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
+public class Bewertung2 extends AppCompatActivity implements View.OnClickListener{
 
-public class Confirm2 extends AppCompatActivity {
+    Button btn_Veroeffentlichen2;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -20,15 +22,15 @@ public class Confirm2 extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intentHome = new Intent(Confirm2.this, Home3.class);
+                    Intent intentHome = new Intent(Bewertung2.this, Home3.class);
                     startActivityForResult(intentHome, 0);
                     return true;
                 case R.id.navigation_offer:
-                    Intent intentOffer = new Intent(Confirm2.this, NeueFahrt1.class);
+                    Intent intentOffer = new Intent(Bewertung2.this, NeueFahrt1.class);
                     startActivityForResult(intentOffer, 0);
                     return true;
                 case R.id.navigation_profile:
-                    Intent intentProfile = new Intent(Confirm2.this, Confirm.class);
+                    Intent intentProfile = new Intent(Bewertung2.this, Confirm.class);
                     startActivityForResult(intentProfile, 0);
                     return true;
             }
@@ -39,37 +41,24 @@ public class Confirm2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirm2);
+        setContentView(R.layout.activity_bewertung2);
 
-        // Bottom Navigation initialisieren
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
 
+        btn_Veroeffentlichen2 = findViewById(R.id.btn_Veroeffentlichen2);
+        btn_Veroeffentlichen2.setOnClickListener(this);
+
+    }
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.btn_weiter_ok:
-                // auf Screen3 weiterleiten
-                Intent intent = new Intent(this, Home3.class);
+            case R.id.btn_Veroeffentlichen2:
+                // auf Home1 weiterleiten
+                Intent intent = new Intent(this, Home1.class);
                 startActivity(intent);
                 this.finish();
-                break;
         }
-    }
-
-   public void onClickConfirm (View v) {
-       System.out.println("onClickConfirm aufgerufen");
-       Intent intent = new Intent(this, MainActivity.class);
-       startActivity(intent);
-       this.finish();
-   }
-
-    // When clicking back you get redirected to starting screen.
-    public void onBackPressed(){
-        System.out.println("Confirm onBackPressed() aufgerufen.");
-        Intent intent = new Intent(this, Confirm.class);
-        startActivity(intent);
-        this.finish();
     }
 }

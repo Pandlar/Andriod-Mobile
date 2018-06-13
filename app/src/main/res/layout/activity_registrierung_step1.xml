@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/registration1"
+    tools:context=".RegistrierungStep1"
+    tools:layout_editor_absoluteY="25dp">
+
+    <RadioButton
+        android:id="@+id/rbAGB"
+        android:layout_width="294dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:buttonTint="@android:color/black"
+        android:checked="false"
+        android:text="Ich akzeptiere die allgemeinen Geschäftsbedingungen"
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnWeiter1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etEMail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:hint="E-Mail"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/darker_gray"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/etPasswort"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etNachname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:hint="Nachname"
+        android:textColor="@android:color/darker_gray"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/etEMail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etPasswort2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:hint="Passwort bestätigen"
+        android:inputType="textPassword"
+        android:textColor="@android:color/darker_gray"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/rbAGB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etPasswort"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:hint="Passwort"
+        android:inputType="textPassword"
+        android:textColor="@android:color/darker_gray"
+
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/etPasswort2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnWeiter1"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="35dp"
+        android:background="@android:color/black"
+        android:text="Weiter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etVorname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:hint="Vorname"
+        android:textColor="@android:color/darker_gray"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/etNachname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

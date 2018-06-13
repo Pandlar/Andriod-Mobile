@@ -26,7 +26,11 @@
         <activity android:name=".NeueFahrt1" />
         <activity android:name=".NeueFahrt2" />
         <activity android:name=".Confirm" />
-        <activity android:name=".Confirm2"></activity>
+        <activity android:name=".Confirm2" />
+        <activity android:name=".RegistrierungStep1" />
+        <activity android:name=".RegistrierungStep2" />
+        <activity android:name=".RegistrierungStep3" />
+        <activity android:name=".RegistrierungEnde"></activity>
     </application>
 
 </manifest>

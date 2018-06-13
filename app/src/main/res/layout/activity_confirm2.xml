@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Confirm2"
-    android:background="@drawable/background_confirmation">
+    android:background="@drawable/background_confirmation2_compressed">
 
 
     <TextView

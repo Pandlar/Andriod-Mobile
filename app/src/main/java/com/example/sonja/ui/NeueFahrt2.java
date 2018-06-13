@@ -134,10 +134,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
-
-
     }
-
 
     @Override
     public void onClick(View v) {
@@ -177,29 +174,13 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.btn_search:
-                // do your code
-                btn_offer.setBackgroundResource(R.drawable.button_style);
-                btn_both.setBackgroundResource(R.drawable.button_style);
-                btn_search.setBackgroundResource(R.drawable.button_style_clicked);
-                requestRole = NeueFahrt1.RequestRole.PASSENGER;
                 break;
 
             case R.id.btn_offer:
-                // do your code
-                btn_search.setBackgroundResource(R.drawable.button_style);
-                btn_both.setBackgroundResource(R.drawable.button_style);
-                btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
-                requestRole = NeueFahrt1.RequestRole.DRIVER;
                 break;
 
             case R.id.btn_both:
-                // do your code
-                btn_search.setBackgroundResource(R.drawable.button_style);
-                btn_offer.setBackgroundResource(R.drawable.button_style);
-                btn_both.setBackgroundResource(R.drawable.button_style_clicked);
-                requestRole = NeueFahrt1.RequestRole.DRIVERORPASSENGER;
                 break;
-
 
             case R.id.btn_switch_back:
                 // auf Screeen NeueFahrt1 weiterleiten
@@ -207,28 +188,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                 startActivity(intentswitch);
                 this.finish();
                 break;
-/*
-            case R.id.btn_search:
-                // do your code
-                btn_offer.setBackgroundResource(R.drawable.button_style);
-                btn_both.setBackgroundResource(R.drawable.button_style);
-                btn_search.setBackgroundResource(R.drawable.button_style_clicked);
-                break;
 
-            case R.id.btn_offer:
-                // do your code
-                btn_search.setBackgroundResource(R.drawable.button_style);
-                btn_both.setBackgroundResource(R.drawable.button_style);
-                btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
-                break;
-
-            case R.id.btn_both:
-                // do your code
-                btn_search.setBackgroundResource(R.drawable.button_style);
-                btn_offer.setBackgroundResource(R.drawable.button_style);
-                btn_both.setBackgroundResource(R.drawable.button_style_clicked);
-                break;
-*/
             case R.id.txt_abfahrtszeit:
                 // Abfahrtszeit Time Picker dialogue
                 Calendar mcurrentTime = Calendar.getInstance();

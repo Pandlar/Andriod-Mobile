@@ -72,8 +72,6 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-
-
     public void onClick(View v) {
         switch (v.getId()) {
 

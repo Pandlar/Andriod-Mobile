@@ -181,7 +181,7 @@
         android:id="@+id/textView_noch_offen"
         android:layout_width="107dp"
         android:layout_height="34dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="280dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/area_style_grey"
         android:text="noch offen"
@@ -194,10 +194,22 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginStart="8dp"
-        android:text="Button"
+        android:text="Weiterleitung Home4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation" >
+    </android.support.design.widget.BottomNavigationView>
 
 </android.support.constraint.ConstraintLayout>

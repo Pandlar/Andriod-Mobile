@@ -10,9 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class Confirm2 extends AppCompatActivity implements View.OnClickListener {
-
-    Button btn_weiter_bewertung;
+public class Confirm2 extends AppCompatActivity {
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -22,7 +20,7 @@ public class Confirm2 extends AppCompatActivity implements View.OnClickListener 
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intentHome = new Intent(Confirm2.this, MainActivity.class);
+                    Intent intentHome = new Intent(Confirm2.this, Home3.class);
                     startActivityForResult(intentHome, 0);
                     return true;
                 case R.id.navigation_offer:
@@ -46,38 +44,20 @@ public class Confirm2 extends AppCompatActivity implements View.OnClickListener 
         // Bottom Navigation initialisieren
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        //Button Bewertung
-        btn_weiter_bewertung = findViewById(R.id.btn_weiter_ok);
-        btn_weiter_bewertung.setOnClickListener(this);
-
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.btn_weiter_ok:
-                // auf ... weiterleiten
-                    Intent intent = new Intent(this, Bewertung1.class);
-                    startActivity(intent);
-                    this.finish();
-                break;
-
-            default:
-                break;
-                }}
-
-   /* public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.btn_weiter_ok:
                 // auf Screen3 weiterleiten
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, Home3.class);
                 startActivity(intent);
                 this.finish();
                 break;
         }
-    }  */
+    }
+
    public void onClickConfirm (View v) {
        System.out.println("onClickConfirm aufgerufen");
        Intent intent = new Intent(this, MainActivity.class);

@@ -72,4 +72,6 @@ public class Confirm2 extends AppCompatActivity {
         startActivity(intent);
         this.finish();
     }
+
+
 }

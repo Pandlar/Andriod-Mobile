@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
     Button btn_logIn;
     Button btn_forgotPassword;
     Button btn_createAccount;
+    Button btnONB;
     SharedPreferences sharedPrefs;
     Context ctx;
     String firstRun;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
         btn_createAccount = findViewById(R.id.btn_create_account);
         btn_createAccount.getBackground().setAlpha(1);
+
+        btnONB = findViewById(R.id.btnONB);
+        btnONB.getBackground().setAlpha(1);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -152,14 +156,20 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         startActivity(intent);
         this.finish();
     }
-    public void onClick_CreateAccount(View v) {
-        //TODO:Weiterleitung an Profilerstellung
-        //Anmerkung: momentan gehts dann zum Onboarding (einfach falls man das Onboarding nochmal demonstrieren möchte.
-        System.out.println("onClick_CreateAccount");
+    public void onClickOnboarding(View v) {
+        //TODO:Weiterleitung an Onboarding
+        System.out.println("OnClickOnboarding");
         Intent intent = new Intent(this, Onboarding.class);
         startActivity(intent);
         this.finish();
 
+    }
+    public void onClick_CreateAccount (View v) {
+        //TODO:Weiterleitung an Profilerstellung
+        System.out.println("onClick_CreateAccount");
+        Intent intent = new Intent(this, RegistrierungStep1.class);
+        startActivity(intent);
+        this.finish();
     }
 
     private void loginAction() {

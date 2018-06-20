@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
     Button bewerten;
+    Button bewerten2;
     Button kasten_aktuell;
 
 
@@ -51,6 +52,9 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         bewerten = findViewById(R.id.bewerten);
         bewerten.setOnClickListener(this);
 
+        bewerten2 = findViewById(R.id.bewerten2);
+        bewerten2.setOnClickListener(this);
+
         kasten_aktuell = findViewById(R.id.kasten_aktuell);
         kasten_aktuell.setOnClickListener(this);
 
@@ -58,15 +62,21 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bewerten:
-                // auf Bewertung1 weiterleiten
-                Intent intent = new Intent(this, Bewertung1.class);
+                // auf Bewertung2 weiterleiten
+                Intent intent = new Intent(this, Bewertung2.class);
                 startActivity(intent);
+                this.finish();
+                break;
+            case R.id.bewerten2:
+                // auf Bewertung1 weiterleiten
+                Intent intent2 = new Intent(this, Bewertung1.class);
+                startActivity(intent2);
                 this.finish();
                 break;
             case R.id.kasten_aktuell:
                 // auf Home3 weiterleiten
-                Intent intent2 = new Intent(this, Home3.class);
-                startActivity(intent2);
+                Intent intent3 = new Intent(this, Home3.class);
+                startActivity(intent3);
                 this.finish();
         }}
 

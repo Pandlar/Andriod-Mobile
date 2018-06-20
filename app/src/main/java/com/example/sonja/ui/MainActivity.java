@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         // instantiating AWSLoginModel(context, callback)
         awsLoginModel = new AWSLoginModel(this, this);
 
-        Log.d("MainActivity JWT: ",AWSLoginModel.getSavedUserJWT(MainActivity.this));
+        Log.d("MainActivity JWT: ", "before actual JWT");
+        Log.d("MainActivity JWT: ", AWSLoginModel.getSavedUserJWT(MainActivity.this));
 
         btn_logIn = findViewById(R.id.btn_login);
         btn_logIn.getBackground().setAlpha(1);

@@ -44,10 +44,10 @@
         <activity android:name=".Passwort"></activity>
         <activity android:name=".Faq" />
         <activity android:name=".Agb" />
-        <activity android:name=".Hilfe" />
-            android:label="@string/app_name" />
-            android:name=".Bezahlung"
         <activity
+            android:label="@string/app_name"
+            android:name=".Bezahlung"/>
+        <activity android:name=".Hilfe"/>
         <activity android:name=".AccountCar02" />
         <activity android:name=".AccountSettings03" />
         <activity android:name=".account01" />

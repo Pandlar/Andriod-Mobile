@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <Button
         android:id="@+id/kasten_chronik"
         android:layout_width="191dp"
         android:layout_height="60dp"
@@ -193,8 +193,8 @@
         android:id="@+id/bestätigt"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:layout_marginBottom="200dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="290dp"
+        android:layout_marginEnd="56dp"
         android:background="@color/colorBlack"
         android:text="bestätigt"
         android:textColor="@color/colorAccent"

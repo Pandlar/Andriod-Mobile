@@ -144,7 +144,7 @@
     <TextView
         android:id="@+id/textView_Ankunft_Ort"
         android:layout_width="wrap_content"
-        android:layout_height="21dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="75dp"
         android:text="Bandensche Straße 50-51, 10715 Berlin"

@@ -20,7 +20,7 @@ public class Confirm2 extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intentHome = new Intent(Confirm2.this, Home3.class);
+                    Intent intentHome = new Intent(Confirm2.this, Home4.class);
                     startActivityForResult(intentHome, 0);
                     return true;
                 case R.id.navigation_offer:
@@ -50,8 +50,8 @@ public class Confirm2 extends AppCompatActivity {
         switch (v.getId()) {
 
             case R.id.btn_weiter_ok:
-                // auf Screen3 weiterleiten
-                Intent intent = new Intent(this, Home3.class);
+                // auf Home4 weiterleiten
+                Intent intent = new Intent(this, Home4.class);
                 startActivity(intent);
                 this.finish();
                 break;

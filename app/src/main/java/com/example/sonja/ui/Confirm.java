@@ -25,7 +25,7 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intentHome = new Intent(Confirm.this, Home3.class);
+                    Intent intentHome = new Intent(Confirm.this, Home4.class);
                     startActivityForResult(intentHome, 0);
                     return true;
                 case R.id.navigation_offer:

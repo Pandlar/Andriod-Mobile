@@ -39,7 +39,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intentHome = new Intent(NeueFahrt2.this, Home3.class);
+                    Intent intentHome = new Intent(NeueFahrt2.this, Home4.class);
                     startActivityForResult(intentHome, 0);
                     return true;
                 case R.id.navigation_offer:

@@ -22,7 +22,7 @@ public class Bewertung2 extends AppCompatActivity implements View.OnClickListene
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intentHome = new Intent(Bewertung2.this, Home3.class);
+                    Intent intentHome = new Intent(Bewertung2.this, Home4.class);
                     startActivityForResult(intentHome, 0);
                     return true;
                 case R.id.navigation_offer:
@@ -55,8 +55,8 @@ public class Bewertung2 extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()) {
 
             case R.id.btn_Veroeffentlichen2:
-                // auf Home1 weiterleiten
-                Intent intent = new Intent(this, Home1.class);
+                // auf Home4 weiterleiten
+                Intent intent = new Intent(this, Home4.class);
                 startActivity(intent);
                 this.finish();
         }

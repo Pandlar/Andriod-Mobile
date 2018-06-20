@@ -9,13 +9,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
     Button btn_jetzt_bestätigen;
+    TextView bestätigt;
+    TextView noch_offen;
+    TextView Fahrt_abgesagt;
     Button btn_jetzt_bestätigen2;
+    TextView Fahrt_abgesagt2;
     Button kasten_chronik;
-    public static int statusBestaetigenButton = 0; //0: noch offen 1: bestätigen 3: bestätigt 4: Fahrt absagen
+    public static int status = 3; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -52,18 +57,28 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         btn_jetzt_bestätigen = findViewById(R.id.btn_jetzt_bestätigen);
         btn_jetzt_bestätigen.setOnClickListener(this);
-        btn_jetzt_bestätigen.setVisibility(View.GONE);
+
+        bestätigt = findViewById(R.id.bestätigt);
+        bestätigt.setOnClickListener(this);
+
+        noch_offen = findViewById(R.id.noch_offen);
+        noch_offen.setOnClickListener(this);
+
+        Fahrt_abgesagt = findViewById(R.id.Fahrt_abgesagt);
+        Fahrt_abgesagt.setOnClickListener(this);
 
         btn_jetzt_bestätigen2 = findViewById(R.id.btn_jetzt_bestätigen2);
         btn_jetzt_bestätigen2.setOnClickListener(this);
-        btn_jetzt_bestätigen2.setVisibility(View.GONE);
+
+        Fahrt_abgesagt2 = findViewById(R.id.Fahrt_abgesagt2);
+        Fahrt_abgesagt2.setOnClickListener(this);
 
         kasten_chronik = findViewById(R.id.kasten_chronik);
         kasten_chronik.setOnClickListener(this);
 
-
-
+        nachStatusAnzeigen();
     }
+
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -72,6 +87,8 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
                 Intent intent = new Intent(this, Home3.class);
                 startActivity(intent);
                 this.finish();
+                status = 2;
+                nachStatusAnzeigen();
                 break;
             case R.id.btn_jetzt_bestätigen2:
                 // auf Home5 weiterleiten
@@ -84,6 +101,36 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
                 Intent intent3 = new Intent(this, Home4.class);
                 startActivity(intent3);
                 this.finish();
+        }
+    }
+
+    public void nachStatusAnzeigen(){
+        switch(status){
+            case 0:
+                btn_jetzt_bestätigen.setVisibility(View.INVISIBLE);
+                bestätigt.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                noch_offen.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                btn_jetzt_bestätigen.setVisibility(View.VISIBLE);
+                bestätigt.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                noch_offen.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                btn_jetzt_bestätigen.setVisibility(View.INVISIBLE);
+                bestätigt.setVisibility(View.VISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                noch_offen.setVisibility(View.INVISIBLE);
+                break;
+            case 3:
+                btn_jetzt_bestätigen.setVisibility(View.INVISIBLE);
+                bestätigt.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.VISIBLE);
+                noch_offen.setVisibility(View.INVISIBLE);
+                break;
+
         }
     }
 }

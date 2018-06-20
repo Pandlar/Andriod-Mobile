@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
     public void onClick_ForgotPassword(View v) {
         //if password is forgotten (ruft jetzt erstmal Screen2 auf, solange es keine anderen gibt)
-        Intent intent = new Intent(this, NeueFahrt2.class);
+        Intent intent = new Intent(this, ForgotPassword1.class);
         startActivity(intent);
         this.finish();
     }

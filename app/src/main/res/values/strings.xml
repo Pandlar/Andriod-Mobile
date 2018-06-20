@@ -64,4 +64,8 @@
     <string name="tvWohnort">Wohnort</string>
     <string name="tvArbeitsort">Arbeitsort</string>
     <string name="tvFahrzeuginfo">Über dein Fahrzeug</string>
+
+    //Strings forgot password
+    <string name="textForgotPass">Bitte gib deine E-Mail Adresse ein, mit der du dich registriert hast und wir schicken dir eine E-Mail mit einem Link zum Erstellen eines neuen Passworts zu.</string>
+    textForgotPass
 </resources>

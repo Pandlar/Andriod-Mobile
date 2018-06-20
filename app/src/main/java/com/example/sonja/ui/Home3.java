@@ -12,7 +12,8 @@ import android.widget.ImageButton;
 
 public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
-    Button button2;
+    Button btn_jetzt_bestätigen;
+    Button kasten_chronik;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -47,17 +48,26 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(this);
+        btn_jetzt_bestätigen = findViewById(R.id.btn_jetzt_bestätigen);
+        btn_jetzt_bestätigen.setOnClickListener(this);
+
+        kasten_chronik = findViewById(R.id.kasten_chronik);
+        kasten_chronik.setOnClickListener(this);
 
     }
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.button2:
-                // auf Home4 weiterleiten
-                Intent intent = new Intent(this, Home4.class);
+            case R.id.btn_jetzt_bestätigen:
+                // auf Home5 weiterleiten
+                Intent intent = new Intent(this, Home3.class);
                 startActivity(intent);
+                this.finish();
+                break;
+            case R.id.kasten_chronik:
+                // auf Home5 weiterleiten
+                Intent intent2 = new Intent(this, Home4.class);
+                startActivity(intent2);
                 this.finish();
         }
     }

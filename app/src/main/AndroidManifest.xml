@@ -36,7 +36,6 @@
         <activity android:name=".Home2" />
         <activity android:name=".Home3" />
         <activity android:name=".Home4" />
-        <activity android:name=".Home5"></activity>
         <activity android:name=".RegistrierungStep1" />
         <activity android:name=".RegistrierungStep2" />
         <activity android:name=".RegistrierungStep3" />

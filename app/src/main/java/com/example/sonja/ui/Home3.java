@@ -15,6 +15,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
     Button btn_jetzt_bestätigen;
     Button btn_jetzt_bestätigen2;
     Button kasten_chronik;
+    public static int statusBestaetigenButton = 0; //0: noch offen 1: bestätigen 3: bestätigt 4: Fahrt absagen
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -51,12 +52,16 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         btn_jetzt_bestätigen = findViewById(R.id.btn_jetzt_bestätigen);
         btn_jetzt_bestätigen.setOnClickListener(this);
+        btn_jetzt_bestätigen.setVisibility(View.GONE);
 
         btn_jetzt_bestätigen2 = findViewById(R.id.btn_jetzt_bestätigen2);
         btn_jetzt_bestätigen2.setOnClickListener(this);
+        btn_jetzt_bestätigen2.setVisibility(View.GONE);
 
         kasten_chronik = findViewById(R.id.kasten_chronik);
         kasten_chronik.setOnClickListener(this);
+
+
 
     }
     public void onClick(View v) {

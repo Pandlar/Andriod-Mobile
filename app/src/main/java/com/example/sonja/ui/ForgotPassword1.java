@@ -22,7 +22,7 @@ public class ForgotPassword1 extends AppCompatActivity implements View.OnClickLi
 
     public void onClick(View v) {
         //ruft ... auf
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ForgotPassword2.class);
 
         startActivity(intent);
         this.finish();

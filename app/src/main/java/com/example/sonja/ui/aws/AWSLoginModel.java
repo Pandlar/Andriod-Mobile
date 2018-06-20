@@ -42,6 +42,7 @@ public class AWSLoginModel {
     private static final String SHARED_PREFERENCE = "SavedValues";
     private static final String PREFERENCE_USER_NAME = "awsUserName";
     private static final String PREFERENCE_USER_EMAIL = "awsUserEmail";
+    private static final String PREFERENCE_USER_JWT = "awsUserJWT";
     public static final int PROCESS_SIGN_IN = 1;
     public static final int PROCESS_REGISTER = 2;
     public static final int PROCESS_CONFIRM_REGISTRATION = 3;
@@ -57,7 +58,10 @@ public class AWSLoginModel {
 
     private final AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
         @Override
-        public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
+        public void onSuccess(final CognitoUserSession userSession, CognitoDevice newDevice) {
+
+            Log.d("JSON Web Token: ", userSession.getAccessToken().getJWTToken());
+
             // Get details of the logged user (in this case, only the e-mail)
             mCognitoUser.getDetailsInBackground(new GetDetailsHandler() {
                 @Override
@@ -66,7 +70,10 @@ public class AWSLoginModel {
                     SharedPreferences.Editor editor = mContext.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE).edit();
                     String email = cognitoUserDetails.getAttributes().getAttributes().get(ATTR_EMAIL);
                     editor.putString(PREFERENCE_USER_EMAIL, email);
+                    editor.putString(PREFERENCE_USER_JWT, userSession.getAccessToken().getJWTToken());
                     editor.apply();
+
+
                 }
 
                 @Override
@@ -224,6 +231,17 @@ public class AWSLoginModel {
     public static String getSavedUserName(Context context) {
         SharedPreferences savedValues = context.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE);
         return savedValues.getString(PREFERENCE_USER_NAME, "");
+    }
+
+    /**
+     * Gets the user JWT saved in SharedPreferences.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @return                      user name saved in SharedPreferences.
+     */
+    public static String getSavedUserJWT(Context context) {
+        SharedPreferences savedValues = context.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        return savedValues.getString(PREFERENCE_USER_JWT, "");
     }
 
     /**

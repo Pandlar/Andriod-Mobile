@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
         // instantiating AWSLoginModel(context, callback)
         awsLoginModel = new AWSLoginModel(this, this);
+
+        Log.d("MainActivity JWT: ",AWSLoginModel.getSavedUserJWT(MainActivity.this));
 
         btn_logIn = findViewById(R.id.btn_login);
         btn_logIn.getBackground().setAlpha(1);

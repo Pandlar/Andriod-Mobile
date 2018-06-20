@@ -41,6 +41,16 @@
         <activity android:name=".RegistrierungStep2" />
         <activity android:name=".RegistrierungStep3" />
         <activity android:name=".RegistrierungEnde"></activity>
+        <activity android:name=".Passwort"></activity>
+        <activity android:name=".Faq" />
+        <activity android:name=".Agb" />
+        <activity android:name=".Hilfe" />
+            android:label="@string/app_name" />
+            android:name=".Bezahlung"
+        <activity
+        <activity android:name=".AccountCar02" />
+        <activity android:name=".AccountSettings03" />
+        <activity android:name=".account01" />
     </application>
 
 </manifest>

@@ -44,8 +44,8 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_account01);
 
 // Bottom Navigation initialisieren
-       BottomNavigationView menuAccount = (BottomNavigationView) findViewById(R.id.menu_account);
-       menuAccount.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationView menuAccount = (BottomNavigationView) findViewById(R.id.menu_account);
+        menuAccount.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
 
@@ -55,10 +55,6 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
 
     }
-
-
-
-
 
 
 

@@ -41,9 +41,35 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         }
     };
 
+    // Zwischenspeicher Variablen
+    int to_earliest_minute;
+    int to_earliest_hour;
+    int to_latest_minute ;
+    int to_latest_hour ;
+    NeueFahrt1.RequestRole requestRole ;
+
+    int from_earliest_minute;
+    int from_earliest_hour;
+    int from_latest_minute;
+    int from_latest_hour;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras!= null) {
+            to_earliest_minute = extras.getInt("to_earliest_minute");
+            to_earliest_hour = extras.getInt("to_earliest_hour");
+            to_latest_minute = extras.getInt("to_latest_minute");
+            to_latest_hour = extras.getInt("to_latest_hour");
+            requestRole = NeueFahrt1.RequestRole.valueOf(extras.getString("requestRole"));
+
+            from_earliest_minute = extras.getInt("from_earliest_minute");
+            from_earliest_hour = extras.getInt("from_earliest_hour");
+            from_latest_minute = extras.getInt("from_latest_minute");
+            from_latest_hour = extras.getInt("from_latest_hour");
+        }
         setContentView(R.layout.activity_confirm);
 
         // Bottom Navigation initialisieren
@@ -54,21 +80,26 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         ankunft1 = findViewById(R.id.txt_ankunft1);
         sitze1 = findViewById(R.id.txt_sitze1);
 
-        abfahrt1.setText("08:00 Uhr");
-        ankunft1.setText("09:00 Uhr");
+        abfahrt1.setText(addLeadingZeros(to_earliest_hour) + ":" + addLeadingZeros(to_earliest_minute)+" Uhr");
+        ankunft1.setText(addLeadingZeros(to_latest_hour) + ":" + addLeadingZeros(to_latest_minute)+" Uhr");
         sitze1.setText("1");
 
         abfahrt2 = findViewById(R.id.txt_abfahrt2);
         ankunft2 = findViewById(R.id.txt_ankunft2);
         sitze2 = findViewById(R.id.txt_sitze2);
 
-        abfahrt2.setText("16:00 Uhr");
-        ankunft2.setText("17:00 Uhr");
+        abfahrt2.setText(addLeadingZeros(from_earliest_hour) + ":" + addLeadingZeros(from_earliest_minute)+" Uhr");
+        ankunft2.setText(addLeadingZeros(from_latest_hour) + ":" + addLeadingZeros(from_latest_minute)+" Uhr");
         sitze2.setText("1");
 
         // Buttons OnClickListener
         btn_confirm = findViewById(R.id.btn_confirm);
         btn_confirm.setOnClickListener(this);
+
+
+
+        // Daten übernehmen aus NeueFahrt1
+
     }
 
 
@@ -87,10 +118,21 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
 
         // When clicking back you get redirected to starting screen.
         public void onBackPressed() {
-            System.out.println("Neue Fahrt2 onBackPressed() aufgerufen.");
             Intent intent = new Intent(this, NeueFahrt2.class);
             startActivity(intent);
             this.finish();
         }
+
+    /**
+     * adds a leading zero to integers lower than 10
+     * @param x
+     * @return
+     */
+    public String addLeadingZeros(int x){
+        if(x<10){
+            return "0"+x;
+        }
+        return ""+x;
+    }
     }
 

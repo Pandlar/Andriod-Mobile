@@ -9,12 +9,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
     Button bewerten;
+    TextView bewertet;
+    TextView Fahrt_abgesagt;
     Button bewerten2;
+    TextView bewertet2;
+    TextView Fahrt_abgesagt2;
     Button kasten_aktuell;
+    public static int status_fahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
+    public static int status_mitfahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -52,11 +59,26 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         bewerten = findViewById(R.id.bewerten);
         bewerten.setOnClickListener(this);
 
+        bewertet = findViewById(R.id.bewertet);
+        bewertet.setOnClickListener(this);
+
+        Fahrt_abgesagt = findViewById(R.id.Fahrt_abgesagt);
+        Fahrt_abgesagt.setOnClickListener(this);
+
         bewerten2 = findViewById(R.id.bewerten2);
         bewerten2.setOnClickListener(this);
 
+        bewertet2 = findViewById(R.id.bewertet2);
+        bewertet2.setOnClickListener(this);
+
+        Fahrt_abgesagt2 = findViewById(R.id.Fahrt_abgesagt2);
+        Fahrt_abgesagt2.setOnClickListener(this);
+
         kasten_aktuell = findViewById(R.id.kasten_aktuell);
         kasten_aktuell.setOnClickListener(this);
+
+        nachStatusAnzeigen_Fahrer();
+        nachStatusAnzeigen_Mitfahrer();
 
     }
     public void onClick(View v) {
@@ -80,6 +102,46 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 this.finish();
         }}
 
+    public void nachStatusAnzeigen_Fahrer(){
+        switch(status_fahrer){
+            case 0:
+                bewerten.setVisibility(View.VISIBLE);
+                bewertet.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                bewerten.setVisibility(View.INVISIBLE);
+                bewertet.setVisibility(View.VISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                bewerten.setVisibility(View.INVISIBLE);
+                bewertet.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.VISIBLE);
+                break;
 
+        }
+    }
+
+    public void nachStatusAnzeigen_Mitfahrer(){
+        switch(status_mitfahrer){
+            case 0:
+                bewerten2.setVisibility(View.VISIBLE);
+                bewertet2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                bewerten2.setVisibility(View.INVISIBLE);
+                bewertet2.setVisibility(View.VISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                bewerten2.setVisibility(View.INVISIBLE);
+                bewertet2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.VISIBLE);
+                break;
+
+        }
+    }
 
 }

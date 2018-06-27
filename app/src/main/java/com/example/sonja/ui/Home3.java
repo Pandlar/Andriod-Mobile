@@ -18,9 +18,12 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
     TextView noch_offen;
     TextView Fahrt_abgesagt;
     Button btn_jetzt_bestätigen2;
+    TextView bestätigt2;
+    TextView noch_offen2;
     TextView Fahrt_abgesagt2;
     Button kasten_chronik;
-    public static int status = 3; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
+    public static int status_fahrer = 2; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
+    public static int status_mitfahrer = 2; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -70,42 +73,43 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         btn_jetzt_bestätigen2 = findViewById(R.id.btn_jetzt_bestätigen2);
         btn_jetzt_bestätigen2.setOnClickListener(this);
 
+        bestätigt2 = findViewById(R.id.bestätigt2);
+        bestätigt2.setOnClickListener(this);
+
+        noch_offen2 = findViewById(R.id.noch_offen2);
+        noch_offen2.setOnClickListener(this);
+
         Fahrt_abgesagt2 = findViewById(R.id.Fahrt_abgesagt2);
         Fahrt_abgesagt2.setOnClickListener(this);
 
         kasten_chronik = findViewById(R.id.kasten_chronik);
         kasten_chronik.setOnClickListener(this);
 
-        nachStatusAnzeigen();
+        nachStatusAnzeigen_Fahrer();
+        nachStatusAnzeigen_Mitfahrer();
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.btn_jetzt_bestätigen:
-                // auf Home5 weiterleiten
-                Intent intent = new Intent(this, Home3.class);
-                startActivity(intent);
-                this.finish();
-                status = 2;
-                nachStatusAnzeigen();
+                status_fahrer = 2;
+                nachStatusAnzeigen_Fahrer();
                 break;
             case R.id.btn_jetzt_bestätigen2:
-                // auf Home5 weiterleiten
-                Intent intent2 = new Intent(this, Home3.class);
-                startActivity(intent2);
-                this.finish();
+                status_mitfahrer = 2;
+                nachStatusAnzeigen_Mitfahrer();
                 break;
             case R.id.kasten_chronik:
-                // auf Home5 weiterleiten
+                // auf Home4 weiterleiten
                 Intent intent3 = new Intent(this, Home4.class);
                 startActivity(intent3);
                 this.finish();
         }
     }
 
-    public void nachStatusAnzeigen(){
-        switch(status){
+    public void nachStatusAnzeigen_Fahrer(){
+        switch(status_fahrer){
             case 0:
                 btn_jetzt_bestätigen.setVisibility(View.INVISIBLE);
                 bestätigt.setVisibility(View.INVISIBLE);
@@ -130,6 +134,36 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
                 Fahrt_abgesagt.setVisibility(View.VISIBLE);
                 noch_offen.setVisibility(View.INVISIBLE);
                 break;
+
+        }}
+
+    public void nachStatusAnzeigen_Mitfahrer(){
+        switch(status_mitfahrer){
+            case 0:
+                btn_jetzt_bestätigen2.setVisibility(View.INVISIBLE);
+                bestätigt2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                noch_offen2.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                btn_jetzt_bestätigen2.setVisibility(View.VISIBLE);
+                bestätigt2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                noch_offen2.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                btn_jetzt_bestätigen2.setVisibility(View.INVISIBLE);
+                bestätigt2.setVisibility(View.VISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                noch_offen2.setVisibility(View.INVISIBLE);
+                break;
+            case 3:
+                btn_jetzt_bestätigen2.setVisibility(View.INVISIBLE);
+                bestätigt2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.VISIBLE);
+                noch_offen2.setVisibility(View.INVISIBLE);
+                break;
+
 
         }
     }

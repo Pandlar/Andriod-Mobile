@@ -44,12 +44,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_Feedback" />
 
-    <TextView
+    <Button
         android:id="@+id/kasten_aktuell"
         android:layout_width="191dp"
         android:layout_height="59dp"
         android:layout_marginTop="50dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/area_style_grey"
         android:text="Aktuell"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
@@ -63,7 +63,7 @@
         android:layout_width="191dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
-        android:background="@drawable/area_style_grey"
+        android:background="@color/colorAccent"
         android:text="Chronik"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
@@ -144,7 +144,7 @@
     <TextView
         android:id="@+id/textView_Ankunft_Ort"
         android:layout_width="wrap_content"
-        android:layout_height="21dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="75dp"
         android:text="Bandensche Straße 50-51, 10715 Berlin"
@@ -178,13 +178,137 @@
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <Button
-        android:id="@+id/btn_jetzt_bestätigen"
+        android:id="@+id/bewerten"
         android:layout_width="wrap_content"
         android:layout_height="31dp"
         android:layout_marginBottom="290dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/colorAccent"
-        android:text="jetzt bestätigen"
+        android:text="bewerten"
         android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/bewertet"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginBottom="290dp"
+        android:layout_marginEnd="56dp"
+        android:background="@color/colorBlack"
+        android:text="bewertet"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/Fahrt_abgesagt"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginBottom="290dp"
+        android:layout_marginEnd="56dp"
+        android:background="@color/colorBlack"
+        android:text="Die Fahrt wurde leider abgesagt"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/border_oben2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="472dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Feedback" />
+
+    <View
+        android:id="@+id/border_unten2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="332dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Feedback" />
+
+    <TextView
+        android:id="@+id/textView_Uhrzeit2"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginTop="272dp"
+        android:text="08.Juni 08:00 Uhr"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
+
+    <TextView
+        android:id="@+id/textView_Abfahrt_Ort2"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginTop="330dp"
+        android:text="Berliner Straße 30, 10715 Berlin"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
+
+    <TextView
+        android:id="@+id/textView_Ankunft_Ort2"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="300dp"
+        android:text="Bandensche Straße 50-51, 10715 Berlin"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
+
+    <Button
+        android:id="@+id/bewerten2"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/colorAccent"
+        android:text="bewerten"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/bewertet2"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="56dp"
+        android:background="@color/colorBlack"
+        android:text="bewertet"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/Fahrt_abgesagt2"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="56dp"
+        android:background="@color/colorBlack"
+        android:text="Die Fahrt wurde leider abgesagt"
+        android:textColor="@color/colorAccent"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

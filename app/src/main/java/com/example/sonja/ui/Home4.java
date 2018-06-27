@@ -9,10 +9,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
-    Button btn_jetzt_bestätigen;
+    Button bewerten;
+    TextView bewertet;
+    TextView Fahrt_abgesagt;
+    Button bewerten2;
+    TextView bewertet2;
+    TextView Fahrt_abgesagt2;
+    Button kasten_aktuell;
+    public static int status_fahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
+    public static int status_mitfahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -47,18 +56,92 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        btn_jetzt_bestätigen = findViewById(R.id.btn_jetzt_bestätigen);
-        btn_jetzt_bestätigen.setOnClickListener(this);
+        bewerten = findViewById(R.id.bewerten);
+        bewerten.setOnClickListener(this);
+
+        bewertet = findViewById(R.id.bewertet);
+        bewertet.setOnClickListener(this);
+
+        Fahrt_abgesagt = findViewById(R.id.Fahrt_abgesagt);
+        Fahrt_abgesagt.setOnClickListener(this);
+
+        bewerten2 = findViewById(R.id.bewerten2);
+        bewerten2.setOnClickListener(this);
+
+        bewertet2 = findViewById(R.id.bewertet2);
+        bewertet2.setOnClickListener(this);
+
+        Fahrt_abgesagt2 = findViewById(R.id.Fahrt_abgesagt2);
+        Fahrt_abgesagt2.setOnClickListener(this);
+
+        kasten_aktuell = findViewById(R.id.kasten_aktuell);
+        kasten_aktuell.setOnClickListener(this);
+
+        nachStatusAnzeigen_Fahrer();
+        nachStatusAnzeigen_Mitfahrer();
 
     }
     public void onClick(View v) {
         switch (v.getId()) {
-
-            case R.id.btn_jetzt_bestätigen:
-                // auf Home5 weiterleiten
-                Intent intent = new Intent(this, Home5.class);
+            case R.id.bewerten:
+                // auf Bewertung2 weiterleiten
+                Intent intent = new Intent(this, Bewertung2.class);
                 startActivity(intent);
                 this.finish();
+                break;
+            case R.id.bewerten2:
+                // auf Bewertung1 weiterleiten
+                Intent intent2 = new Intent(this, Bewertung1.class);
+                startActivity(intent2);
+                this.finish();
+                break;
+            case R.id.kasten_aktuell:
+                // auf Home3 weiterleiten
+                Intent intent3 = new Intent(this, Home3.class);
+                startActivity(intent3);
+                this.finish();
+        }}
+
+    public void nachStatusAnzeigen_Fahrer(){
+        switch(status_fahrer){
+            case 0:
+                bewerten.setVisibility(View.VISIBLE);
+                bewertet.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                bewerten.setVisibility(View.INVISIBLE);
+                bewertet.setVisibility(View.VISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                bewerten.setVisibility(View.INVISIBLE);
+                bewertet.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.VISIBLE);
+                break;
+
         }
     }
+
+    public void nachStatusAnzeigen_Mitfahrer(){
+        switch(status_mitfahrer){
+            case 0:
+                bewerten2.setVisibility(View.VISIBLE);
+                bewertet2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                bewerten2.setVisibility(View.INVISIBLE);
+                bewertet2.setVisibility(View.VISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                bewerten2.setVisibility(View.INVISIBLE);
+                bewertet2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.VISIBLE);
+                break;
+
+        }
+    }
+
 }

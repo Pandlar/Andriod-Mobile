@@ -9,10 +9,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
-    Button button2;
+    Button btn_jetzt_bestätigen;
+    TextView bestätigt;
+    TextView noch_offen;
+    TextView Fahrt_abgesagt;
+    Button btn_jetzt_bestätigen2;
+    TextView bestätigt2;
+    TextView noch_offen2;
+    TextView Fahrt_abgesagt2;
+    Button kasten_chronik;
+    public static int status_fahrer = 2; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
+    public static int status_mitfahrer = 2; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -47,18 +58,113 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(this);
+        btn_jetzt_bestätigen = findViewById(R.id.btn_jetzt_bestätigen);
+        btn_jetzt_bestätigen.setOnClickListener(this);
 
+        bestätigt = findViewById(R.id.bestätigt);
+        bestätigt.setOnClickListener(this);
+
+        noch_offen = findViewById(R.id.noch_offen);
+        noch_offen.setOnClickListener(this);
+
+        Fahrt_abgesagt = findViewById(R.id.Fahrt_abgesagt);
+        Fahrt_abgesagt.setOnClickListener(this);
+
+        btn_jetzt_bestätigen2 = findViewById(R.id.btn_jetzt_bestätigen2);
+        btn_jetzt_bestätigen2.setOnClickListener(this);
+
+        bestätigt2 = findViewById(R.id.bestätigt2);
+        bestätigt2.setOnClickListener(this);
+
+        noch_offen2 = findViewById(R.id.noch_offen2);
+        noch_offen2.setOnClickListener(this);
+
+        Fahrt_abgesagt2 = findViewById(R.id.Fahrt_abgesagt2);
+        Fahrt_abgesagt2.setOnClickListener(this);
+
+        kasten_chronik = findViewById(R.id.kasten_chronik);
+        kasten_chronik.setOnClickListener(this);
+
+        nachStatusAnzeigen_Fahrer();
+        nachStatusAnzeigen_Mitfahrer();
     }
+
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.button2:
+            case R.id.btn_jetzt_bestätigen:
+                status_fahrer = 2;
+                nachStatusAnzeigen_Fahrer();
+                break;
+            case R.id.btn_jetzt_bestätigen2:
+                status_mitfahrer = 2;
+                nachStatusAnzeigen_Mitfahrer();
+                break;
+            case R.id.kasten_chronik:
                 // auf Home4 weiterleiten
-                Intent intent = new Intent(this, Home4.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(this, Home4.class);
+                startActivity(intent3);
                 this.finish();
+        }
+    }
+
+    public void nachStatusAnzeigen_Fahrer(){
+        switch(status_fahrer){
+            case 0:
+                btn_jetzt_bestätigen.setVisibility(View.INVISIBLE);
+                bestätigt.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                noch_offen.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                btn_jetzt_bestätigen.setVisibility(View.VISIBLE);
+                bestätigt.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                noch_offen.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                btn_jetzt_bestätigen.setVisibility(View.INVISIBLE);
+                bestätigt.setVisibility(View.VISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                noch_offen.setVisibility(View.INVISIBLE);
+                break;
+            case 3:
+                btn_jetzt_bestätigen.setVisibility(View.INVISIBLE);
+                bestätigt.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.VISIBLE);
+                noch_offen.setVisibility(View.INVISIBLE);
+                break;
+
+        }}
+
+    public void nachStatusAnzeigen_Mitfahrer(){
+        switch(status_mitfahrer){
+            case 0:
+                btn_jetzt_bestätigen2.setVisibility(View.INVISIBLE);
+                bestätigt2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                noch_offen2.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                btn_jetzt_bestätigen2.setVisibility(View.VISIBLE);
+                bestätigt2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                noch_offen2.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                btn_jetzt_bestätigen2.setVisibility(View.INVISIBLE);
+                bestätigt2.setVisibility(View.VISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                noch_offen2.setVisibility(View.INVISIBLE);
+                break;
+            case 3:
+                btn_jetzt_bestätigen2.setVisibility(View.INVISIBLE);
+                bestätigt2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.VISIBLE);
+                noch_offen2.setVisibility(View.INVISIBLE);
+                break;
+
+
         }
     }
 }

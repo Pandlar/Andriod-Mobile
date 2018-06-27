@@ -71,4 +71,9 @@
     <string name="account_car">Fahrzeuginformationen</string>
     <string name="account_settings">Einstellungen</string>
 
+
+    //Strings forgot password
+    <string name="textForgotPass">Bitte gib deine E-Mail Adresse ein, mit der du dich registriert hast und wir schicken dir eine E-Mail mit einem Link zum Erstellen eines neuen Passworts zu.</string>
+    <string name="passmail">Wir haben dir eine E-Mail geschickt!</string>
+    <string name="erstell">Bitte erstelle ein neues Passwort über den Link in der E-Mail.</string>
 </resources>

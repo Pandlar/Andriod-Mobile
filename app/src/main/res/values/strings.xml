@@ -59,13 +59,13 @@
     // Strings für SharedPreferences
     <string name="sharedPrefsFirstRun">FirstRun</string>
     <string name="sharedPrefsFirstRunString">true</string>
+
+    //Strings für die Registrierung
     <string name="tvWohnort">Wohnort</string>
     <string name="tvArbeitsort">Arbeitsort</string>
     <string name="tvFahrzeuginfo">Über dein Fahrzeug</string>
-    //Strings für die Registrierung
 
     // Strings für Accountmenu
-
 
     <string name="account_profile">Account</string>
     <string name="account_car">Fahrzeuginformationen</string>

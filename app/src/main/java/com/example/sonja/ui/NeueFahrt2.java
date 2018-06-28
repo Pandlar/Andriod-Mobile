@@ -31,6 +31,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     EditText txt_ankunftszeit;
     Button btn_switch_back;
     TextView txt_anzahl_sitze;
+    HttpTest httpCon;
 
     // Bottom Navigation aktivieren
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -161,6 +162,8 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+
+        httpCon = new HttpTest();
     }
 
     @Override
@@ -181,7 +184,18 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_weiter_screen3:
                 // auf Screen Confirm weiterleiten
+                try{
+                    httpCon.postRequest(from_earliest_minute,from_earliest_hour,
+                            from_latest_minute, from_latest_hour, requestRole, "towards Home");
+
+                    httpCon.postRequest(to_earliest_minute, to_earliest_hour,
+                            to_latest_minute, to_latest_hour, requestRole, "towards Office");
+                }catch(Exception e){
+                    System.out.println("###### NeueFahrt2 - postRequest aufruf");
+                }
+
                 if (requestRole == NeueFahrt1.RequestRole.PASSENGER) {
+
                     startActivity(intent);
                     this.finish();
                 }

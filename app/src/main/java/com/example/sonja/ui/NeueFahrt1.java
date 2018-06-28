@@ -123,6 +123,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         btn_switch.setOnClickListener(this);
 
         txt_anzahl_sitze = findViewById(R.id.txt_anzahl_sitze);
+
+        //TODO Spinner Logik implementieren!
         //get the spinner from the xml.
         dropdown = findViewById(R.id.spinner_anzahl_sitze);
         //create a list of items for the spinner.

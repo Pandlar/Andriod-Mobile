@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
       SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-         if (sharedPrefs.getString(getString(R.string.sharedPrefsFirstRunString), "true").equals("true")) {
+      if (sharedPrefs.getString(getString(R.string.sharedPrefsFirstRunString), "true").equals("true")) {
 
         System.out.println("Als firstrun identifiziert");
 
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         this.finish();
     }
     public void onClickOnboarding(View v) {
-        //TODO:Weiterleitung an Onboarding
+
         System.out.println("OnClickOnboarding");
         Intent intent = new Intent(this, Onboarding.class);
         startActivity(intent);
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
     }
     public void onClick_CreateAccount (View v) {
-        //TODO:Weiterleitung an Profilerstellung
+
         System.out.println("onClick_CreateAccount");
         Intent intent = new Intent(this, RegistrierungStep1.class);
         startActivity(intent);

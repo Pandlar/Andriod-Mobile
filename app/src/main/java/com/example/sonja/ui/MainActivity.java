@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
     AWSLoginModel awsLoginModel;
 
+    private static final String PREFERENCE_USER_EMAIL = "awsUserEmail";
+
     Button btn_logIn;
     Button btn_forgotPassword;
     Button btn_createAccount;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         awsLoginModel = new AWSLoginModel(this, this);
 
         Log.d("MainActivity JWT: ", "before actual JWT");
+        Log.d("okay max its here","this is the email:" + AWSLoginModel.getSavedEmail(MainActivity.this));
         Log.d("MainActivity JWT: ", AWSLoginModel.getSavedUserJWT(MainActivity.this));
 
         btn_logIn = findViewById(R.id.btn_login);

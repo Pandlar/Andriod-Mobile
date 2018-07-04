@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void registerAction() {
         EditText userName = findViewById(R.id.registerUsername);
         EditText email = findViewById(R.id.registerEmail);
-        EditText password = findViewById(R.id.registerPassword);
+        EditText password = findViewById(R.id.etPasswort);
 
         // do register and handles on interface
         awsLoginModel.registerUser(userName.getText().toString(), email.getText().toString(), password.getText().toString());

@@ -61,6 +61,8 @@ public class AWSLoginModel {
         public void onSuccess(final CognitoUserSession userSession, CognitoDevice newDevice) {
 
             Log.d("JSON Web Token: ", userSession.getAccessToken().getJWTToken());
+            Log.d("ID Token: ", userSession.getIdToken().toString());
+
 
             // Get details of the logged user (in this case, only the e-mail)
             mCognitoUser.getDetailsInBackground(new GetDetailsHandler() {
@@ -242,6 +244,17 @@ public class AWSLoginModel {
     public static String getSavedUserJWT(Context context) {
         SharedPreferences savedValues = context.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE);
         return savedValues.getString(PREFERENCE_USER_JWT, "");
+    }
+
+    /**
+     * Gets the user email saved in SharedPreferences.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @return                      user name saved in SharedPreferences.
+     */
+    public static String getSavedEmail(Context context) {
+        SharedPreferences savedValues = context.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE);
+        return savedValues.getString(PREFERENCE_USER_EMAIL, "");
     }
 
     /**

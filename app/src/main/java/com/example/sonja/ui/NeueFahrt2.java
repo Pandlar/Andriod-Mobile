@@ -186,8 +186,12 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                 // auf Screen Confirm weiterleiten
                 try{
                     String email ="";
-                    httpCon.postRequest(email,from_earliest_minute,from_earliest_hour,
-                            from_latest_minute, from_latest_hour, requestRole, "towards Home");
+
+                    System.out.println("XXXXXx");
+                    //httpCon.postRequest("",0,0,0,0, NeueFahrt1.RequestRole.DRIVER,"towards Office");
+                    System.out.println("XXXXXx2");
+                 //  httpCon.postRequest(email,from_earliest_minute,from_earliest_hour,
+                   //         from_latest_minute, from_latest_hour, requestRole, "towards Home");
 
                     httpCon.postRequest(email,to_earliest_minute, to_earliest_hour,
                             to_latest_minute, to_latest_hour, requestRole, "towards Office");

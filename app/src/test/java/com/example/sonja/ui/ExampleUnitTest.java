@@ -48,5 +48,18 @@ public class ExampleUnitTest {
         HttpTest http = new HttpTest();
         System.out.println(date);
     }
+    @Test
+    public void httppost(){
+        HttpTest http = new HttpTest();
+        /**
+         * earliestDepartureTime=00:00:00&latestArrivalTime=00:00:00&direction=towards Office&role=driver&status=not answered&userId=01c62ef0-84ff-11e8-adc0-fa7ae01bbebc&earliestDepartureTime=00:00:00&date=2018-7-11
+         */
+        try{
+            http.postRequest("",0,0,0,0, NeueFahrt1.RequestRole.DRIVER,"towards Office");
+        }catch(Exception e){
+
+        }
+
+    }
 }
 

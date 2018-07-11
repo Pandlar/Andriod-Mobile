@@ -3,10 +3,19 @@ package com.example.sonja.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class RegistrierungEnde extends AppCompatActivity implements View.OnClickListener {
+import com.example.sonja.ui.aws.AWSLoginHandler;
+import com.example.sonja.ui.aws.AWSLoginModel;
+
+public class RegistrierungEnde extends AppCompatActivity implements View.OnClickListener, AWSLoginHandler {
+
+    AWSLoginModel awsLoginModel;
+    EditText confirmationCodeEditText;
 
     Button btnOk;
 
@@ -15,16 +24,64 @@ public class RegistrierungEnde extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrierung_ende);
 
+        awsLoginModel = new AWSLoginModel(this, this);
+
         // Buttons OnClickListener
         btnOk = findViewById(R.id.btnOk);
         btnOk.setOnClickListener(this);
 
+        confirmationCodeEditText = findViewById(R.id.etConfirmationCode);
     }
+
+    @Override
+    public void onRegisterSuccess(boolean mustConfirmToComplete) {
+        if (mustConfirmToComplete) {
+            Toast.makeText(RegistrierungEnde.this, "Almost done! Confirm code to complete registration", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(RegistrierungEnde.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onRegisterConfirmed() {
+        Toast.makeText(RegistrierungEnde.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSignInSuccess() {
+        RegistrierungEnde.this.startActivity(new Intent(RegistrierungEnde.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
+
+    @Override
+    public void onFailure(int process, Exception exception) {
+        exception.printStackTrace();
+        String whatProcess = "";
+        switch (process) {
+            case AWSLoginModel.PROCESS_SIGN_IN:
+                whatProcess = "Sign In:";
+                break;
+            case AWSLoginModel.PROCESS_REGISTER:
+                whatProcess = "Registration:";
+                break;
+            case AWSLoginModel.PROCESS_CONFIRM_REGISTRATION:
+                whatProcess = "Registration Confirmation:";
+                break;
+        }
+        Toast.makeText(RegistrierungEnde.this, whatProcess + exception.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
 
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.btnOk:
+
+                Log.d("ok was click", "asd--------------------------");
+
+                Log.d("confirmationCode", "" + confirmationCodeEditText.getText().toString());
+
+                // do confirmation and handles on interface
+                awsLoginModel.confirmRegistration(confirmationCodeEditText.getText().toString());
 
                 // auf Mainscreen zurückkehren weiterleiten
                 Intent intent = new Intent(this, MainActivity.class);

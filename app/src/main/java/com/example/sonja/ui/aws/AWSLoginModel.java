@@ -151,8 +151,10 @@ public class AWSLoginModel {
      *
      */
     public void registerUser(String userName, String userEmail, String userPassword) {
+        Log.d("beginning of ","registerUser");
         CognitoUserAttributes userAttributes = new CognitoUserAttributes();
         userAttributes.addAttribute(ATTR_EMAIL, userEmail);
+        userAttributes.addAttribute("phone_number", "+49163637281");
 
         final SignUpHandler signUpHandler = new SignUpHandler() {
             @Override
@@ -178,6 +180,7 @@ public class AWSLoginModel {
      * @param confirmationCode      REQUIRED: Code sent from AWS to the user.
      */
     public void confirmRegistration(String confirmationCode) {
+        Log.d("confirmRegistration","beginning of confirmRegistration");
         final GenericHandler confirmationHandler = new GenericHandler() {
             @Override
             public void onSuccess() {
@@ -189,6 +192,8 @@ public class AWSLoginModel {
                 mCallback.onFailure(PROCESS_CONFIRM_REGISTRATION, exception);
             }
         };
+        Log.d("before","before confirmSignUpInBackground");
+        Log.d("before","before confirmSignUpInBackground" + confirmationCode);
 
         mCognitoUser.confirmSignUpInBackground(confirmationCode, false, confirmationHandler);
     }

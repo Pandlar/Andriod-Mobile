@@ -110,12 +110,12 @@
         android:id="@+id/textView_Fahrer"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginEnd="190dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="45dp"
         android:text="Du bist Fahrer!"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <TextView
@@ -123,47 +123,49 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="45dp"
         android:text="08.Juni 08:00 Uhr"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_Fahrer"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <TextView
         android:id="@+id/textView_Abfahrt_Ort"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="100dp"
         android:text="Berliner Straße 30, 10715 Berlin"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <TextView
         android:id="@+id/textView_Ankunft_Ort"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="75dp"
         android:text="Bandensche Straße 50-51, 10715 Berlin"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <TextView
         android:id="@+id/textView_Freie_Sitzplaetze"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginEnd="185dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="140dp"
         android:text="Freie Sitzplätze"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <TextView
@@ -171,11 +173,13 @@
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginEnd="165dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="140dp"
         android:text="1"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_Freie_Sitzplaetze"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <Button

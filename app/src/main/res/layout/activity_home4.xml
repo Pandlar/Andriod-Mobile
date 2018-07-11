@@ -47,7 +47,7 @@
     <Button
         android:id="@+id/kasten_aktuell"
         android:layout_width="191dp"
-        android:layout_height="60dp"
+        android:layout_height="58dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/area_style_grey"
         android:text="Aktuell"
@@ -61,7 +61,7 @@
     <Button
         android:id="@+id/kasten_chronik"
         android:layout_width="191dp"
-        android:layout_height="60dp"
+        android:layout_height="58dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/button_style_clicked"
         android:text="Chronik"
@@ -182,40 +182,40 @@
         android:id="@+id/bewerten"
         android:layout_width="wrap_content"
         android:layout_height="31dp"
-        android:layout_marginBottom="290dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="14dp"
         android:background="@color/colorAccent"
         android:text="bewerten"
         android:textColor="@color/colorBlack"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/border_unten" />
 
     <TextView
         android:id="@+id/bewertet"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:layout_marginBottom="290dp"
         android:layout_marginEnd="56dp"
+        android:layout_marginTop="14dp"
         android:background="@color/colorBlack"
         android:text="bewertet"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/border_unten" />
 
     <TextView
         android:id="@+id/Fahrt_abgesagt"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginBottom="290dp"
         android:layout_marginEnd="56dp"
+        android:layout_marginTop="14dp"
         android:background="@color/colorBlack"
         android:text="Die Fahrt wurde leider abgesagt"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/border_unten" />
 
     <View
         android:id="@+id/border_oben2"
@@ -279,40 +279,40 @@
         android:id="@+id/bewerten2"
         android:layout_width="wrap_content"
         android:layout_height="31dp"
-        android:layout_marginBottom="75dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="14dp"
         android:background="@color/colorAccent"
         android:text="bewerten"
         android:textColor="@color/colorBlack"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/border_oben2" />
 
     <TextView
         android:id="@+id/bewertet2"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:layout_marginBottom="75dp"
         android:layout_marginEnd="56dp"
+        android:layout_marginTop="14dp"
         android:background="@color/colorBlack"
         android:text="bewertet"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/border_oben2" />
 
     <TextView
         android:id="@+id/Fahrt_abgesagt2"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:layout_marginBottom="75dp"
         android:layout_marginEnd="56dp"
+        android:layout_marginTop="14dp"
         android:background="@color/colorBlack"
         android:text="Die Fahrt wurde leider abgesagt"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/border_oben2" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

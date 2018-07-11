@@ -26,12 +26,9 @@ public class HttpTest {
     }
 
     // HTTP GET request
-    public String sendGet(String table, String attr, String value, String compare) throws Exception {
-        if(table==null){
-            //TODO
-            throw new Exception();
-        }
-        String url = "http://18.191.175.126:3000/"+table+"?"+attr+"="+compare+"."+value;
+    public String sendGet() throws Exception {
+
+        String url = "http://13.58.210.65:3000/Test";
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -106,12 +103,76 @@ public class HttpTest {
         System.out.println(response.toString());
 
     }
-    //TODO uuid, km, userid
-    public void postRequest(int earliest_minute, int earliest_hour,
+    public String timeFormatter(int hour, int min){
+        String formattedTime = "";
+        String formattedHour = hour+"";
+        String formattedMin = min+"";
+        if(hour<10){
+            formattedHour = "0"+hour;
+        }
+        if(min<10){
+            formattedMin = "0"+min;
+        }
+        formattedTime=formattedHour+":"+formattedMin+":00";
+        return formattedTime;
+    }
+
+    //TODO km, userid
+    // muss der Status leer bleiben, oder auf "not answered"?
+    public void postRequest(String email, int earliest_minute, int earliest_hour,
                             int latest_minute, int latest_hour,
                             NeueFahrt1.RequestRole requestRole, String direction) throws Exception {
 
-        String url = "http://18.191.175.126:3000/Test";
+        String url = "http://13.58.210.65:3000/request";
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+        String earliestDepartureTime = timeFormatter(earliest_hour,earliest_minute);
+        String latestArrivalTime = timeFormatter(latest_hour,latest_minute);
+        //add reuqest header
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+        String urlParameters = "earliestDepartureTime=" + earliestDepartureTime +
+                "&latestArrivalTime=" + latestArrivalTime+
+                "&direction=" + direction +
+                "&role=" +  requestRole.toString().toLowerCase()+
+                "&status=not answered" +
+                "&userId=6a737ef5-4095-4ce3-9e02-0c3d4b9c0539" +
+                "&earliestDepartureTime="+earliestDepartureTime+
+                "&date="+"2018-11-11";
+
+        // Send post request
+        con.setDoOutput(true);
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        wr.writeBytes(urlParameters);
+        wr.flush();
+        wr.close();
+
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'POST' request to URL : " + url);
+        System.out.println("Post parameters : " + urlParameters);
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        //print result
+        System.out.println(response.toString());
+
+    }
+
+    public void sendTimeTest() throws Exception {
+
+        String url = "http://13.58.210.65:3000/Test";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -120,10 +181,10 @@ public class HttpTest {
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-        String id = "35";
+        String id = "111";
         String name = "Larifari";
 
-        String urlParameters = "id=" + id + "&name=" + name;
+        String urlParameters = "id=3&time=19:10:00";
 
         // Send post request
         con.setDoOutput(true);

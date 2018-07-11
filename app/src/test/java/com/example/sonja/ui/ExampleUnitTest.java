@@ -1,9 +1,12 @@
 package com.example.sonja.ui;
 
-import com.example.sonja.ui.aws.HttpTest;
+import com.example.sonja.ui.HttpTest;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
+
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -22,24 +25,28 @@ public class ExampleUnitTest {
     public void httpTest(){
         HttpTest http = new HttpTest();
         try {
-            String json = http.sendGet("request");
-
-            JSONObject obj  = new JSONObject(json.substring(1,json.length()-1));
-            System.out.println(obj.toString());
+            String json = http.sendGet();
+            JSONArray arr = new JSONArray(json);
+            System.out.println(arr.getJSONObject(2).getString("time"));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
     @Test
     public void httpPOst(){
-        System.out.println("XXXXX");
         HttpTest http = new HttpTest();
         try{
-            http.sendPut();
+            http.postRequest("",11,11,11,11, NeueFahrt1.RequestRole.DRIVER,"towards Home");
         }catch(Exception e){
 
         }
 
+    }
+    @Test
+    public void httpTime(){
+        Date date = new Date();
+        HttpTest http = new HttpTest();
+        System.out.println(date);
     }
 }
 

@@ -18,6 +18,7 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
     TextView abfahrt2, ankunft2, sitze2;
     Button btn_confirm;
     TextView textView;
+    View grey_background2;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -54,6 +55,8 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
     int from_latest_minute;
     int from_latest_hour;
 
+    //int radio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,8 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
             from_latest_minute = extras.getInt("from_latest_minute");
             from_latest_hour = extras.getInt("from_latest_hour");
 
+         //   radio = extras.getInt("radio");
+
             }
 
 
@@ -79,8 +84,7 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
 
         //Anzeigetext befüllen (Du bist Fahrer/Mitfahrer)
         textView = (TextView) findViewById(R.id.textView);
-        //textView.setText("Du bist was!");
-
+        //textView.setText("Du bist ..?");
            if (requestRole == NeueFahrt1.RequestRole.DRIVER){
                 textView.setText("Du bist Fahrer!");
             } else if (requestRole == NeueFahrt1.RequestRole.PASSENGER){
@@ -90,6 +94,14 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
             } else {
                 requestRole = NeueFahrt1.RequestRole.NOTDECIDED;
             }
+
+      /*  grey_background2 = findViewById(R.id.grey_background2);
+        //textView.setText
+        if (radio == 1){
+            grey_background2.setVisibility(View.INVISIBLE);
+        } else{
+            System.out.println("nicht nur Mitfahrer");
+        }*/
 
         // Bottom Navigation initialisieren
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

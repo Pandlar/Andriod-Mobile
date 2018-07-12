@@ -47,6 +47,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     RadioGroup radioGroup;
     RadioButton radio_Hinfahrt;
     RadioButton radio_nurHinfahrt;
+    int radio = 0;
     int to_earliest_hour = 0;
     int to_earliest_minute = 0;
     int to_latest_hour = 0;
@@ -113,6 +114,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         radio_nurHinfahrt.setOnCheckedChangeListener(new RadioButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 System.out.println("nur Hinfahrt, keine Rückfahrt");
+                radio = 1;
             }});
 
 
@@ -202,6 +204,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         intent.putExtra("to_latest_minute", to_latest_minute);
         intent.putExtra("to_latest_hour", to_latest_hour);
         intent.putExtra("requestRole", requestRole.toString());
+        Intent intentradio = new Intent(this, Confirm.class);
+       // intentradio.putExtra("radio", radio);
         switch (v.getId()) {
 
             case R.id.btn_weiter_screen2:
@@ -219,6 +223,10 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
                 if (requestRole == RequestRole.DRIVERORPASSENGER) {
                     startActivity(intent);
 
+                    this.finish();
+                }
+                if (radio == 1) {
+                    startActivity(intentradio);
                     this.finish();
                 }
                 else {

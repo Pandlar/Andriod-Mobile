@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class ForgotPassword1 extends AppCompatActivity implements View.OnClickListener {
 
     Button btn_passBack;
+    EditText editText_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,9 @@ public class ForgotPassword1 extends AppCompatActivity implements View.OnClickLi
 
         btn_passBack = findViewById(R.id.btn_passback);
         btn_passBack.setOnClickListener(this);
+
+        editText_email = findViewById(R.id.editText_email);
+        editText_email.setText("muster@mustermail.de");
 
     }
 

@@ -60,7 +60,7 @@ public class Confirm2 extends AppCompatActivity {
 
    public void onClickConfirm (View v) {
        System.out.println("onClickConfirm aufgerufen");
-       Intent intent = new Intent(this, MainActivity.class);
+       Intent intent = new Intent(this, Home3.class);
        startActivity(intent);
        this.finish();
    }

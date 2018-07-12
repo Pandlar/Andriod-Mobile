@@ -248,35 +248,37 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginEnd="168dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="272dp"
         android:text="08.Juni 08:00 Uhr"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <TextView
         android:id="@+id/textView_Abfahrt_Ort2"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginEnd="76dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="330dp"
         android:text="Berliner Straße 30, 10715 Berlin"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <TextView
         android:id="@+id/textView_Ankunft_Ort2"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="300dp"
         android:text="Bandensche Straße 50-51, 10715 Berlin"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linie_unten" />
 
     <Button

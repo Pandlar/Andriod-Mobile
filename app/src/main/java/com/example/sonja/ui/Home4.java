@@ -23,12 +23,17 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     public static int status_fahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
     public static int status_mitfahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
 
+    //Textviews für ersten Fahrteneintrag
     TextView textView_Ankunft_Ort;
     TextView textView_Abfahrt_Ort;
     TextView textView_Freie_Sitzplaetze;
     TextView textView_Anzahl_Freie_Sitzplaetze;
     TextView textView_Fahrer;
     TextView textView_Uhrzeit;
+    //Textviews für zweiten Fahrteneintrag
+    TextView textView_Ankunft_Ort2;
+    TextView textView_Abfahrt_Ort2;
+    TextView textView_Uhrzeit2;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -105,6 +110,16 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
         textView_Anzahl_Freie_Sitzplaetze = (TextView) findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze);
         textView_Anzahl_Freie_Sitzplaetze.setText("1");
+
+        //zweiter Eintrag auf Screen
+        textView_Uhrzeit2 = (TextView) findViewById(R.id.textView_Uhrzeit2);
+        textView_Uhrzeit2.setText("08. Juni 09:00 Uhr");
+
+        textView_Ankunft_Ort2 = (TextView) findViewById(R.id.textView_Ankunft_Ort2);
+        textView_Ankunft_Ort2.setText("Badensche Str. 50-51, 10715 Berlin");
+
+        textView_Abfahrt_Ort2 = (TextView) findViewById(R.id.textView_Abfahrt_Ort2);
+        textView_Abfahrt_Ort2.setText("Berliner Str. 30, 10715 Berlin");
 
 
     }

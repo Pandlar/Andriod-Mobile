@@ -253,7 +253,7 @@
         android:layout_width="31dp"
         android:layout_height="101dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_neueFahrt2"
         app:srcCompat="@drawable/location_zeiger" />

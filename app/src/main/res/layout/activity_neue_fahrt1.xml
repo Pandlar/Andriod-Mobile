@@ -263,7 +263,7 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="31dp"
+        android:layout_width="28dp"
         android:layout_height="101dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
@@ -316,9 +316,9 @@
         android:id="@+id/btn_switch"
         android:layout_width="34dp"
         android:layout_height="33dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/panda_icon_durchsichtig"
+        android:background="@android:drawable/ic_menu_revert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toEndOf="@+id/textView2"

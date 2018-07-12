@@ -32,6 +32,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     Button btn_switch_back;
     TextView txt_anzahl_sitze;
     HttpTest httpCon;
+    Spinner spinner_anzahl_sitze;
 
     // Bottom Navigation aktivieren
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -119,6 +120,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         btn_switch_back.setOnClickListener(this);
 
         txt_anzahl_sitze = findViewById(R.id.txt_anzahl_sitze);
+        spinner_anzahl_sitze = findViewById(R.id.spinner_anzahl_sitze);
 
         // Daten übernehmen aus NeueFahrt1
         Bundle extras = getIntent().getExtras();
@@ -139,9 +141,11 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             btn_search.setBackgroundResource(R.drawable.button_style);
         } else if (requestRole == NeueFahrt1.RequestRole.PASSENGER){
             txt_anzahl_sitze.setVisibility(View.INVISIBLE);
+            spinner_anzahl_sitze.setVisibility(View.INVISIBLE);
             btn_offer.setBackgroundResource(R.drawable.button_style);
             btn_both.setBackgroundResource(R.drawable.button_style);
             btn_search.setBackgroundResource(R.drawable.button_style_clicked);
+            txt_anzahl_sitze.setVisibility(View.INVISIBLE);
         } else if (requestRole == NeueFahrt1.RequestRole.DRIVERORPASSENGER){
             txt_anzahl_sitze.setVisibility(View.VISIBLE);
             btn_offer.setBackgroundResource(R.drawable.button_style);

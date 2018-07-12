@@ -133,11 +133,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         android:text="@string/frAb"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <TextView
         android:id="@+id/textView6"
@@ -173,36 +173,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="358dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2">
-
-        <RadioButton
-            android:id="@+id/radio_Hinfahrt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="@string/hinfahrt" />
-
-        <RadioButton
-            android:id="@+id/radio_nurHinfahrt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/nurHinfahrt"
-            android:textAlignment="viewStart" />
-    </RadioGroup>
 
     <Spinner
         android:id="@+id/spinner_anzahl_sitze"
@@ -274,15 +244,15 @@
         android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="50dp"
+        android:editable="false"
         android:ems="10"
+        android:focusable="false"
         android:hint="Uhrzeit eintragen"
         android:inputType="textPersonName"
         android:textSize="15sp"
-        android:editable="false"
-        android:focusable="false"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <EditText
         android:id="@+id/txt_ankunftszeit"

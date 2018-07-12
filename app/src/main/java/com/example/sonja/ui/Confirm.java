@@ -17,6 +17,7 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
     TextView abfahrt1, ankunft1, sitze1;
     TextView abfahrt2, ankunft2, sitze2;
     Button btn_confirm;
+    TextView textView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -69,8 +70,26 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
             from_earliest_hour = extras.getInt("from_earliest_hour");
             from_latest_minute = extras.getInt("from_latest_minute");
             from_latest_hour = extras.getInt("from_latest_hour");
-        }
+
+            }
+
+
+
         setContentView(R.layout.activity_confirm);
+
+        //Anzeigetext befüllen (Du bist Fahrer/Mitfahrer)
+        textView = (TextView) findViewById(R.id.textView);
+        //textView.setText("Du bist was!");
+
+           if (requestRole == NeueFahrt1.RequestRole.DRIVER){
+                textView.setText("Du bist Fahrer!");
+            } else if (requestRole == NeueFahrt1.RequestRole.PASSENGER){
+                textView.setText("Du bist Mitfahrer!");
+            } else if (requestRole == NeueFahrt1.RequestRole.DRIVERORPASSENGER){
+                textView.setText("Du bist Mitfahrer und/oder Fahrer!");
+            } else {
+                requestRole = NeueFahrt1.RequestRole.NOTDECIDED;
+            }
 
         // Bottom Navigation initialisieren
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

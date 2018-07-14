@@ -24,17 +24,18 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    @Test
-    public void httpTest(){
+   // @Test
+   /* public void httpTest(){
         HttpTest http = new HttpTest();
         try {
-            String json = http.sendGet();
+            String json = http.sendGet("user", "uuid",);
             JSONArray arr = new JSONArray(json);
             System.out.println(arr.getJSONObject(2).getString("time"));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }
+    }*/
+
     @Test
     public void httpPOst(){
         HttpTest http = new HttpTest();
@@ -64,7 +65,7 @@ public class ExampleUnitTest {
         }
 
     }
-}
+
 
     public void http_getInfoWithUUID() throws Exception {
        HttpTest httpUUIDTest = new HttpTest();

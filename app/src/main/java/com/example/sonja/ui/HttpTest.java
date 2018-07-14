@@ -63,7 +63,7 @@ public class HttpTest {
 
     // HTTP POST request
     public void sendPost() throws Exception {
-        System.out.println("##### sendPost start");
+
         String url = "http://18.191.175.126:3000/Test";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -122,76 +122,56 @@ public class HttpTest {
     // muss der Status leer bleiben, oder auf "not answered"?
     public void postRequest(String email, int earliest_minute, int earliest_hour,
                             int latest_minute, int latest_hour,
-                            NeueFahrt1.RequestRole requestRole, String direction)  {
-try {
-    System.out.println("##### start postRequest");
-    String url = "http://13.58.210.65:3000/request";
-    URL obj = new URL(url);
-    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-    System.out.println("##### con erfolgreich");
-    String earliestDepartureTime = timeFormatter(earliest_hour, earliest_minute);
-    String latestArrivalTime = timeFormatter(latest_hour, latest_minute);
-    //add reuqest header
-    con.setRequestMethod("POST");
-    con.setRequestProperty("User-Agent", USER_AGENT);
-    con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+                            NeueFahrt1.RequestRole requestRole, String direction) throws Exception {
 
-    System.out.println("##### con gesetted");
-    int year = Calendar.getInstance().get(Calendar.YEAR);
-    int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-    System.out.println("####### 1");
-    int day = Calendar.getInstance().get(Calendar.DATE);
-    System.out.println(year + "-" + month + "-" + day);
-    String date = year + "-" + month + "-" + day;
+        String url = "http://13.58.210.65:3000/request";
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-    System.out.println("####### 2");
-    String urlParameters = "earliestDepartureTime=" + earliestDepartureTime +
-            "&latestArrivalTime=" + latestArrivalTime +
-            "&direction=" + direction +
-            "&role=" + requestRole.toString().toLowerCase() +
-            "&status=not answered" +
-            "&userId=6a737ef5-4095-4ce3-9e02-0c3d4b9c0539" +
-            "&earliestDepartureTime=" + earliestDepartureTime +
-            "&date=" + date;
-    System.out.println("####### 3");
-    // Send post request
-    con.setDoOutput(true);
-    System.out.println("####### 31");
+        String earliestDepartureTime = timeFormatter(earliest_hour, earliest_minute);
+        String latestArrivalTime = timeFormatter(latest_hour, latest_minute);
+        //add reuqest header
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-    DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-    System.out.println("####### 32");
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        int day = Calendar.getInstance().get(Calendar.DATE);
+        System.out.println(year + "-" + month + "-" + day);
+        String date = year + "-" + month + "-" + day;
 
-    wr.writeBytes(urlParameters);
-    System.out.println("####### 33");
+        String urlParameters = "earliestDepartureTime=" + earliestDepartureTime +
+                "&latestArrivalTime=" + latestArrivalTime +
+                "&direction=" + direction +
+                "&role=" + requestRole.toString().toLowerCase() +
+                "&status=not answered" +
+                "&userId=6a737ef5-4095-4ce3-9e02-0c3d4b9c0539" +
+                "&earliestDepartureTime=" + earliestDepartureTime +
+                "&date=" + date;
+        // Send post request
+        con.setDoOutput(true);
 
-    wr.flush();
-    System.out.println("####### 34");
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 
-    wr.close();
-    System.out.println("####### 4");
-    int responseCode = con.getResponseCode();
-    System.out.println("\nSending 'POST' request to URL : " + url);
-    System.out.println("Post parameters : " + urlParameters);
-    System.out.println("Response Code : " + responseCode);
-    System.out.println("####### 5");
-    BufferedReader in = new BufferedReader(
-            new InputStreamReader(con.getInputStream()));
-    String inputLine;
-    System.out.println("####### 6");
-    StringBuffer response = new StringBuffer();
-    System.out.println("####### 7");
-    while ((inputLine = in.readLine()) != null) {
-        response.append(inputLine);
-    }
-    in.close();
-    System.out.println(response.toString());
-}catch(Exception e){
-    System.out.println(e.getMessage());
+        wr.writeBytes(urlParameters);
 
-}
-        //print result
+        wr.flush();
 
-        System.out.println("####### 8");
+        wr.close();
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'POST' request to URL : " + url);
+        System.out.println("Post parameters : " + urlParameters);
+        System.out.println("Response Code : " + responseCode);
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        System.out.println(response.toString());
     }
 
     public void sendTimeTest() throws Exception {

@@ -18,6 +18,10 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.TextView;
 
+import com.example.sonja.ui.asyncTasks.PostRequestAsync;
+import com.example.sonja.ui.asyncTasks.PostRequestParams;
+import com.example.sonja.ui.threads.PostRequestThread;
+
 import java.util.Calendar;
 
 public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListener {
@@ -188,20 +192,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_weiter_screen3:
                 // auf Screen Confirm weiterleiten
-                try{
-                    String email ="";
-
-                    System.out.println("XXXXXx");
-                    //httpCon.postRequest("",0,0,0,0, NeueFahrt1.RequestRole.DRIVER,"towards Office");
-                    System.out.println("XXXXXx2");
-                 //  httpCon.postRequest(email,from_earliest_minute,from_earliest_hour,
-                   //         from_latest_minute, from_latest_hour, requestRole, "towards Home");
-
-                    httpCon.postRequest(email,to_earliest_minute, to_earliest_hour,
-                            to_latest_minute, to_latest_hour, requestRole, "towards Office");
-                }catch(Exception e){
-                    System.out.println("###### NeueFahrt2 - postRequest aufruf");
-                }
 
                 if (requestRole == NeueFahrt1.RequestRole.PASSENGER) {
 
@@ -216,7 +206,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
                     startActivity(intent);
                     this.finish();
                 }
-                //TODO logik überlegen
                 else {
                     System.out.println("Bitte Angabe machen.");
                 }
@@ -281,9 +270,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             default:
                 break;
         }
-
     }
-
 
     // When clicking back you get redirected to starting screen.
     public void onBackPressed(){

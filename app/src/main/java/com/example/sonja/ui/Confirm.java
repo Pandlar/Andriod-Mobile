@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.sonja.ui.asyncTasks.PostRequestAsync;
+import com.example.sonja.ui.asyncTasks.PostRequestParams;
+
 public class Confirm extends AppCompatActivity implements View.OnClickListener {
 
     TextView abfahrt1, ankunft1, sitze1;
@@ -134,12 +137,30 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-
+    /**
+     * Leitet weiter zum nächsten Screen und pusht die Request Einträge in die Datenbank.
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.btn_confirm:
                 // auf Screen3 weiterleiten
+
+                try{
+                    String id ="";
+                    PostRequestParams paramsToOffice = new PostRequestParams(id,to_earliest_minute,to_earliest_hour, to_latest_minute, to_latest_hour, requestRole, "towards Office");
+                    PostRequestAsync asyncRunnerToOffice = new PostRequestAsync();
+                    asyncRunnerToOffice.execute(paramsToOffice);
+
+                    PostRequestParams paramsToHome = new PostRequestParams(id,from_earliest_minute,from_earliest_hour, from_latest_minute, from_latest_hour, requestRole, "towards Home");
+                    PostRequestAsync asyncRunnerToHome = new PostRequestAsync();
+                    asyncRunnerToHome.execute(paramsToHome);
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
                 Intent intent = new Intent(this, Confirm2.class);
                 startActivity(intent);
                 this.finish();
@@ -155,7 +176,7 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         }
 
     /**
-     * adds a leading zero to integers lower than 10
+     * Fügt eine führende 0 zu ints hinzu, die kleiner sind als 10.
      * @param x
      * @return
      */

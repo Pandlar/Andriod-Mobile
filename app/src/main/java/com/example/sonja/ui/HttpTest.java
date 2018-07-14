@@ -1,4 +1,5 @@
 package com.example.sonja.ui;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
@@ -16,6 +17,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class HttpTest {
 
+    public String urlip = "http://13.58.210.65:3000/";
+
     private final String USER_AGENT = "Mozilla/5.0";
 
     public enum Table{
@@ -27,9 +30,14 @@ public class HttpTest {
     }
 
     // HTTP GET request
-    public String sendGet() throws Exception {
-
-        String url = "http://13.58.210.65:3000/Test";
+    public String sendGet(String table, String attr, String value, String compare, String select) throws Exception {
+        if(table==null){
+            //TODO
+            throw new Exception();
+        }
+        // If you do not want to filter, put "" in select
+        String url = urlip+table+"?"+attr+"="+compare+"."+value+select;
+        System.out.println(url);
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -57,6 +65,8 @@ public class HttpTest {
         //print result
         String result = response.toString();
 
+        System.out.println("result : "+result);
+
         return result;
 
     }
@@ -65,18 +75,22 @@ public class HttpTest {
     public void sendPost() throws Exception {
         System.out.println("##### sendPost start");
         String url = "http://18.191.175.126:3000/Test";
+    public void sendPostRating(String table, String ratingText, String createdBy, String ratedUserId, String matchID, int stars) throws Exception {
+
+        String url = urlip + table;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        //add reuqest header
+        //add request header
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-        String id = "35";
-        String name = "Larifari";
+        /*String urlParameters = "id=" + id + "&ratingText=" + ratingText+ "&createdBy=" + createdBy + "&ratedUserId=" +
+                ratedUserId + "&matchId=" + matchID + "&stars=" + stars;*/
 
-        String urlParameters = "id=" + id + "&name=" + name;
+        String urlParameters = "ratingText=" + ratingText+ "&createdBy=" + createdBy + "&ratedUserId=" +
+                ratedUserId + "&matchId=" + matchID + "&stars=" + stars;
 
         // Send post request
         con.setDoOutput(true);

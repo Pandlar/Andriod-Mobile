@@ -17,4 +17,25 @@
         android:defaultValue="true"
         />
 
+    <EditTextPreference
+        android:key="@string/saveEmail"
+        android:title="user email"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpPassword"
+        android:title="password"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpUsername"
+        android:title="username"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
 </PreferenceScreen>

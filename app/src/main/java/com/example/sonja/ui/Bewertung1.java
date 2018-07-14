@@ -1,18 +1,27 @@
 package com.example.sonja.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 
 public class Bewertung1 extends AppCompatActivity implements View.OnClickListener{
 
     Button btn_Veroeffentlichen;
+    EditText bewertung;
+    RatingBar stars;
+    private Context mContext;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -44,17 +53,28 @@ public class Bewertung1 extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_bewertung1);
 
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         btn_Veroeffentlichen = findViewById(R.id.btn_Veroeffentlichen);
         btn_Veroeffentlichen.setOnClickListener(this);
+
 
     }
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.btn_Veroeffentlichen:
+
+                bewertung = findViewById(R.id.editText);
+                Log.d("Bewertung", " " + bewertung.getText().toString());
+
+                stars = findViewById(R.id.ratingBar);
+                System.out.println("Stars: " + stars.getNumStars());
+
+                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+                sharedPrefs.getString(getString(R.string.saveEmail),"no mail");
+
                 // auf Bewertung2 weiterleiten
                 Intent intent = new Intent(this, Bewertung2.class);
                 startActivity(intent);

@@ -5,7 +5,7 @@
     <string name="title_notifications">Notifications</string>
 
     // erster Screen
-    <string name="user_name">Username / Email Adress</string>
+    <string name="user_name">Username</string>
     <string name="user_password">Passwort</string>
     <string name="log_in_button">Log In</string>
 

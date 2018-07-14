@@ -18,8 +18,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.sonja.ui.asyncTasks.GetUUIDAsync;
+import com.example.sonja.ui.asyncTasks.PostUserAsync;
+import com.example.sonja.ui.asyncTasks.PostUserParams;
+import com.example.sonja.ui.asyncTasks.UUIDParams;
 import com.example.sonja.ui.aws.AWSLoginHandler;
 import com.example.sonja.ui.aws.AWSLoginModel;
+
+import org.json.JSONArray;
 
 public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         }
     }
 
-    public void onClickLogin(View v) {
+    public void onClickLogin(View v) throws Exception {
         //ruft NeueFahrt1 auf
         //Intent intent = new Intent(this, NeueFahrt1.class);
         //startActivity(intent);
@@ -179,10 +185,27 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         this.finish();
     }
 
-    private void loginAction() {
+    private void loginAction() throws Exception{
+
         EditText userOrEmail = findViewById(R.id.Username);
         EditText password = findViewById(R.id.Password);
 
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "keine Email vorhanden");
+        System.out.println(emailInput);
+        String json = null;
+
+        UUIDParams paramsUUID = new UUIDParams(emailInput);
+        GetUUIDAsync asyncRunnerToUser = new GetUUIDAsync();
+        String uuid = asyncRunnerToUser.execute(paramsUUID).get();
+
+        System.out.println("aus async gezogen = " + uuid);
+
+        SharedPreferences.Editor saveSignUp = sharedPrefs.edit();
+        saveSignUp.putString(getString(R.string.uuid),uuid).apply();
+
+        String uuidDB = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
+        System.out.println("uuid aus DB von SharedPreferences "+ uuidDB);
 
         // do sign in and handles on interface
         awsLoginModel.signInUser(userOrEmail.getText().toString(), password.getText().toString());

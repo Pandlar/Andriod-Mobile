@@ -138,4 +138,11 @@
         android:inputType="text"
         android:defaultValue=" "
         />
+
+    <EditTextPreference
+        android:key="@string/uuid"
+        android:title="UUID"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
 </PreferenceScreen>

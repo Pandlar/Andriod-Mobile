@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.sonja.ui.asyncTasks.PostUserAsync;
+import com.example.sonja.ui.asyncTasks.PostUserParams;
 import com.example.sonja.ui.aws.AWSLoginHandler;
 import com.example.sonja.ui.aws.AWSLoginModel;
 
@@ -115,12 +117,41 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 String passwordInput = sharedPrefs.getString(getString(R.string.inputSignUpPassword), "keine Email vorhanden");
                 String usernameInput = sharedPrefs.getString(getString(R.string.inputSignUpUsername), "keine Email vorhanden");
                 String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "keine Email vorhanden");
+                String userVorname = sharedPrefs.getString(getString(R.string.inputSignUpVorname),"");
+                String userNachname = sharedPrefs.getString(getString(R.string.inputSignUpNachname),"");
+                String userUsername = sharedPrefs.getString(getString(R.string.inputSignUpUsername),"");
+                String userPassword = sharedPrefs.getString(getString(R.string.inputSignUpPassword),"");
+                String userStadtHome = sharedPrefs.getString(getString(R.string.inputSignUpStadtHome),"");
+                String userTreffpunktHome = sharedPrefs.getString(getString(R.string.inputSignUpTreffpunktHome),"");
+                String userTreffpunktWork = sharedPrefs.getString(getString(R.string.inputSignUpTreffpunktWork),"");
+                String userStrHome = sharedPrefs.getString(getString(R.string.inputSignUpStrHome),"");
+                String userStrWork = sharedPrefs.getString(getString(R.string.inputSignUpStrWork),"");
+                String userPLZHome = sharedPrefs.getString(getString(R.string.inputSignUpPLZHome),"");
+                String userPLZWork = sharedPrefs.getString(getString(R.string.inputSignUpPLZWork),"");
+                String userHandyNr = sharedPrefs.getString(getString(R.string.inputSignUpHandynr),"");
+                String carMarke = sharedPrefs.getString(getString(R.string.inputSignUpCarMarke),"");
+                String carFarbe = sharedPrefs.getString(getString(R.string.inputSignUpCarFarbe),"");
+                String carModell = sharedPrefs.getString(getString(R.string.inputSignUpCarModell),"");
+                String carNummernschild = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"");
+                String carSitzplaetze = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"");
+
                 Log.d("reg2ister email", "emailInput: " + emailInput);
                 Log.d("regi2st2er email", "passwordInput: " + passwordInput);
                 Log.d("regis1ter email", "usernameInput: " + usernameInput);
 
                 awsLoginModel.registerUser(usernameInput, emailInput, passwordInput);
 
+                try {
+                PostUserParams paramsToUser = new PostUserParams( emailInput, userVorname, userNachname,
+                        userUsername, userPassword, userStadtHome, userTreffpunktHome, userTreffpunktWork,
+                        userStrHome, userStrWork, userPLZHome, userPLZWork, userHandyNr, carMarke, carFarbe,
+                        carModell, carNummernschild, carSitzplaetze);
+                PostUserAsync asyncRunnerToUser = new PostUserAsync();
+                asyncRunnerToUser.execute(paramsToUser);}
+
+                catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 // auf Registrierungsscreen Ende weiterleiten
                 Intent intent = new Intent(this, RegistrierungEnde.class);

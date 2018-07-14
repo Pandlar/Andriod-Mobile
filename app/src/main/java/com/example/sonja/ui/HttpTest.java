@@ -117,7 +117,7 @@ public class HttpTest {
     // HTTP POST request
     public void sendPost() throws Exception {
 
-        String url = "http://18.191.175.126:3000/Test";
+        String url = "http://http://13.58.210.65:3000/Test";
 
 
         URL obj = new URL(url);

@@ -114,7 +114,7 @@
         android:background="@color/colorPrimary"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Bewertung"
+        android:hint="Bewertung"
         android:textColor="@color/colorBlack"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -109,7 +109,7 @@
         android:background="@color/colorPrimary"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Bewertung"
+        android:hint="Bewertung"
         android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/btn_Veroeffentlichen"
         app:layout_constraintEnd_toEndOf="parent"

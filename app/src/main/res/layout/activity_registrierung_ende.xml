@@ -23,30 +23,33 @@
 
     <TextView
         android:id="@+id/tvBestätigen"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
         android:layout_marginEnd="60dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="220dp"
-        android:text="Bitte bestätige deinen E-Mail Account!"
+        android:layout_marginTop="188dp"
+        android:text="Vielen Dank für deine Registrierung. "
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvReminder"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="301dp"
+        android:layout_height="72dp"
         android:layout_marginEnd="80dp"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="80dp"
-        android:text="Dein Account wurde erstellt!"
+        android:layout_marginTop="96dp"
+        android:text="Dein Account wurde erstellt und wird in wenigen Minuten aktiviert!"
         android:textColor="#5FBEC3"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

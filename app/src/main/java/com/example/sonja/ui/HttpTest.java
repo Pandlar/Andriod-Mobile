@@ -1,4 +1,5 @@
 package com.example.sonja.ui;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
@@ -16,6 +17,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class HttpTest {
 
+    public String urlip = "http://13.58.210.65:3000/";
+
     private final String USER_AGENT = "Mozilla/5.0";
 
     public enum Table{
@@ -27,9 +30,14 @@ public class HttpTest {
     }
 
     // HTTP GET request
-    public String sendGet() throws Exception {
-
-        String url = "http://13.58.210.65:3000/Test";
+    public String sendGet(String table, String attr, String value, String compare, String select) throws Exception {
+        if(table==null){
+            //TODO
+            throw new Exception();
+        }
+        // If you do not want to filter, put "" in select
+        String url = urlip+table+"?"+attr+"="+compare+"."+value+select;
+        System.out.println(url);
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -57,7 +65,53 @@ public class HttpTest {
         //print result
         String result = response.toString();
 
+        System.out.println("result : "+result);
+
         return result;
+
+    }
+
+    public void sendPostRating(String table, String ratingText, String createdBy, String ratedUserId, String matchID, int stars) throws Exception {
+
+        String url = urlip + table;
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+        //add request header
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+        /*String urlParameters = "id=" + id + "&ratingText=" + ratingText+ "&createdBy=" + createdBy + "&ratedUserId=" +
+                ratedUserId + "&matchId=" + matchID + "&stars=" + stars;*/
+
+        String urlParameters = "ratingText=" + ratingText+ "&createdBy=" + createdBy + "&ratedUserId=" +
+                ratedUserId + "&matchId=" + matchID + "&stars=" + stars;
+
+        // Send post request
+        con.setDoOutput(true);
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        wr.writeBytes(urlParameters);
+        wr.flush();
+        wr.close();
+
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'POST' request to URL : " + url);
+        System.out.println("Post parameters : " + urlParameters);
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        //print result
+        System.out.println(response.toString());
 
     }
 
@@ -65,18 +119,19 @@ public class HttpTest {
     public void sendPost() throws Exception {
 
         String url = "http://18.191.175.126:3000/Test";
+
+
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        //add reuqest header
+        //add request header
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-        String id = "35";
-        String name = "Larifari";
-
-        String urlParameters = "id=" + id + "&name=" + name;
+        int id = 22;
+        String name = "Voldemort";
+        String urlParameters = url +  "/id=" + id + "&name=" + name;
 
         // Send post request
         con.setDoOutput(true);

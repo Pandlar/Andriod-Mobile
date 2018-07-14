@@ -1,6 +1,8 @@
 package com.example.sonja.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
@@ -53,7 +60,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_home4);
 
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         bewerten = findViewById(R.id.bewerten);
@@ -80,17 +87,84 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         nachStatusAnzeigen_Fahrer();
         nachStatusAnzeigen_Mitfahrer();
 
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String mail = sharedPrefs.getString(getString(R.string.saveEmail), "no mail");
+
+        try {
+            HttpTest httpRatingPost = new HttpTest();
+
+            String json = null;
+
+            json = httpRatingPost.sendGet("user", "email", mail, "eq", "");
+            JSONArray arr = new JSONArray(json);
+            String id = arr.getJSONObject(0).getString("id");
+            System.out.println(id);
+
+            // RequestIds of the User
+            String jsonRequests = httpRatingPost.sendGet("request", "userId", id, "eq", "");
+            System.out.println(jsonRequests);
+
+            JSONArray arr2 = new JSONArray(jsonRequests);
+
+            List<String> matches = new ArrayList<>();
+            int jsnlength = arr2.length();
+            for (int i = 0; i < jsnlength; i++) {
+                System.out.println("Request Id :" + arr2.getJSONObject(i).getString("id"));
+                System.out.println("Role: " + arr2.getJSONObject(i).getString("role"));
+
+                String requestID = arr2.getJSONObject(i).getString("id");
+                String role = arr2.getJSONObject(i).getString("role");
+
+                if (role.equals("driver")) {
+
+                    try {
+                        String jsonDriverMatches = httpRatingPost.sendGet("match", "driverRequestId", requestID, "eq", "");
+                        JSONArray arrDriverMatches = new JSONArray(jsonDriverMatches);
+
+                        String matchID = arrDriverMatches.getJSONObject(0).getString("id");
+                        System.out.println("matchID: " + matchID);
+                        matches.add(matchID);
+                    } catch (Exception E) {
+                        System.out.println("Es gibt noch keinen Match für diesen Request");
+                    }
+
+                }
+                if (role.equals("passenger")) {
+                    System.out.println("passenger aufgerufen");
+                    try {
+                        String jsonPassengerMatches = httpRatingPost.sendGet("match", "passenger0RequestId", requestID, "eq", "");
+                        JSONArray arrPassengerMatches = new JSONArray(jsonPassengerMatches);
+
+                        String matchID = arrPassengerMatches.getJSONObject(0).getString("id");
+                        System.out.println("matchID: " + matchID);
+                        matches.add(matchID);
+
+                        //TODO: muss eigentlich auch noch für die anderen Passengers eingestellt werden
+                    } catch (Exception E) {
+                        System.out.println("Es gibt noch keinen Match für diesen Request");
+                    }
+
+
+                    System.out.println("Das sind alle gefundenen Matches: " + matches);
+                    System.out.println("Mit diesen Match-Ergebnissen könnte jetzt gearbeitet werden");
+                }
+            }
+        } catch (Exception E ){
+            System.out.println("Something is not working, sorry");
+        }
+
+
     }
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bewerten:
-                // auf Bewertung2 weiterleiten
+                // auf Bewertung2 weiterleiten --> Fahrersicht
                 Intent intent = new Intent(this, Bewertung2.class);
                 startActivity(intent);
                 this.finish();
                 break;
             case R.id.bewerten2:
-                // auf Bewertung1 weiterleiten
+                // auf Bewertung1 weiterleiten --> Mitfahrersicht
                 Intent intent2 = new Intent(this, Bewertung1.class);
                 startActivity(intent2);
                 this.finish();
@@ -105,16 +179,19 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     public void nachStatusAnzeigen_Fahrer(){
         switch(status_fahrer){
             case 0:
+                // Fahrersicht
                 bewerten.setVisibility(View.VISIBLE);
                 bewertet.setVisibility(View.INVISIBLE);
                 Fahrt_abgesagt.setVisibility(View.INVISIBLE);
                 break;
             case 1:
+                // Mitfahrersicht
                 bewerten.setVisibility(View.INVISIBLE);
                 bewertet.setVisibility(View.VISIBLE);
                 Fahrt_abgesagt.setVisibility(View.INVISIBLE);
                 break;
             case 2:
+                // Fahrt abgesagt
                 bewerten.setVisibility(View.INVISIBLE);
                 bewertet.setVisibility(View.INVISIBLE);
                 Fahrt_abgesagt.setVisibility(View.VISIBLE);
@@ -126,16 +203,19 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     public void nachStatusAnzeigen_Mitfahrer(){
         switch(status_mitfahrer){
             case 0:
+                // Fahrersicht
                 bewerten2.setVisibility(View.VISIBLE);
                 bewertet2.setVisibility(View.INVISIBLE);
                 Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
                 break;
             case 1:
+                // Mitfahrersicht
                 bewerten2.setVisibility(View.INVISIBLE);
                 bewertet2.setVisibility(View.VISIBLE);
                 Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
                 break;
             case 2:
+                // Fahrt abgesagt
                 bewerten2.setVisibility(View.INVISIBLE);
                 bewertet2.setVisibility(View.INVISIBLE);
                 Fahrt_abgesagt2.setVisibility(View.VISIBLE);

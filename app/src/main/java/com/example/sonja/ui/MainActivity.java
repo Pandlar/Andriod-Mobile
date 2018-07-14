@@ -183,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         EditText userOrEmail = findViewById(R.id.Username);
         EditText password = findViewById(R.id.Password);
 
+
         // do sign in and handles on interface
         awsLoginModel.signInUser(userOrEmail.getText().toString(), password.getText().toString());
     }

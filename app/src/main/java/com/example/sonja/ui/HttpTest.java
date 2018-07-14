@@ -94,7 +94,6 @@ public class HttpTest {
         wr.writeBytes(urlParameters);
         wr.flush();
         wr.close();
-
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + url);
         System.out.println("Post parameters : " + urlParameters);

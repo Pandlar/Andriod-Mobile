@@ -28,7 +28,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="220dp"
-        android:text="Bitte bestätige deinen E-Mail Account!"
+        android:text="Wir haben dir eine Email mit deinem Confirmation Code geschickt. Bitte bestätige deinen E-Mail Account!"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +47,26 @@
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etConfirmationCode"
+        android:layout_width="0dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="300dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:hint="Confirmation Code"
+        android:textColor="@android:color/darker_gray"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/etNachname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

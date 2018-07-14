@@ -25,8 +25,15 @@
         />
 
     <EditTextPreference
-        android:key="PREFERENCE_USER_EMAIL"
-        android:title="user email"
+        android:key="@string/inputSignUpPassword"
+        android:title="password"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpUsername"
+        android:title="username"
         android:inputType="text"
         android:defaultValue=" "
         />

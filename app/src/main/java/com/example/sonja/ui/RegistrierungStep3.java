@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.sonja.ui.asyncTasks.PostUserAsync;
@@ -27,6 +29,12 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
     EditText signUpCarFarbe;
     EditText signUpCarNummernschild;
     EditText signUpCarSitzplätze;
+    EditText etMarke;
+    EditText etModell;
+    EditText etFarbe;
+    EditText etNummernschild;
+    EditText etAnzahlSP;
+    RadioButton rbAutocheck;
 
     private static final String SHARED_PREFERENCE = "SavedValues";
     private static final String PREFERENCE_SIGNUP_USER_EMAIL = "signupUserEmail";
@@ -139,19 +147,9 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 Log.d("regi2st2er email", "passwordInput: " + passwordInput);
                 Log.d("regis1ter email", "usernameInput: " + usernameInput);
 
+
                 awsLoginModel.registerUser(usernameInput, emailInput, passwordInput);
 
-                try {
-                PostUserParams paramsToUser = new PostUserParams( emailInput, userVorname, userNachname,
-                        userUsername, userPassword, userStadtHome, userTreffpunktHome, userTreffpunktWork,
-                        userStrHome, userStrWork, userPLZHome, userPLZWork, userHandyNr, carMarke, carFarbe,
-                        carModell, carNummernschild, carSitzplaetze);
-                PostUserAsync asyncRunnerToUser = new PostUserAsync();
-                asyncRunnerToUser.execute(paramsToUser);}
-
-                catch (Exception e){
-                    e.printStackTrace();
-                }
 
                 // auf Registrierungsscreen Ende weiterleiten
                 Intent intent = new Intent(this, RegistrierungEnde.class);

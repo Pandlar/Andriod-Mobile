@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrierungStep1 extends AppCompatActivity implements View.OnClickListener{
 
@@ -51,40 +55,50 @@ public class RegistrierungStep1 extends AppCompatActivity implements View.OnClic
 
     }
 
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validate(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        return matcher.find();
+    }
+
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.btnWeiter1:
-                Log.d("Weiter","Weiter clicked");
-                Log.d("newUserEmail", " " + signUpEmail.getText().toString());
-                Log.d("signUpUserName", " " + signUpUserName.getText().toString());
-                Log.d("signUpPassword", " " + signUpPassword.getText().toString());
-                Log.d("signUpPassword2", " " + signUpPassword2.getText().toString());
-                Log.d("signUpVorname", " " + signUpVorname.getText().toString());
-                Log.d("signUpNachname", " " + signUpNachname.getText().toString());
 
-                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-                SharedPreferences.Editor saveSignUp = sharedPrefs.edit();
+                if (signUpPassword.getText().toString().length() > 0 &
+                        signUpEmail.getText().toString().length() > 0 &
+                        signUpVorname.getText().toString().length() > 0 &
+                        signUpUserName.getText().toString().length() > 0 &
+                        signUpNachname.getText().toString().length() > 0 &
+                        signUpPassword2.getText().toString().length() > 0) {
+                    if (validate(signUpEmail.getText().toString())) {
+                        if (signUpPassword.getText().toString().equals(signUpPassword2.getText().toString())){
+                            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+                            SharedPreferences.Editor saveSignUp = sharedPrefs.edit();
 
-                if (signUpPassword.getText().toString().equals(signUpPassword2.getText().toString())){
+                            saveSignUp.putString(getString(R.string.saveEmail),signUpEmail.getText().toString()).apply();
+                            saveSignUp.putString(getString(R.string.inputSignUpUsername),signUpUserName.getText().toString()).apply();
+                            saveSignUp.putString(getString(R.string.inputSignUpPassword),signUpPassword.getText().toString()).apply();
+                            saveSignUp.putString(getString(R.string.inputSignUpVorname),signUpVorname.getText().toString()).apply();
+                            saveSignUp.putString(getString(R.string.inputSignUpNachname),signUpNachname.getText().toString()).apply();
 
-                saveSignUp.putString(getString(R.string.saveEmail),signUpEmail.getText().toString()).apply();
-                saveSignUp.putString(getString(R.string.inputSignUpUsername),signUpUserName.getText().toString()).apply();
-                saveSignUp.putString(getString(R.string.inputSignUpPassword),signUpPassword.getText().toString()).apply();
-                saveSignUp.putString(getString(R.string.inputSignUpVorname),signUpVorname.getText().toString()).apply();
-                saveSignUp.putString(getString(R.string.inputSignUpNachname),signUpNachname.getText().toString()).apply();
+                            // auf Registrierungsscreen Step 2 weiterleiten
+                            Intent intent = new Intent(this, RegistrierungStep2.class);
+                            startActivity(intent);
+                            this.finish();
+                        } else {
+                            Toast.makeText(RegistrierungStep1.this, "Passwort und Passwort bestätigen stimmen nicht überein", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(RegistrierungStep1.this, "Bitte überprüfe deine Emailadresse", Toast.LENGTH_LONG).show();
+                    }
+
+                } else {
+                    Toast.makeText(RegistrierungStep1.this, "Bitte fülle alle Felder aus und akzeptiere die AGB's", Toast.LENGTH_LONG).show();
                 }
-
-                Log.d("Test Preferences Mail", sharedPrefs.getString(getString(R.string.saveEmail),"keine Email vorhanden"));
-                Log.d("Test PrefUsername", sharedPrefs.getString(getString(R.string.inputSignUpUsername),"ein Username vorhanden"));
-                Log.d("Test PrefPassword", sharedPrefs.getString(getString(R.string.inputSignUpPassword),"kein Passwort vorhanden"));
-                Log.d("Test PrefVorname", sharedPrefs.getString(getString(R.string.inputSignUpVorname),"kein Vorname vorhanden"));
-                Log.d("Test PrefNachname", sharedPrefs.getString(getString(R.string.inputSignUpNachname),"kein Nachname vorhanden"));
-
-                // auf Registrierungsscreen Step 2 weiterleiten
-                Intent intent = new Intent(this, RegistrierungStep2.class);
-                startActivity(intent);
-                this.finish();
         }
     }
 }

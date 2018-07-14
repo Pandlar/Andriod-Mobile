@@ -51,4 +51,91 @@
         android:defaultValue=" "
         />
 
+    <EditTextPreference
+        android:key="@string/inputSignUpStadtHome"
+        android:title="Stadt"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpTreffpunktHome"
+        android:title="Treffpunkt"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpStrHome"
+        android:title="Straße HNr"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpPLZHome"
+        android:title="PLZ Home"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpHandynr"
+        android:title="HandyNr"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpTreffpunktWork"
+        android:title="Treffpunkt"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpStrWork"
+        android:title="Straße HNr Work"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+    <EditTextPreference
+        android:key="@string/inputSignUpPLZWork"
+        android:title="PLZ Work"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpCarMarke"
+        android:title="Car Marke"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+    <EditTextPreference
+        android:key="@string/inputSignUpCarModell"
+        android:title="Car Marke"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpCarFarbe"
+        android:title="Car Farbe"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
+    <EditTextPreference
+        android:key="@string/inputSignUpCarNummernschild"
+        android:title="Car Nummernschild"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+    <EditTextPreference
+        android:key="@string/inputSignUpCarSitzplaetze"
+        android:title="Car Anzahl Sitzplätze"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
 </PreferenceScreen>

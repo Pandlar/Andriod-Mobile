@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -21,6 +22,11 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
     AWSLoginModel awsLoginModel;
 
     Button btnWeiter3;
+    EditText signUpCarMarke;
+    EditText signUpCarModell;
+    EditText signUpCarFarbe;
+    EditText signUpCarNummernschild;
+    EditText signUpCarSitzplätze;
     EditText etMarke;
     EditText etModell;
     EditText etFarbe;
@@ -45,6 +51,13 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         btnWeiter3 = findViewById(R.id.btnWeiter3);
         btnWeiter3.setOnClickListener(this);
 
+        //EditText-Felder
+        signUpCarMarke = findViewById(R.id.etMarke);
+        signUpCarModell = findViewById(R.id.etModell);
+        signUpCarFarbe = findViewById(R.id.etFarbe);
+        signUpCarNummernschild = findViewById(R.id.etNummernschild);
+        signUpCarSitzplätze = findViewById(R.id.etAnzahlSP);
+
         etMarke = findViewById(R.id.etMarke);
         etModell = findViewById(R.id.etModell);
         etFarbe = findViewById(R.id.etFarbe);
@@ -56,6 +69,22 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
     @Override
     public void onRegisterSuccess(boolean mustConfirmToComplete) {
         if (mustConfirmToComplete) {
+
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor saveSignUp = sharedPrefs.edit();
+
+            saveSignUp.putString(getString(R.string.inputSignUpCarMarke),signUpCarMarke.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarModell),signUpCarModell.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarFarbe),signUpCarFarbe.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarNummernschild),signUpCarNummernschild.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarSitzplaetze),signUpCarSitzplätze.getText().toString()).apply();
+
+            Log.d("Preferences Marke", sharedPrefs.getString(getString(R.string.inputSignUpCarMarke),"keine Handynr vorhanden."));
+            Log.d("Preferences Modell", sharedPrefs.getString(getString(R.string.inputSignUpCarModell),"keine Stadt vorhanden."));
+            Log.d("Preferences Farbe", sharedPrefs.getString(getString(R.string.inputSignUpCarFarbe),"keine plz vorhanden."));
+            Log.d("Preferences Nummer", sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"keine plz vorhanden."));
+
+
             Toast.makeText(RegistrierungStep3.this, "Almost done! Confirm code to complete registration", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(RegistrierungStep3.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.sonja.ui.aws.AWSLoginHandler;
@@ -19,6 +21,12 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
     AWSLoginModel awsLoginModel;
 
     Button btnWeiter3;
+    EditText etMarke;
+    EditText etModell;
+    EditText etFarbe;
+    EditText etNummernschild;
+    EditText etAnzahlSP;
+    RadioButton rbAutocheck;
 
     private static final String SHARED_PREFERENCE = "SavedValues";
     private static final String PREFERENCE_SIGNUP_USER_EMAIL = "signupUserEmail";
@@ -37,6 +45,12 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         btnWeiter3 = findViewById(R.id.btnWeiter3);
         btnWeiter3.setOnClickListener(this);
 
+        etMarke = findViewById(R.id.etMarke);
+        etModell = findViewById(R.id.etModell);
+        etFarbe = findViewById(R.id.etFarbe);
+        etNummernschild = findViewById(R.id.etNummernschild);
+        etAnzahlSP = findViewById(R.id.etAnzahlSP);
+        rbAutocheck = findViewById(R.id.rbAutocheck);
     }
 
     @Override
@@ -81,22 +95,30 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
 
             case R.id.btnWeiter3:
 
-                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+                if (etMarke.getText().toString().length() > 0 &
+                        etModell.getText().toString().length() > 0 &
+                        etFarbe.getText().toString().length() > 0 &
+                        etNummernschild.getText().toString().length() > 0 &
+                        etAnzahlSP.getText().toString().length() > 0 &
+                        rbAutocheck.isChecked()) {
+                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-                String passwordInput = sharedPrefs.getString(getString(R.string.inputSignUpPassword), "keine Email vorhanden");
-                String usernameInput = sharedPrefs.getString(getString(R.string.inputSignUpUsername), "keine Email vorhanden");
-                String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "keine Email vorhanden");
-                Log.d("reg2ister email", "emailInput: " + emailInput);
-                Log.d("regi2st2er email", "passwordInput: " + passwordInput);
-                Log.d("regis1ter email", "usernameInput: " + usernameInput);
+                    String passwordInput = sharedPrefs.getString(getString(R.string.inputSignUpPassword), "keine Email vorhanden");
+                    String usernameInput = sharedPrefs.getString(getString(R.string.inputSignUpUsername), "keine Email vorhanden");
+                    String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "keine Email vorhanden");
 
-                awsLoginModel.registerUser(usernameInput, emailInput, passwordInput);
+                    awsLoginModel.registerUser(usernameInput, emailInput, passwordInput);
 
 
-                // auf Registrierungsscreen Ende weiterleiten
-                Intent intent = new Intent(this, RegistrierungEnde.class);
-                startActivity(intent);
-                this.finish();
+
+                    // auf Registrierungsscreen Ende weiterleiten
+                    Intent intent = new Intent(this, RegistrierungEnde.class);
+                    startActivity(intent);
+                    this.finish();
+
+                } else {
+                    Toast.makeText(RegistrierungStep3.this, "Bitte fülle alle Felder aus!", Toast.LENGTH_LONG).show();
+                }
         }
     }
 }

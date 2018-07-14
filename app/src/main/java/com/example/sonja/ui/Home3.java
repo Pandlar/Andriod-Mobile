@@ -22,10 +22,24 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
     TextView noch_offen2;
     TextView Fahrt_abgesagt2;
     Button kasten_chronik;
+//Textviews für ersten Fahrteneintrag
+    TextView textView_Ankunft_Ort;
+    TextView textView_Abfahrt_Ort;
+    TextView textView_Freie_Sitzplaetze;
+    TextView textView_Anzahl_Freie_Sitzplaetze;
+    TextView textView_Fahrer;
+    TextView textView_Uhrzeit;
+//Textviews für zweiten Fahrteneintrag
+    TextView textView_Ankunft_Ort2;
+    TextView textView_Abfahrt_Ort2;
+    TextView textView_Uhrzeit2;
+
     public static int status_fahrer = 2; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
     public static int status_mitfahrer = 2; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
 
-
+    /**
+     * initialisiert die Button Navigation Bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -87,7 +101,40 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         nachStatusAnzeigen_Fahrer();
         nachStatusAnzeigen_Mitfahrer();
+
+
+        //TODO  Text aus DB in Textviews einfügen für Fahrteneinträge
+        //erster Eintrag auf Screen
+        textView_Fahrer = (TextView) findViewById(R.id.textView_Fahrer);
+        textView_Fahrer.setText("Du bist Fahrer!");
+
+        textView_Uhrzeit = (TextView) findViewById(R.id.textView_Uhrzeit);
+        textView_Uhrzeit.setText("08. Juni 08:00 Uhr");
+
+        textView_Ankunft_Ort = (TextView) findViewById(R.id.textView_Ankunft_Ort);
+        textView_Ankunft_Ort.setText("Badensche Str. 50-51, 10715 Berlin");
+
+        textView_Abfahrt_Ort = (TextView) findViewById(R.id.textView_Abfahrt_Ort);
+        textView_Abfahrt_Ort.setText("Berliner Str. 30, 10715 Berlin");
+
+        textView_Freie_Sitzplaetze = (TextView) findViewById(R.id.textView_Freie_Sitzplaetze);
+        textView_Freie_Sitzplaetze.setText("Freie Sitzplätze: ");
+
+        textView_Anzahl_Freie_Sitzplaetze = (TextView) findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze);
+        textView_Anzahl_Freie_Sitzplaetze.setText("1");
+
+        //zweiter Eintrag auf Screen
+        textView_Uhrzeit2 = (TextView) findViewById(R.id.textView_Uhrzeit2);
+        textView_Uhrzeit2.setText("08. Juni 09:00 Uhr");
+
+        textView_Ankunft_Ort2 = (TextView) findViewById(R.id.textView_Ankunft_Ort2);
+        textView_Ankunft_Ort2.setText("Badensche Str. 50-51, 10715 Berlin");
+
+        textView_Abfahrt_Ort2 = (TextView) findViewById(R.id.textView_Abfahrt_Ort2);
+        textView_Abfahrt_Ort2.setText("Berliner Str. 30, 10715 Berlin");
+
     }
+
 
     public void onClick(View v) {
         switch (v.getId()) {
@@ -108,6 +155,9 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
+    /**
+     * zeigt den Status der Fahrt an für Fahrer(noch offen, bestätigt, noch bestätigen, Fahrt abgesagt)
+     */
     public void nachStatusAnzeigen_Fahrer(){
         switch(status_fahrer){
             case 0:
@@ -137,6 +187,9 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         }}
 
+    /**
+     * zeigt den Status der Fahrt an für Mitfahrer(noch offen, bestätigt, jetzt bestätigen, Fahrt abgesagt)
+     */
     public void nachStatusAnzeigen_Mitfahrer(){
         switch(status_mitfahrer){
             case 0:

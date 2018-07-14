@@ -30,6 +30,18 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     public static int status_fahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
     public static int status_mitfahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
 
+    //Textviews für ersten Fahrteneintrag
+    TextView textView_Ankunft_Ort;
+    TextView textView_Abfahrt_Ort;
+    TextView textView_Freie_Sitzplaetze;
+    TextView textView_Anzahl_Freie_Sitzplaetze;
+    TextView textView_Fahrer;
+    TextView textView_Uhrzeit;
+    //Textviews für zweiten Fahrteneintrag
+    TextView textView_Ankunft_Ort2;
+    TextView textView_Abfahrt_Ort2;
+    TextView textView_Uhrzeit2;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -60,7 +72,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_home4);
 
 
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         bewerten = findViewById(R.id.bewerten);
@@ -86,6 +98,36 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
         nachStatusAnzeigen_Fahrer();
         nachStatusAnzeigen_Mitfahrer();
+
+        //TODO  Text aus DB in Textviews einfügen
+        textView_Fahrer = (TextView) findViewById(R.id.textView_Fahrer);
+        textView_Fahrer.setText("Du bist Fahrer!");
+
+        textView_Uhrzeit = (TextView) findViewById(R.id.textView_Uhrzeit);
+        textView_Uhrzeit.setText("08. Juni 08:00 Uhr");
+
+        textView_Ankunft_Ort = (TextView) findViewById(R.id.textView_Ankunft_Ort);
+        textView_Ankunft_Ort.setText("Badensche Str. 50-51, 10715 Berlin");
+
+        textView_Abfahrt_Ort = (TextView) findViewById(R.id.textView_Abfahrt_Ort);
+        textView_Abfahrt_Ort.setText("Berliner Str. 30, 10715 Berlin");
+
+        textView_Freie_Sitzplaetze = (TextView) findViewById(R.id.textView_Freie_Sitzplaetze);
+        textView_Freie_Sitzplaetze.setText("Freie Sitzplätze: ");
+
+        textView_Anzahl_Freie_Sitzplaetze = (TextView) findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze);
+        textView_Anzahl_Freie_Sitzplaetze.setText("1");
+
+        //zweiter Eintrag auf Screen
+        textView_Uhrzeit2 = (TextView) findViewById(R.id.textView_Uhrzeit2);
+        textView_Uhrzeit2.setText("08. Juni 09:00 Uhr");
+
+        textView_Ankunft_Ort2 = (TextView) findViewById(R.id.textView_Ankunft_Ort2);
+        textView_Ankunft_Ort2.setText("Badensche Str. 50-51, 10715 Berlin");
+
+        textView_Abfahrt_Ort2 = (TextView) findViewById(R.id.textView_Abfahrt_Ort2);
+        textView_Abfahrt_Ort2.setText("Berliner Str. 30, 10715 Berlin");
+
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String mail = sharedPrefs.getString(getString(R.string.saveEmail), "no mail");
@@ -158,13 +200,13 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bewerten:
-                // auf Bewertung2 weiterleiten --> Fahrersicht
+                // auf Bewertung2 weiterleiten
                 Intent intent = new Intent(this, Bewertung2.class);
                 startActivity(intent);
                 this.finish();
                 break;
             case R.id.bewerten2:
-                // auf Bewertung1 weiterleiten --> Mitfahrersicht
+                // auf Bewertung1 weiterleiten
                 Intent intent2 = new Intent(this, Bewertung1.class);
                 startActivity(intent2);
                 this.finish();

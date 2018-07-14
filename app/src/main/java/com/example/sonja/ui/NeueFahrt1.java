@@ -12,7 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -41,6 +44,10 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     TextView txt_anzahl_sitze;
     Button btn_switch;
     Spinner dropdown;
+    RadioGroup radioGroup;
+    RadioButton radio_Hinfahrt;
+    RadioButton radio_nurHinfahrt;
+    int radio = 0;
     int to_earliest_hour = 0;
     int to_earliest_minute = 0;
     int to_latest_hour = 0;
@@ -94,10 +101,21 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-// Bottom Navigation initialisieren
+        // Bottom Navigation initialisieren
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        //Radio Group initialisieren
+        radioGroup= (RadioGroup) this.findViewById(R.id.radioGroup);
+        radio_Hinfahrt = (RadioButton) this.findViewById(R.id.radio_Hinfahrt);
+        radio_nurHinfahrt  =  (RadioButton)this.findViewById(R.id.radio_nurHinfahrt);
+
+        // When radio button "Female" checked change.
+        radio_nurHinfahrt.setOnCheckedChangeListener(new RadioButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                System.out.println("nur Hinfahrt, keine Rückfahrt");
+                radio = 1;
+            }});
 
 
         // Buttons OnClickListener
@@ -186,6 +204,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         intent.putExtra("to_latest_minute", to_latest_minute);
         intent.putExtra("to_latest_hour", to_latest_hour);
         intent.putExtra("requestRole", requestRole.toString());
+        Intent intentradio = new Intent(this, Confirm.class);
+       // intentradio.putExtra("radio", radio);
         switch (v.getId()) {
 
             case R.id.btn_weiter_screen2:
@@ -203,6 +223,10 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
                 if (requestRole == RequestRole.DRIVERORPASSENGER) {
                     startActivity(intent);
 
+                    this.finish();
+                }
+                if (radio == 1) {
+                    startActivity(intentradio);
                     this.finish();
                 }
                 else {

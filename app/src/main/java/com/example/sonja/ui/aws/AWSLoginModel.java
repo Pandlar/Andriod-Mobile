@@ -65,6 +65,7 @@ public class AWSLoginModel {
 
 
             // Get details of the logged user (in this case, only the e-mail)
+            mCognitoUser = mCognitoUserPool.getCurrentUser();
             mCognitoUser.getDetailsInBackground(new GetDetailsHandler() {
                 @Override
                 public void onSuccess(CognitoUserDetails cognitoUserDetails) {

@@ -155,16 +155,16 @@
 
     <Button
         android:id="@+id/btn_log_out"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="70dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/background_light"
         android:text="Log Out"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -263,10 +263,10 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="31dp"
+        android:layout_width="28dp"
         android:layout_height="101dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_neueFahrt1"
         app:srcCompat="@drawable/location_zeiger" />
@@ -316,9 +316,9 @@
         android:id="@+id/btn_switch"
         android:layout_width="34dp"
         android:layout_height="33dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/panda_icon_durchsichtig"
+        android:background="@android:drawable/ic_menu_revert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toEndOf="@+id/textView2"

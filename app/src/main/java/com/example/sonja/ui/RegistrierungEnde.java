@@ -15,7 +15,6 @@ import com.example.sonja.ui.aws.AWSLoginModel;
 public class RegistrierungEnde extends AppCompatActivity implements View.OnClickListener, AWSLoginHandler {
 
     AWSLoginModel awsLoginModel;
-    EditText confirmationCodeEditText;
 
     Button btnOk;
 
@@ -30,7 +29,6 @@ public class RegistrierungEnde extends AppCompatActivity implements View.OnClick
         btnOk = findViewById(R.id.btnOk);
         btnOk.setOnClickListener(this);
 
-        confirmationCodeEditText = findViewById(R.id.etConfirmationCode);
     }
 
     @Override
@@ -75,13 +73,6 @@ public class RegistrierungEnde extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
 
             case R.id.btnOk:
-
-                Log.d("ok was click", "asd--------------------------");
-
-                Log.d("confirmationCode", "" + confirmationCodeEditText.getText().toString());
-
-                // do confirmation and handles on interface
-                awsLoginModel.confirmRegistration(confirmationCodeEditText.getText().toString());
 
                 // auf Mainscreen zurückkehren weiterleiten
                 Intent intent = new Intent(this, MainActivity.class);

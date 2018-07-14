@@ -17,6 +17,8 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
     TextView abfahrt1, ankunft1, sitze1;
     TextView abfahrt2, ankunft2, sitze2;
     Button btn_confirm;
+    TextView textView;
+    View grey_background2;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -53,6 +55,8 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
     int from_latest_minute;
     int from_latest_hour;
 
+    //int radio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +73,35 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
             from_earliest_hour = extras.getInt("from_earliest_hour");
             from_latest_minute = extras.getInt("from_latest_minute");
             from_latest_hour = extras.getInt("from_latest_hour");
-        }
+
+         //   radio = extras.getInt("radio");
+
+            }
+
+
+
         setContentView(R.layout.activity_confirm);
+
+        //Anzeigetext befüllen (Du bist Fahrer/Mitfahrer)
+        textView = (TextView) findViewById(R.id.textView);
+        //textView.setText("Du bist ..?");
+           if (requestRole == NeueFahrt1.RequestRole.DRIVER){
+                textView.setText("Du bist Fahrer!");
+            } else if (requestRole == NeueFahrt1.RequestRole.PASSENGER){
+                textView.setText("Du bist Mitfahrer!");
+            } else if (requestRole == NeueFahrt1.RequestRole.DRIVERORPASSENGER){
+                textView.setText("Du bist Mitfahrer und/oder Fahrer!");
+            } else {
+                requestRole = NeueFahrt1.RequestRole.NOTDECIDED;
+            }
+
+      /*  grey_background2 = findViewById(R.id.grey_background2);
+        //textView.setText
+        if (radio == 1){
+            grey_background2.setVisibility(View.INVISIBLE);
+        } else{
+            System.out.println("nicht nur Mitfahrer");
+        }*/
 
         // Bottom Navigation initialisieren
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

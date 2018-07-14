@@ -57,12 +57,6 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         signUpCarFarbe = findViewById(R.id.etFarbe);
         signUpCarNummernschild = findViewById(R.id.etNummernschild);
         signUpCarSitzplätze = findViewById(R.id.etAnzahlSP);
-
-        etMarke = findViewById(R.id.etMarke);
-        etModell = findViewById(R.id.etModell);
-        etFarbe = findViewById(R.id.etFarbe);
-        etNummernschild = findViewById(R.id.etNummernschild);
-        etAnzahlSP = findViewById(R.id.etAnzahlSP);
         rbAutocheck = findViewById(R.id.rbAutocheck);
     }
 
@@ -78,11 +72,6 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
             saveSignUp.putString(getString(R.string.inputSignUpCarFarbe),signUpCarFarbe.getText().toString()).apply();
             saveSignUp.putString(getString(R.string.inputSignUpCarNummernschild),signUpCarNummernschild.getText().toString()).apply();
             saveSignUp.putString(getString(R.string.inputSignUpCarSitzplaetze),signUpCarSitzplätze.getText().toString()).apply();
-
-            Log.d("Preferences Marke", sharedPrefs.getString(getString(R.string.inputSignUpCarMarke),"keine Handynr vorhanden."));
-            Log.d("Preferences Modell", sharedPrefs.getString(getString(R.string.inputSignUpCarModell),"keine Stadt vorhanden."));
-            Log.d("Preferences Farbe", sharedPrefs.getString(getString(R.string.inputSignUpCarFarbe),"keine plz vorhanden."));
-            Log.d("Preferences Nummer", sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"keine plz vorhanden."));
 
 
             Toast.makeText(RegistrierungStep3.this, "Almost done! Confirm code to complete registration", Toast.LENGTH_LONG).show();
@@ -124,12 +113,11 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
 
             case R.id.btnWeiter3:
 
-                if (etMarke.getText().toString().length() > 0 &
-                        etModell.getText().toString().length() > 0 &
-                        etFarbe.getText().toString().length() > 0 &
-                        etNummernschild.getText().toString().length() > 0 &
-                        etAnzahlSP.getText().toString().length() > 0 &
-                        rbAutocheck.isChecked()) {
+                if (signUpCarMarke.getText().toString().length() > 0 &
+                        signUpCarModell.getText().toString().length() > 0 &
+                        signUpCarFarbe.getText().toString().length() > 0 &
+                        signUpCarNummernschild.getText().toString().length() > 0 &
+                        signUpCarSitzplätze.getText().toString().length() > 0) {
                     SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
                     String passwordInput = sharedPrefs.getString(getString(R.string.inputSignUpPassword), "keine Email vorhanden");

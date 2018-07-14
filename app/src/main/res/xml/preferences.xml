@@ -38,4 +38,17 @@
         android:defaultValue=" "
         />
 
+    <EditTextPreference
+        android:key="@string/inputSignUpVorname"
+        android:title="vorname"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+    <EditTextPreference
+        android:key="@string/inputSignUpNachname"
+        android:title="nachname"
+        android:inputType="text"
+        android:defaultValue=" "
+        />
+
 </PreferenceScreen>

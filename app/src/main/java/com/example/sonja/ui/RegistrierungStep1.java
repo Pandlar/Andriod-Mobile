@@ -18,6 +18,8 @@ public class RegistrierungStep1 extends AppCompatActivity implements View.OnClic
     RadioButton rbAGB;
     EditText signUpEmail;
     EditText signUpUserName;
+    EditText signUpVorname;
+    EditText signUpNachname;
     EditText signUpPassword;
     EditText signUpPassword2;
 
@@ -41,6 +43,8 @@ public class RegistrierungStep1 extends AppCompatActivity implements View.OnClic
         rbAGB.getBackground().setAlpha(1);
 
         signUpEmail = findViewById(R.id.etEMail);
+        signUpVorname = findViewById(R.id.etVorname);
+        signUpNachname = findViewById(R.id.etNachname);
         signUpUserName = findViewById(R.id.etUsername);
         signUpPassword = findViewById(R.id.etPasswort);
         signUpPassword2 = findViewById(R.id.etPasswort2);
@@ -56,6 +60,8 @@ public class RegistrierungStep1 extends AppCompatActivity implements View.OnClic
                 Log.d("signUpUserName", " " + signUpUserName.getText().toString());
                 Log.d("signUpPassword", " " + signUpPassword.getText().toString());
                 Log.d("signUpPassword2", " " + signUpPassword2.getText().toString());
+                Log.d("signUpVorname", " " + signUpVorname.getText().toString());
+                Log.d("signUpNachname", " " + signUpNachname.getText().toString());
 
                 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor saveSignUp = sharedPrefs.edit();
@@ -65,11 +71,15 @@ public class RegistrierungStep1 extends AppCompatActivity implements View.OnClic
                 saveSignUp.putString(getString(R.string.saveEmail),signUpEmail.getText().toString()).apply();
                 saveSignUp.putString(getString(R.string.inputSignUpUsername),signUpUserName.getText().toString()).apply();
                 saveSignUp.putString(getString(R.string.inputSignUpPassword),signUpPassword.getText().toString()).apply();
+                saveSignUp.putString(getString(R.string.inputSignUpVorname),signUpVorname.getText().toString()).apply();
+                saveSignUp.putString(getString(R.string.inputSignUpNachname),signUpNachname.getText().toString()).apply();
                 }
 
                 Log.d("Test Preferences Mail", sharedPrefs.getString(getString(R.string.saveEmail),"keine Email vorhanden"));
                 Log.d("Test PrefUsername", sharedPrefs.getString(getString(R.string.inputSignUpUsername),"ein Username vorhanden"));
                 Log.d("Test PrefPassword", sharedPrefs.getString(getString(R.string.inputSignUpPassword),"kein Passwort vorhanden"));
+                Log.d("Test PrefVorname", sharedPrefs.getString(getString(R.string.inputSignUpVorname),"kein Vorname vorhanden"));
+                Log.d("Test PrefNachname", sharedPrefs.getString(getString(R.string.inputSignUpNachname),"kein Nachname vorhanden"));
 
                 // auf Registrierungsscreen Step 2 weiterleiten
                 Intent intent = new Intent(this, RegistrierungStep2.class);

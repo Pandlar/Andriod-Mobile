@@ -61,6 +61,8 @@
     <string name="sharedPrefsFirstRunString">true</string>
     <string name="saveEmail">Email</string>
     <string name="inputSignUpUsername">Username</string>
+    <string name="inputSignUpVorname">Vorname</string>
+    <string name="inputSignUpNachname">Nachname</string>
     <string name="inputSignUpPassword">Password</string>
 
     //Strings für die Registrierung

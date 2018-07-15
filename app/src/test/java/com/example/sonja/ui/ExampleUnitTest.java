@@ -18,6 +18,7 @@ import java.util.Date;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import static org.junit.Assert.*;
 
@@ -74,12 +75,33 @@ public class ExampleUnitTest {
         }
 
     }
+    @Test
+    public void firstDoubleFromPoint(){
+        String s = "(52.48643,13.4247398)";
+        s = s.substring(1,s.length()-1);
+        StringTokenizer tokenizer = new StringTokenizer(s, ",");
+        double result =  Double.parseDouble(tokenizer.nextToken());
+
+    }
+
 
 
     public void http_getInfoWithUUID() throws Exception {
        HttpTest httpUUIDTest = new HttpTest();
        httpUUIDTest.sendGet("match", "driverRequestId", "9ae65d36-a209-4670-8ba1-a3aa2fa435ba", "eq", "");
 
+    }
+
+    @Test
+    public void testGetRequestCacheLocation(){
+        HttpTest http = new HttpTest();
+        try{
+            String json = http.getRequestCacheLocation(NeueFahrt1.RequestRole.DRIVER);
+            JSONArray arr = new JSONArray(json);
+            System.out.println(json);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test

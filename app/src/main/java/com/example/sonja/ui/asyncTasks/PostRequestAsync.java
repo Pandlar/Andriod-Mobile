@@ -39,10 +39,9 @@ public class PostRequestAsync extends AsyncTask<PostRequestParams, Void, Void> {
 
             int year = Calendar.getInstance().get(Calendar.YEAR);
             int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-            int day = Calendar.getInstance().get(Calendar.DATE);
+            int day = Calendar.getInstance().get(Calendar.DATE)+1;
             System.out.println(year + "-" + month + "-" + day);
             String date = year + "-" + month + "-" + day;
-            id = "6a737ef5-4095-4ce3-9e02-0c3d4b9c0539";
             String urlParameters = "earliestDepartureTime=" + earliestDepartureTime +
                     "&latestArrivalTime=" + latestArrivalTime +
                     "&direction=" + direction +

@@ -130,7 +130,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
             GetRequestParams paramsOfRequest = new GetRequestParams("ridesPast", uuid, "&order=date.desc,latestArrivalTime.desc");
             GetRequestAsync asyncGetRequestFuture = new GetRequestAsync();
-            JSONArray arr = new JSONArray(asyncGetRequestFuture.execute(paramsOfRequest));
+            JSONArray arr = asyncGetRequestFuture.execute(paramsOfRequest).get();
 
             String role1 = arr.getJSONObject(0).getString("role");
             String home1 = arr.getJSONObject(0).getString("homeAddress");

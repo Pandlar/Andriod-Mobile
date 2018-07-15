@@ -150,7 +150,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="130dp"
         android:layout_marginTop="75dp"
-        android:text="Bandensche Straße 50-51, 10715 Berlin"
+        android:text=""
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

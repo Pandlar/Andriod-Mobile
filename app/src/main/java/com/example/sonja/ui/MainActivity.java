@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         EditText password = findViewById(R.id.Password);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "keine Email vorhanden");
+        String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "enrico.boos@test.com");
         System.out.println(emailInput);
         String json = null;
 

@@ -21,7 +21,7 @@
         android:key="@string/saveEmail"
         android:title="user email"
         android:inputType="text"
-        android:defaultValue=" "
+        android:defaultValue="enrico.boos@test.com"
         />
 
     <EditTextPreference

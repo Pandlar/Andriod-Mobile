@@ -37,6 +37,7 @@ public class HttpTest {
             //TODO
             throw new Exception();
         }
+
         // If you do not want to filter, put "" in select
         String url = urlip+table+"?"+attr+"="+compare+"."+value+select;
         System.out.println(url);

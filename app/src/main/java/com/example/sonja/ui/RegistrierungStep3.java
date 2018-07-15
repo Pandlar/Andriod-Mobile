@@ -143,10 +143,17 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 String carNummernschild = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"");
                 String carSitzplaetze = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"");
 
-                Log.d("reg2ister email", "emailInput: " + emailInput);
-                Log.d("regi2st2er email", "passwordInput: " + passwordInput);
-                Log.d("regis1ter email", "usernameInput: " + usernameInput);
+                try {
+                    PostUserParams paramsToUser = new PostUserParams( emailInput, userVorname, userNachname,
+                            userUsername, userPassword, userStadtHome, userTreffpunktHome, userTreffpunktWork,
+                            userStrHome, userStrWork, userPLZHome, userPLZWork, userHandyNr, carMarke, carFarbe,
+                            carModell, carNummernschild, carSitzplaetze);
+                    PostUserAsync asyncRunnerToUser = new PostUserAsync();
+                    asyncRunnerToUser.execute(paramsToUser);}
 
+                catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 awsLoginModel.registerUser(usernameInput, emailInput, passwordInput);
 

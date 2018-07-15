@@ -72,7 +72,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_home4);
 
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         bewerten = findViewById(R.id.bewerten);
@@ -100,39 +100,130 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         nachStatusAnzeigen_Mitfahrer();
 
         //TODO  Text aus DB in Textviews einfügen
-        textView_Fahrer = (TextView) findViewById(R.id.textView_Fahrer);
-        textView_Fahrer.setText("Du bist Fahrer!");
+        textView_Fahrer = findViewById(R.id.textView_Fahrer);
+        textView_Uhrzeit = findViewById(R.id.textView_Uhrzeit);
 
-        textView_Uhrzeit = (TextView) findViewById(R.id.textView_Uhrzeit);
-        textView_Uhrzeit.setText("08. Juni 08:00 Uhr");
-
-        textView_Ankunft_Ort = (TextView) findViewById(R.id.textView_Ankunft_Ort);
-        textView_Ankunft_Ort.setText("Badensche Str. 50-51, 10715 Berlin");
-
-        textView_Abfahrt_Ort = (TextView) findViewById(R.id.textView_Abfahrt_Ort);
-        textView_Abfahrt_Ort.setText("Berliner Str. 30, 10715 Berlin");
-
-        textView_Freie_Sitzplaetze = (TextView) findViewById(R.id.textView_Freie_Sitzplaetze);
-        textView_Freie_Sitzplaetze.setText("Freie Sitzplätze: ");
-
-        textView_Anzahl_Freie_Sitzplaetze = (TextView) findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze);
-        textView_Anzahl_Freie_Sitzplaetze.setText("1");
+        // geändert und andersrum (nicht verwirrt sein, dass in xml anders)
+        textView_Abfahrt_Ort = findViewById(R.id.textView_Ankunft_Ort);
+        textView_Ankunft_Ort = findViewById(R.id.textView_Abfahrt_Ort);
+        textView_Freie_Sitzplaetze = findViewById(R.id.textView_Freie_Sitzplaetze);
+        textView_Anzahl_Freie_Sitzplaetze = findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze);
 
         //zweiter Eintrag auf Screen
-        textView_Uhrzeit2 = (TextView) findViewById(R.id.textView_Uhrzeit2);
-        textView_Uhrzeit2.setText("08. Juni 09:00 Uhr");
-
-        textView_Ankunft_Ort2 = (TextView) findViewById(R.id.textView_Ankunft_Ort2);
-        textView_Ankunft_Ort2.setText("Badensche Str. 50-51, 10715 Berlin");
-
-        textView_Abfahrt_Ort2 = (TextView) findViewById(R.id.textView_Abfahrt_Ort2);
-        textView_Abfahrt_Ort2.setText("Berliner Str. 30, 10715 Berlin");
+        textView_Uhrzeit2 = findViewById(R.id.textView_Uhrzeit2);
+        textView_Abfahrt_Ort2 = findViewById(R.id.textView_Ankunft_Ort2);
+        textView_Ankunft_Ort2 = findViewById(R.id.textView_Abfahrt_Ort2);
 
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String mail = sharedPrefs.getString(getString(R.string.saveEmail), "no mail");
+        String uuid = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
+
+        System.out.println("We are in Home4.java now and the uuid is " + uuid);
 
         try {
+
+            HttpTest httpUUIDTest = new HttpTest();
+            String json = httpUUIDTest.sendGet("ridesPast", "userId", uuid, "eq", "&order=date.desc,latestArrivalTime.desc");
+
+            JSONArray arr = new JSONArray(json);
+            String role1 = arr.getJSONObject(0).getString("role");
+            String home1 = arr.getJSONObject(0).getString("homeAddress");
+            String work1 = arr.getJSONObject(0).getString("officeAddress");
+            String date1 = arr.getJSONObject(0).getString("date");
+            String time1 = arr.getJSONObject(0).getString("latestArrivalTime");
+            String direction1 = arr.getJSONObject(0).getString("direction");
+            String seats1 = arr.getJSONObject(0).getString("seats");
+            String status1 = arr.getJSONObject(0).getString("status");
+            System.out.println("Erster Datensatz: \nrole: " + role1 + ", home: " + home1 + ", work: " + work1 + ", date: " + date1 + ", Time: " + time1 + ", Direction: " +  direction1);
+
+            String role2 = arr.getJSONObject(1).getString("role");
+            String home2 = arr.getJSONObject(1).getString("homeAddress");
+            String work2 = arr.getJSONObject(1).getString("officeAddress");
+            String date2 = arr.getJSONObject(1).getString("date");
+            String time2 = arr.getJSONObject(1).getString("latestArrivalTime");
+            String direction2 = arr.getJSONObject(1).getString("direction");
+            String seats2 = arr.getJSONObject(1).getString("seats");
+            String status2 = arr.getJSONObject(1).getString("status");
+
+            System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2+ ", Direction: " +  direction2);
+
+            if (role1.equals("driver")){
+                textView_Fahrer.setText("Du bist Fahrer!");
+                textView_Freie_Sitzplaetze.setText("Freie Sitzplätze: ");
+                textView_Anzahl_Freie_Sitzplaetze.setText(seats1);
+
+                // es gibt momentan keine anderen Werte
+                switch (status1) {
+                    case "not answered": status_fahrer=0;
+                    break;
+                }
+                nachStatusAnzeigen_Fahrer();
+            } else if (role1.equals("passenger")){
+                textView_Fahrer.setText("Du bist Mitfahrer!");
+                textView_Freie_Sitzplaetze.setText("");
+                textView_Anzahl_Freie_Sitzplaetze.setText("");
+
+                // es gibt momentan keine anderen Werte
+                switch (status1) {
+                    case "not answered": status_mitfahrer=0;
+                        break;
+                }
+                nachStatusAnzeigen_Mitfahrer();
+            } else {
+                textView_Fahrer.setText("");
+                textView_Freie_Sitzplaetze.setText("");}
+
+            // es gibt momentan keine anderen Werte
+            switch (status2) {
+                case "not answered": status_mitfahrer=0;
+                    break;
+            }
+            nachStatusAnzeigen_Mitfahrer();
+
+            if (direction1.equals("towards Home")){
+                textView_Abfahrt_Ort.setText(work1);
+                textView_Ankunft_Ort.setText(home1);
+            } else if (direction1.equals("towards Office")){
+                textView_Abfahrt_Ort.setText(home1);
+                textView_Ankunft_Ort.setText(work1);
+            }
+            textView_Uhrzeit.setText(date1 + ", " + time1);
+
+            //TODO Wiebke: textView_Fahrer2, textView_Freie_Sitzplaetze2 und textView_Anzahl_Freie_Sitzplaetze2 anlegen
+            if (role2.equals("driver")){
+                //textView_Fahrer2.setText("Du bist Fahrer!");
+                //textView_Freie_Sitzplaetze2.setText("Freie Sitzplätze: ");
+                //textView_Anzahl_Freie_Sitzplaetze2.setText(seats2);
+
+                // es gibt momentan keine anderen Werte
+                switch (status2) {
+                    case "not answered": status_fahrer=0;
+                        break;
+                }
+                nachStatusAnzeigen_Fahrer();
+            } else if (role2.equals("passenger")){
+                //textView_Fahrer2.setText("Du bist Mitfahrer!");
+                //textView_Freie_Sitzplaetze2.setText("");
+                //textView_Anzahl_Freie_Sitzplaetze2.setText("");
+            } else {
+                //textView_Fahrer2.setText("");
+                //textView_Freie_Sitzplaetze2.setText("");
+                }
+            if (direction2.equals("towards Home")){
+                textView_Abfahrt_Ort2.setText(work2);
+                textView_Ankunft_Ort2.setText(home2);
+            } else if (direction2.equals("towards Office")){
+                textView_Abfahrt_Ort2.setText(home2);
+                textView_Ankunft_Ort2.setText(work2);
+            }
+            textView_Uhrzeit2.setText(date2 + ", " + time2);
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        //old Version of Getting Data
+        /*try {
             HttpTest httpRatingPost = new HttpTest();
 
             String json = null;
@@ -193,7 +284,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
             }
         } catch (Exception E ){
             System.out.println("Something is not working, sorry");
-        }
+        }*/
 
 
     }

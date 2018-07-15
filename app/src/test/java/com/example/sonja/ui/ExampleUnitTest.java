@@ -75,11 +75,32 @@ public class ExampleUnitTest {
 
     }
 
-
+    @Test
     public void http_getInfoWithUUID() throws Exception {
        HttpTest httpUUIDTest = new HttpTest();
        httpUUIDTest.sendGet("match", "driverRequestId", "9ae65d36-a209-4670-8ba1-a3aa2fa435ba", "eq", "");
 
+    }
+
+    @Test
+    public void http_getRideInfoPast() throws Exception {
+        HttpTest httpUUIDTest = new HttpTest();
+        String json = httpUUIDTest.sendGet("ridesFuture", "userId", "6a737ef5-4095-4ce3-9e02-0c3d4b9c0539", "eq", "&order=date.asc,latestArrivalTime.asc");
+
+        JSONArray arr = new JSONArray(json);
+        String role = arr.getJSONObject(0).getString("role");
+        String home = arr.getJSONObject(0).getString("homeAddress");
+        String work = arr.getJSONObject(0).getString("officeAddress");
+        String date = arr.getJSONObject(0).getString("date");
+        String time = arr.getJSONObject(0).getString("latestArrivalTime");
+        System.out.println("role: " + role + ", home: " + home + ", work: " + work + ", date: " + date + ", Time: " + time);
+
+        String role2 = arr.getJSONObject(1).getString("role");
+        String home2 = arr.getJSONObject(1).getString("homeAddress");
+        String work2 = arr.getJSONObject(1).getString("officeAddress");
+        String date2 = arr.getJSONObject(1).getString("date");
+        String time2 = arr.getJSONObject(1).getString("latestArrivalTime");
+        System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2);
     }
 
     @Test

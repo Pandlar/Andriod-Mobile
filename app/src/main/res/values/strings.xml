@@ -5,7 +5,7 @@
     <string name="title_notifications">Notifications</string>
 
     // erster Screen
-    <string name="user_name">Name</string>
+    <string name="user_name">Username</string>
     <string name="user_password">Passwort</string>
     <string name="log_in_button">Log In</string>
 
@@ -61,7 +61,24 @@
     <string name="sharedPrefsFirstRunString">true</string>
     <string name="saveEmail">Email</string>
     <string name="inputSignUpUsername">Username</string>
+    <string name="inputSignUpVorname">Vorname</string>
+    <string name="inputSignUpNachname">Nachname</string>
     <string name="inputSignUpPassword">Password</string>
+    <string name="inputSignUpStadtHome">Stadt Home</string>
+    <string name="inputSignUpTreffpunktHome">Treffpunkt Home</string>
+    <string name="inputSignUpStrHome">Straße HausNr Home</string>
+    <string name="inputSignUpPLZHome">PLZ Home</string>
+    <string name="inputSignUpHandynr">Handynr</string>
+    <string name="inputSignUpTreffpunktWork">Treffpunkt Work</string>
+    <string name="inputSignUpStrWork">Straße HausNr Work</string>
+    <string name="inputSignUpPLZWork">PLZ Work</string>
+    <string name="inputSignUpCarMarke">Car Marke</string>
+    <string name="inputSignUpCarModell">Car Modell</string>
+    <string name="inputSignUpCarFarbe">Car Farbe</string>
+    <string name="inputSignUpCarNummernschild">Car Nummernschild</string>
+    <string name="inputSignUpCarSitzplaetze">Car Anzahl Sitzplätze</string>
+    <string name="uuid">UUID</string>
+
 
     //Strings für die Registrierung
     <string name="tvWohnort">Wohnort</string>

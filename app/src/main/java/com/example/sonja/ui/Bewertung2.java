@@ -23,6 +23,7 @@ public class Bewertung2 extends AppCompatActivity implements View.OnClickListene
     EditText bewertung;
     RatingBar stars;
 
+    //* Navigation Bar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -59,6 +60,8 @@ public class Bewertung2 extends AppCompatActivity implements View.OnClickListene
         btn_Veroeffentlichen2.setOnClickListener(this);
 
     }
+
+    //* Die Bewertung wird in die Datenbank gespeichert zu der zugehörigen Fahrt.
     public void onClick(View v)  {
         switch (v.getId()) {
 

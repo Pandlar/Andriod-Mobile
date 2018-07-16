@@ -36,11 +36,18 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
     TextView textView_Abfahrt_Ort;
     TextView textView_Freie_Sitzplaetze;
     TextView textView_Anzahl_Freie_Sitzplaetze;
+    TextView textView_Keine_Sitzplaetze;
     TextView textView_Fahrer;
+    TextView textView_Mitfahrer;
     TextView textView_Uhrzeit;
 //Textviews für zweiten Fahrteneintrag
     TextView textView_Ankunft_Ort2;
     TextView textView_Abfahrt_Ort2;
+    TextView textView_Freie_Sitzplaetze2;
+    TextView textView_Anzahl_Freie_Sitzplaetze2;
+    TextView textView_Keine_Sitzplaetze2;
+    TextView textView_Fahrer2;
+    TextView textView_Mitfahrer2;
     TextView textView_Uhrzeit2;
 
     public static int status_fahrer = 2; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
@@ -114,21 +121,27 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         nachStatusAnzeigen_Mitfahrer();
 
 
-        //TODO  Text aus DB in Textviews einfügen für Fahrteneinträge
         //erster Eintrag auf Screen
         textView_Fahrer = findViewById(R.id.textView_Fahrer);
+        textView_Mitfahrer = findViewById(R.id.textView_Mitfahrer);
         textView_Uhrzeit = findViewById(R.id.textView_Uhrzeit);
 
-        // TODO Überprüfen, ob das hier auch wie in Klasse Home4.java ist
         textView_Abfahrt_Ort = findViewById(R.id.textView_Ankunft_Ort);
         textView_Ankunft_Ort = findViewById(R.id.textView_Abfahrt_Ort);
         textView_Freie_Sitzplaetze = findViewById(R.id.textView_Freie_Sitzplaetze);
         textView_Anzahl_Freie_Sitzplaetze = findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze);
+        textView_Keine_Sitzplaetze = findViewById(R.id.textView_Keine_Sitzplaetze);
 
         //zweiter Eintrag auf Screen
+        textView_Fahrer2 = findViewById(R.id.textView_Fahrer2);
+        textView_Mitfahrer2 = findViewById(R.id.textView_Mitfahrer2);
         textView_Uhrzeit2 = findViewById(R.id.textView_Uhrzeit2);
-        textView_Ankunft_Ort2 = findViewById(R.id.textView_Ankunft_Ort2);
-        textView_Abfahrt_Ort2 = findViewById(R.id.textView_Abfahrt_Ort2);
+
+        textView_Abfahrt_Ort2 = findViewById(R.id.textView_Ankunft_Ort2);
+        textView_Ankunft_Ort2 = findViewById(R.id.textView_Abfahrt_Ort2);
+        textView_Freie_Sitzplaetze2 = findViewById(R.id.textView_Freie_Sitzplaetze2);
+        textView_Anzahl_Freie_Sitzplaetze2 = findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze2);
+        textView_Keine_Sitzplaetze2 = findViewById(R.id.textView_Keine_Sitzplaetze2);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String uuid = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");

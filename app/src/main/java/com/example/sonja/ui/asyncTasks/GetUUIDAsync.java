@@ -18,9 +18,9 @@ public class GetUUIDAsync extends AsyncTask<UUIDParams, Void, String> {
     @Override
     protected String doInBackground(UUIDParams... param) {
 
-        String email = param[0].email;
+        String username = param[0].username;
 
-        String url = "http://13.58.210.65:3000/user?email=eq." + email + "&select=id";
+        String url = "http://13.58.210.65:3000/user?username=eq." + username + "&select=id";
         System.out.println(url);
 
         URL obj = null;

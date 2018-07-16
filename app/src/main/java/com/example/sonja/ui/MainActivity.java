@@ -190,12 +190,14 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         EditText userOrEmail = findViewById(R.id.Username);
         EditText password = findViewById(R.id.Password);
 
+        String username = userOrEmail.getText().toString();
+        System.out.println("Username: " + username);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "enrico.boos@test.com");
         System.out.println(emailInput);
         String json = null;
 
-        UUIDParams paramsUUID = new UUIDParams(emailInput);
+        UUIDParams paramsUUID = new UUIDParams(username);
         GetUUIDAsync asyncRunnerToUser = new GetUUIDAsync();
         String uuid = asyncRunnerToUser.execute(paramsUUID).get();
 

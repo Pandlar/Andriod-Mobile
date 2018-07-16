@@ -36,11 +36,18 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
     TextView textView_Abfahrt_Ort;
     TextView textView_Freie_Sitzplaetze;
     TextView textView_Anzahl_Freie_Sitzplaetze;
+    TextView textView_Keine_Sitzplaetze;
     TextView textView_Fahrer;
+    TextView textView_Mitfahrer;
     TextView textView_Uhrzeit;
 //Textviews für zweiten Fahrteneintrag
     TextView textView_Ankunft_Ort2;
     TextView textView_Abfahrt_Ort2;
+    TextView textView_Freie_Sitzplaetze2;
+    TextView textView_Anzahl_Freie_Sitzplaetze2;
+    TextView textView_Keine_Sitzplaetze2;
+    TextView textView_Fahrer2;
+    TextView textView_Mitfahrer2;
     TextView textView_Uhrzeit2;
 
     public static int status_fahrer = 2; //0: noch offen 1: bestätigen 2: bestätigt 3: Fahrt abgesagt
@@ -114,21 +121,27 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         nachStatusAnzeigen_Mitfahrer();
 
 
-        //TODO  Text aus DB in Textviews einfügen für Fahrteneinträge
         //erster Eintrag auf Screen
         textView_Fahrer = findViewById(R.id.textView_Fahrer);
+        textView_Mitfahrer = findViewById(R.id.textView_Mitfahrer);
         textView_Uhrzeit = findViewById(R.id.textView_Uhrzeit);
 
-        // TODO Überprüfen, ob das hier auch wie in Klasse Home4.java ist
         textView_Abfahrt_Ort = findViewById(R.id.textView_Ankunft_Ort);
         textView_Ankunft_Ort = findViewById(R.id.textView_Abfahrt_Ort);
         textView_Freie_Sitzplaetze = findViewById(R.id.textView_Freie_Sitzplaetze);
         textView_Anzahl_Freie_Sitzplaetze = findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze);
+        textView_Keine_Sitzplaetze = findViewById(R.id.textView_Keine_Sitzplaetze);
 
         //zweiter Eintrag auf Screen
+        textView_Fahrer2 = findViewById(R.id.textView_Fahrer2);
+        textView_Mitfahrer2 = findViewById(R.id.textView_Mitfahrer2);
         textView_Uhrzeit2 = findViewById(R.id.textView_Uhrzeit2);
-        textView_Ankunft_Ort2 = findViewById(R.id.textView_Ankunft_Ort2);
-        textView_Abfahrt_Ort2 = findViewById(R.id.textView_Abfahrt_Ort2);
+
+        textView_Abfahrt_Ort2 = findViewById(R.id.textView_Ankunft_Ort2);
+        textView_Ankunft_Ort2 = findViewById(R.id.textView_Abfahrt_Ort2);
+        textView_Freie_Sitzplaetze2 = findViewById(R.id.textView_Freie_Sitzplaetze2);
+        textView_Anzahl_Freie_Sitzplaetze2 = findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze2);
+        textView_Keine_Sitzplaetze2 = findViewById(R.id.textView_Keine_Sitzplaetze2);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String uuid = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
@@ -139,10 +152,21 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
             //String json = httpUUIDTest.sendGet("ridesFuture", "userId", uuid, "eq", "&order=date.asc,latestArrivalTime.asc");
 
 
-            GetRequestParams paramsOfRequest = new GetRequestParams("ridesFuture", "1b4a0156-7a2f-11e8-a8c9-0a181e304e34", "&order=date.asc,latestArrivalTime.asc");
+            GetRequestParams paramsOfRequest = new GetRequestParams("ridesFuture", uuid, "&order=date.asc,latestArrivalTime.asc");
             GetRequestAsync asyncGetRequestFuture = new GetRequestAsync();
-            JSONArray arr;
-            arr = new JSONArray(asyncGetRequestFuture.execute(paramsOfRequest).get());
+
+            JSONArray arr = asyncGetRequestFuture.execute(paramsOfRequest).get();
+
+            System.out.println(arr.length());
+
+            if(arr.length()==0){
+                status_fahrer=4;
+                status_mitfahrer=4;
+            }
+
+            if(arr.length()==1){
+                status_mitfahrer=4;
+            }
 
             String role1 = arr.getJSONObject(0).getString("role");
             String home1 = arr.getJSONObject(0).getString("homeAddress");
@@ -208,9 +232,9 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
             //TODO Wiebke: textView_Fahrer2, textView_Freie_Sitzplaetze2 und textView_Anzahl_Freie_Sitzplaetze2 anlegen
             if (role2.equals("driver")){
-                //textView_Fahrer2.setText("Du bist Fahrer!");
-                //textView_Freie_Sitzplaetze2.setText("Freie Sitzplätze: ");
-                //textView_Anzahl_Freie_Sitzplaetze2.setText(seats2);
+                textView_Fahrer2.setText("Du bist Fahrer!");
+                textView_Freie_Sitzplaetze2.setText("Freie Sitzplätze: ");
+                textView_Anzahl_Freie_Sitzplaetze2.setText(seats2);
 
                 // es gibt momentan keine anderen Werte
                 switch (status2) {
@@ -219,12 +243,13 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
                 }
                 nachStatusAnzeigen_Fahrer();
             } else if (role2.equals("passenger")){
-                //textView_Fahrer2.setText("Du bist Mitfahrer!");
-                //textView_Freie_Sitzplaetze2.setText("");
-                //textView_Anzahl_Freie_Sitzplaetze2.setText("");
+                textView_Fahrer2.setText("Du bist Mitfahrer!");
+                textView_Freie_Sitzplaetze2.setText("");
+                textView_Anzahl_Freie_Sitzplaetze2.setText("");
             } else {
-                //textView_Fahrer2.setText("");
-                //textView_Freie_Sitzplaetze2.setText("");
+                textView_Fahrer2.setText("");
+                textView_Freie_Sitzplaetze2.setText("");
+                textView_Anzahl_Freie_Sitzplaetze2.setText("");
             }
             if (direction2.equals("towards Home")){
                 textView_Abfahrt_Ort2.setText(work2);
@@ -237,6 +262,10 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         } catch (Exception e ){
             e.printStackTrace();
+            status_fahrer=4;
+            status_mitfahrer=4;
+            nachStatusAnzeigen_Fahrer();
+            nachStatusAnzeigen_Mitfahrer();
         }
 
 
@@ -291,6 +320,12 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
                 Fahrt_abgesagt.setVisibility(View.VISIBLE);
                 noch_offen.setVisibility(View.INVISIBLE);
                 break;
+            case 4:
+                btn_jetzt_bestätigen.setVisibility(View.INVISIBLE);
+                bestätigt.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                noch_offen.setVisibility(View.INVISIBLE);
+                break;
 
         }}
 
@@ -321,6 +356,12 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
                 btn_jetzt_bestätigen2.setVisibility(View.INVISIBLE);
                 bestätigt2.setVisibility(View.INVISIBLE);
                 Fahrt_abgesagt2.setVisibility(View.VISIBLE);
+                noch_offen2.setVisibility(View.INVISIBLE);
+                break;
+            case 4:
+                btn_jetzt_bestätigen2.setVisibility(View.INVISIBLE);
+                bestätigt2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
                 noch_offen2.setVisibility(View.INVISIBLE);
                 break;
 

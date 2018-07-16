@@ -167,6 +167,16 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
             String status2 = arr.getJSONObject(1).getString("status");
 
             System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2+ ", Direction: " +  direction2);
+            System.out.println(arr.length());
+
+            if(arr.length()==0){
+                status_fahrer=3;
+                status_mitfahrer=3;
+            }
+
+            if(arr.length()==1){
+                status_mitfahrer=3;
+            }
 
             if (role1.equals("driver")){
                 textView_Fahrer.setText("Du bist Fahrer!");
@@ -212,23 +222,23 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
             //TODO Wiebke: textView_Fahrer2, textView_Freie_Sitzplaetze2 und textView_Anzahl_Freie_Sitzplaetze2 anlegen
             if (role2.equals("driver")){
-                //textView_Fahrer2.setText("Du bist Fahrer!");
-                //textView_Freie_Sitzplaetze2.setText("Freie Sitzplätze: ");
-                //textView_Anzahl_Freie_Sitzplaetze2.setText(seats2);
+                textView_Fahrer2.setText("Du bist Fahrer!");
+                textView_Freie_Sitzplaetze2.setText("Freie Sitzplätze: ");
+                textView_Anzahl_Freie_Sitzplaetze2.setText(seats2);
 
                 // es gibt momentan keine anderen Werte
                 switch (status2) {
-                    case "not answered": status_fahrer=0;
-                        break;
+                    //case "not answered": status_fahrer=0;
+                       // break;
                 }
                 nachStatusAnzeigen_Fahrer();
             } else if (role2.equals("passenger")){
-                //textView_Fahrer2.setText("Du bist Mitfahrer!");
-                //textView_Freie_Sitzplaetze2.setText("");
-                //textView_Anzahl_Freie_Sitzplaetze2.setText("");
+                textView_Fahrer2.setText("Du bist Mitfahrer!");
+                textView_Freie_Sitzplaetze2.setText("");
+                textView_Anzahl_Freie_Sitzplaetze2.setText("");
             } else {
-                //textView_Fahrer2.setText("");
-                //textView_Freie_Sitzplaetze2.setText("");
+                textView_Fahrer2.setText("");
+                textView_Freie_Sitzplaetze2.setText("");
                 }
             if (direction2.equals("towards Home")){
                 textView_Abfahrt_Ort2.setText(work2);
@@ -241,72 +251,11 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
         } catch (Exception e ){
             e.printStackTrace();
+            status_fahrer=3;
+            status_mitfahrer=3;
+            nachStatusAnzeigen_Fahrer();
+            nachStatusAnzeigen_Mitfahrer();
         }
-
-        //old Version of Getting Data
-        /*try {
-            HttpTest httpRatingPost = new HttpTest();
-
-            String json = null;
-
-            json = httpRatingPost.sendGet("user", "email", mail, "eq", "");
-            JSONArray arr = new JSONArray(json);
-            String id = arr.getJSONObject(0).getString("id");
-            System.out.println(id);
-
-            // RequestIds of the User
-            String jsonRequests = httpRatingPost.sendGet("request", "userId", id, "eq", "");
-            System.out.println(jsonRequests);
-
-            JSONArray arr2 = new JSONArray(jsonRequests);
-
-            List<String> matches = new ArrayList<>();
-            int jsnlength = arr2.length();
-            for (int i = 0; i < jsnlength; i++) {
-                System.out.println("Request Id :" + arr2.getJSONObject(i).getString("id"));
-                System.out.println("Role: " + arr2.getJSONObject(i).getString("role"));
-
-                String requestID = arr2.getJSONObject(i).getString("id");
-                String role = arr2.getJSONObject(i).getString("role");
-
-                if (role.equals("driver")) {
-
-                    try {
-                        String jsonDriverMatches = httpRatingPost.sendGet("match", "driverRequestId", requestID, "eq", "");
-                        JSONArray arrDriverMatches = new JSONArray(jsonDriverMatches);
-
-                        String matchID = arrDriverMatches.getJSONObject(0).getString("id");
-                        System.out.println("matchID: " + matchID);
-                        matches.add(matchID);
-                    } catch (Exception E) {
-                        System.out.println("Es gibt noch keinen Match für diesen Request");
-                    }
-
-                }
-                if (role.equals("passenger")) {
-                    System.out.println("passenger aufgerufen");
-                    try {
-                        String jsonPassengerMatches = httpRatingPost.sendGet("match", "passenger0RequestId", requestID, "eq", "");
-                        JSONArray arrPassengerMatches = new JSONArray(jsonPassengerMatches);
-
-                        String matchID = arrPassengerMatches.getJSONObject(0).getString("id");
-                        System.out.println("matchID: " + matchID);
-                        matches.add(matchID);
-
-                        //TODO: muss eigentlich auch noch für die anderen Passengers eingestellt werden
-                    } catch (Exception E) {
-                        System.out.println("Es gibt noch keinen Match für diesen Request");
-                    }
-
-
-                    System.out.println("Das sind alle gefundenen Matches: " + matches);
-                    System.out.println("Mit diesen Match-Ergebnissen könnte jetzt gearbeitet werden");
-                }
-            }
-        } catch (Exception E ){
-            System.out.println("Something is not working, sorry");
-        }*/
-
 
     }
     public void onClick(View v) {
@@ -350,7 +299,12 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 bewertet.setVisibility(View.INVISIBLE);
                 Fahrt_abgesagt.setVisibility(View.VISIBLE);
                 break;
-
+            case 3:
+                //keine Einträge vorhanden
+                bewerten.setVisibility(View.INVISIBLE);
+                bewertet.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt.setVisibility(View.INVISIBLE);
+                break;
         }
     }
 
@@ -374,8 +328,14 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 bewertet2.setVisibility(View.INVISIBLE);
                 Fahrt_abgesagt2.setVisibility(View.VISIBLE);
                 break;
+            case 3:
+                //keine Einträge vorhanden
+                bewerten2.setVisibility(View.INVISIBLE);
+                bewertet2.setVisibility(View.INVISIBLE);
+                Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
+                break;
+        }
 
         }
     }
 
-}

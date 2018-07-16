@@ -3,9 +3,9 @@ package com.example.sonja.ui.asyncTasks;
 import com.example.sonja.ui.NeueFahrt1;
 
 public class UUIDParams {
-    String email;
+    String username;
 
-    public UUIDParams(String email){
-        this.email=email;
+    public UUIDParams(String username){
+        this.username=username;
     }
 }

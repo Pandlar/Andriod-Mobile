@@ -122,8 +122,8 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
 
                 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-                String passwordInput = sharedPrefs.getString(getString(R.string.inputSignUpPassword), "keine Email vorhanden");
-                String usernameInput = sharedPrefs.getString(getString(R.string.inputSignUpUsername), "keine Email vorhanden");
+                String passwordInput = sharedPrefs.getString(getString(R.string.inputSignUpPassword), "");
+                String usernameInput = sharedPrefs.getString(getString(R.string.inputSignUpUsername), "");
                 String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "keine Email vorhanden");
                 String userVorname = sharedPrefs.getString(getString(R.string.inputSignUpVorname),"");
                 String userNachname = sharedPrefs.getString(getString(R.string.inputSignUpNachname),"");

@@ -39,6 +39,9 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
         String car_nummernschild = postUserParams[0].car_nummernschild;
         String car_sitzplaetze = postUserParams[0].car_sitzplaetze;
 
+        String adresse_home = user_str_home + ", " + user_plz_home + " " + user_stadt_home;
+        String adresse_office = user_str_work + ", " + user_plz_work + " " + user_stadt_home;
+
         try {
             String url = "http://13.58.210.65:3000/user";
             URL obj = new URL(url);
@@ -50,7 +53,8 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
             con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
             if(user_vorname.equals("")){user_vorname="null";}
-            if(user_nachname.equals("")){user_vorname="null";}
+            if(user_nachname.equals("")){user_nachname="null";}
+            if(user_username.equals("")){user_username="null";}
             if(user_handynr.equals("")){user_handynr="null";}
             if(user_email.equals("")){user_email="null";}
             if(user_str_home.equals("")){user_str_home="null";}
@@ -63,11 +67,12 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
                     "&surname=" + user_nachname +
                     "&phoneNumber=" + user_handynr +
                     "&email=" + user_email +
-                    "&homeAddress="+ user_str_home+
-                    "&officeAddress=" + user_str_work +
+                    "&homeAddress="+ adresse_home+
+                    "&officeAddress=" + adresse_office +
                     "&vehicleLicensePlate=" + car_nummernschild +
                     "&vehicleBrand=" + car_marke +
-                    "&vehicleColour=" + car_farbe;
+                    "&vehicleColour=" + car_farbe +
+                    "&username=" + user_username;
 
             // Send post request
             con.setDoOutput(true);

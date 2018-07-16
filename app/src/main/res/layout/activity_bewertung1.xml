@@ -64,24 +64,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textAttributBewertung"
+        android:id="@+id/textView_Uhrzeit"
         android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="10dp"
-        android:text="Excellent"
-        android:textColor="@color/colorPrimary"
+        android:layout_height="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="145dp"
+        android:text="08.Juni 08:00 Uhr"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="260dp"
         android:layout_marginEnd="100dp"
         android:layout_marginStart="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/bewertung_text"
         android:layout_width="360dp"
         android:layout_height="97dp"
         android:layout_marginBottom="10dp"
@@ -138,5 +137,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation" >
     </android.support.design.widget.BottomNavigationView>
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="77dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="95dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avatar_cyan" />
 
 </android.support.constraint.ConstraintLayout>

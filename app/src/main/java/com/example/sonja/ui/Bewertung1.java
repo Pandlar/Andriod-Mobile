@@ -23,7 +23,7 @@ public class Bewertung1 extends AppCompatActivity implements View.OnClickListene
     RatingBar stars;
     private Context mContext;
 
-
+//* Navigation Bar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -61,12 +61,14 @@ public class Bewertung1 extends AppCompatActivity implements View.OnClickListene
 
 
     }
+
+    //* Die Bewertung wird in die Datenbank gespeichert zu der zugehörigen Fahrt.
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.btn_Veroeffentlichen:
 
-                bewertung = findViewById(R.id.editText);
+                bewertung = findViewById(R.id.bewertung_text);
                 Log.d("Bewertung", " " + bewertung.getText().toString());
 
                 stars = findViewById(R.id.ratingBar);

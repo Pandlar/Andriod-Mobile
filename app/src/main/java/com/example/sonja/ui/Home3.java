@@ -141,7 +141,8 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
             GetRequestParams paramsOfRequest = new GetRequestParams("ridesFuture", "1b4a0156-7a2f-11e8-a8c9-0a181e304e34", "&order=date.asc,latestArrivalTime.asc");
             GetRequestAsync asyncGetRequestFuture = new GetRequestAsync();
-            JSONArray arr = new JSONArray(asyncGetRequestFuture.execute(paramsOfRequest));
+            JSONArray arr;
+            arr = new JSONArray(asyncGetRequestFuture.execute(paramsOfRequest).get());
 
             String role1 = arr.getJSONObject(0).getString("role");
             String home1 = arr.getJSONObject(0).getString("homeAddress");

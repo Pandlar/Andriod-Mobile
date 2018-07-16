@@ -66,7 +66,7 @@ public class Bewertung1 extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btn_Veroeffentlichen:
 
-                bewertung = findViewById(R.id.editText);
+                bewertung = findViewById(R.id.bewertung_text);
                 Log.d("Bewertung", " " + bewertung.getText().toString());
 
                 stars = findViewById(R.id.ratingBar);

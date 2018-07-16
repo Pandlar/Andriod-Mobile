@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".Home4">
 
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="86dp"
+        android:layout_height="181dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avatar_cyan" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="86dp"
+        android:layout_height="181dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="350dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avatar_cyan" />
+
     <TextView
         android:id="@+id/text_Feedback"
         android:layout_width="0dp"
@@ -332,7 +352,7 @@
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="361dp"
+        android:layout_marginTop="360dp"
         android:text="Freie Sitzplätze"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
@@ -344,7 +364,7 @@
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="361dp"
+        android:layout_marginTop="360dp"
         android:text="1"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
@@ -356,7 +376,7 @@
         android:layout_width="140dp"
         android:layout_height="18dp"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="361dp"
+        android:layout_marginTop="360dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

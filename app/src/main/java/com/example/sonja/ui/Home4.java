@@ -42,6 +42,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     TextView textView_Fahrer;
     TextView textView_Mitfahrer;
     TextView textView_Uhrzeit;
+
     //Textviews für zweiten Fahrteneintrag
     TextView textView_Ankunft_Ort2;
     TextView textView_Abfahrt_Ort2;

@@ -76,9 +76,9 @@ public class Bewertung2 extends AppCompatActivity implements View.OnClickListene
                 JSONArray arr = new JSONArray(json);
                 String id = arr.getJSONObject(0).getString("id");
 
-                bewertung = findViewById(R.id.editText);
+                bewertung = findViewById(R.id.bewertung_text2);
                 String bewertungString = bewertung.getText().toString();
-                stars = findViewById(R.id.ratingBar);
+                stars = findViewById(R.id.ratingBar2);
                 int starsInt = stars.getNumStars();
 
                 //TODO home4 etc. mit DB synchronisieren, dass die Daten daraus gezogen und auf den Screen übertragen werden

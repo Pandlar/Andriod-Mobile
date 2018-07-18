@@ -14,9 +14,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.sonja.ui.asyncTasks.GetUUIDAsync;
+import com.example.sonja.ui.asyncTasks.PostCacheLocationAsync;
 import com.example.sonja.ui.asyncTasks.PostCacheLocationsParams;
 import com.example.sonja.ui.asyncTasks.PostUserAsync;
 import com.example.sonja.ui.asyncTasks.PostUserParams;
+import com.example.sonja.ui.asyncTasks.UUIDParams;
 import com.example.sonja.ui.aws.AWSLoginHandler;
 import com.example.sonja.ui.aws.AWSLoginModel;
 
@@ -157,6 +160,25 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 catch (Exception e){
                     e.printStackTrace();
                 }
+                String uuid="";
+                try{
+                    UUIDParams paramsUUID = new UUIDParams(userUsername);
+                    GetUUIDAsync asyncRunnerToUser = new GetUUIDAsync();
+                    uuid = asyncRunnerToUser.execute(paramsUUID).get();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+                try{
+
+                    PostCacheLocationsParams params = new PostCacheLocationsParams(uuid,"(52.509541,13.377380)","(52.5401009,13.3694168)");
+                    PostCacheLocationAsync async = new PostCacheLocationAsync();
+                    async.execute(params);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+
 
                 awsLoginModel.registerUser(usernameInput, emailInput, passwordInput);
 

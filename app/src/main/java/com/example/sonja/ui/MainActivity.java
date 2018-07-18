@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sonja.ui.asyncTasks.GetUUIDAsync;
+import com.example.sonja.ui.asyncTasks.PostCacheLocationAsync;
 import com.example.sonja.ui.asyncTasks.PostCacheLocationsParams;
 import com.example.sonja.ui.asyncTasks.PostUserAsync;
 import com.example.sonja.ui.asyncTasks.PostUserParams;
@@ -207,15 +208,10 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         SharedPreferences.Editor saveSignUp = sharedPrefs.edit();
         saveSignUp.putString(getString(R.string.uuid),uuid).apply();
 
+
         String uuidDB = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
         System.out.println("uuid aus DB von SharedPreferences "+ uuidDB);
 
-        try{
-
-            PostCacheLocationsParams params = new PostCacheLocationsParams(uuid,"(52.48369,13.42967)","(52.11111,13.11111)");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
 
         // do sign in and handles on interface
         awsLoginModel.signInUser(userOrEmail.getText().toString(), password.getText().toString());

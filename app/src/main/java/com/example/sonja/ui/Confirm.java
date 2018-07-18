@@ -1,6 +1,8 @@
 package com.example.sonja.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.BottomNavigationView;
@@ -148,7 +150,9 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
                 // auf Screen3 weiterleiten
 
                 try{
-                    String id ="";
+                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+                    String id = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
+
                     PostRequestParams paramsToOffice = new PostRequestParams(id,to_earliest_minute,to_earliest_hour, to_latest_minute, to_latest_hour, requestRole, "towards Office");
                     PostRequestAsync asyncRunnerToOffice = new PostRequestAsync();
                     asyncRunnerToOffice.execute(paramsToOffice);

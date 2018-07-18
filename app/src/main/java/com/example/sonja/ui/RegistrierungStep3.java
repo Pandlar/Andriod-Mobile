@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.sonja.ui.asyncTasks.PostCacheLocationsParams;
 import com.example.sonja.ui.asyncTasks.PostUserAsync;
 import com.example.sonja.ui.asyncTasks.PostUserParams;
 import com.example.sonja.ui.aws.AWSLoginHandler;
@@ -143,6 +144,8 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 String carNummernschild = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"");
                 String carSitzplaetze = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"");
 
+
+
                 try {
                     PostUserParams paramsToUser = new PostUserParams( emailInput, userVorname, userNachname,
                             userUsername, userPassword, userStadtHome, userTreffpunktHome, userTreffpunktWork,
@@ -156,6 +159,7 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 }
 
                 awsLoginModel.registerUser(usernameInput, emailInput, passwordInput);
+
 
 
                 // auf Registrierungsscreen Ende weiterleiten

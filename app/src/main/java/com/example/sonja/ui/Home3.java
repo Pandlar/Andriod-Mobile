@@ -148,10 +148,6 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         try {
 
-            HttpTest httpUUIDTest = new HttpTest();
-            //String json = httpUUIDTest.sendGet("ridesFuture", "userId", uuid, "eq", "&order=date.asc,latestArrivalTime.asc");
-
-
             GetRequestParams paramsOfRequest = new GetRequestParams("ridesFuture", uuid, "&order=date.asc,latestArrivalTime.asc");
             GetRequestAsync asyncGetRequestFuture = new GetRequestAsync();
 

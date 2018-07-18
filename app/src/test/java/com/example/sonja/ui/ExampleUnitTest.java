@@ -46,6 +46,47 @@ public class ExampleUnitTest {
         }
     }*/
 
+   @Test
+   public void testPostCacheLocation(){
+       try {
+           String url = "http://13.58.210.65:3000/cacheLocations";
+           URL obj = new URL(url);
+           HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+           //add reuqest header
+           con.setRequestMethod("POST");
+           con.setRequestProperty("User-Agent", USER_AGENT);
+           con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+           String urlParameters = "userId=" + "457ec386-7a0b-4f29-ab57-f69753e24498";
+           // Send post request
+           con.setDoOutput(true);
+
+           DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+
+           wr.writeBytes(urlParameters);
+
+           wr.flush();
+
+           wr.close();
+           int responseCode = con.getResponseCode();
+           System.out.println("\nSending 'POST' request to URL : " + url);
+           System.out.println("Post parameters : " + urlParameters);
+           System.out.println("Response Code : " + responseCode);
+           BufferedReader in = new BufferedReader(
+                   new InputStreamReader(con.getInputStream()));
+           String inputLine;
+           StringBuffer response = new StringBuffer();
+           while ((inputLine = in.readLine()) != null) {
+               response.append(inputLine);
+           }
+           in.close();
+           System.out.println(response.toString());
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+   }
+
     @Test
     public void httpPOst(){
         HttpTest http = new HttpTest();
@@ -92,18 +133,7 @@ public class ExampleUnitTest {
 
     }
 
-    @Test
-<<<<<<< HEAD
-    public void testGetRequestCacheLocation(){
-        HttpTest http = new HttpTest();
-        try{
-            String json = http.getRequestCacheLocation(NeueFahrt1.RequestRole.DRIVER);
-            JSONArray arr = new JSONArray(json);
-            System.out.println(json);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-=======
+
     public void http_getRideInfoPast() throws Exception {
         HttpTest httpUUIDTest = new HttpTest();
         String json = httpUUIDTest.sendGet("ridesFuture", "userId", "6a737ef5-4095-4ce3-9e02-0c3d4b9c0539", "eq", "&order=date.asc,latestArrivalTime.asc");
@@ -122,7 +152,7 @@ public class ExampleUnitTest {
         String date2 = arr.getJSONObject(1).getString("date");
         String time2 = arr.getJSONObject(1).getString("latestArrivalTime");
         System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2);
->>>>>>> DB-Verbindung
+
     }
 
     @Test
@@ -193,24 +223,8 @@ public class ExampleUnitTest {
 
     }
 
-    @Test
-    public void http_getUUID1() throws Exception {
-        HttpTest httpgetUUID = new HttpTest();
-        String json = httpgetUUID.sendGet("user", "email", "123@456.de", "eq","");
 
-        JSONArray arr = new JSONArray(json);
-        String id = arr.getJSONObject(0).getString("id");
-        System.out.println(id);
 
-    }
-
-    @Test
-    public void http_postRating() throws Exception {
-        HttpTest httpRatingTest = new HttpTest();
-        httpRatingTest.sendPostRating("rating", "Zufriedenstellend", "6a737ef5-4095-4ce3-9e02-0c3d4b9c0539",
-                "1b4a0156-7a2f-11e8-a8c9-0a181e304e34", "cbbb7972-97a6-4a12-b6a1-864f2dd7f2e3", 3);
-
-    }
 
 
     @Test

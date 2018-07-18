@@ -39,7 +39,7 @@ public class Bewertung1 extends AppCompatActivity implements View.OnClickListene
                     startActivityForResult(intentOffer, 0);
                     return true;
                 case R.id.navigation_profile:
-                    Intent intentProfile = new Intent(Bewertung1.this, Confirm.class);
+                    Intent intentProfile = new Intent(Bewertung1.this, account01.class);
                     startActivityForResult(intentProfile, 0);
                     return true;
             }

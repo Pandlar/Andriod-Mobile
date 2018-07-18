@@ -28,7 +28,7 @@ public class Confirm2 extends AppCompatActivity {
                     startActivityForResult(intentOffer, 0);
                     return true;
                 case R.id.navigation_profile:
-                    Intent intentProfile = new Intent(Confirm2.this, Confirm.class);
+                    Intent intentProfile = new Intent(Confirm2.this, account01.class);
                     startActivityForResult(intentProfile, 0);
                     return true;
             }

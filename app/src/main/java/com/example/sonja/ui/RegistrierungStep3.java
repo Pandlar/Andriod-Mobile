@@ -3,6 +3,7 @@ package com.example.sonja.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,6 +65,16 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         signUpCarNummernschild = findViewById(R.id.etNummernschild);
         signUpCarSitzplätze = findViewById(R.id.etAnzahlSP);
 
+        rbAutocheck = findViewById(R.id.rbAutocheck);
+
+        /*rbAutocheck.addActionListener(new WifiP2pManager.ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textField.setEditable(true);
+
+            }
+        });*/
+
     }
 
     @Override
@@ -119,6 +130,25 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         Toast.makeText(RegistrierungStep3.this, whatProcess + exception.getMessage(), Toast.LENGTH_LONG).show();
     }
 
+    public void radioButtonOnClick(View view){
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch(view.getId()) {
+            case R.id.rbAutocheck:
+                if (checked)
+                    System.out.println("radioButtonOnClick aufgerufen");
+                    signUpCarSitzplätze.setEnabled(false);
+                    signUpCarFarbe.setEnabled(false);
+                    signUpCarModell.setEnabled(false);
+                    signUpCarNummernschild.setEnabled(false);
+                    signUpCarMarke.setEnabled(false);
+                    break;
+
+        }
+
+
+    }
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -178,17 +208,16 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                     e.printStackTrace();
                 }
 
-
-
                 awsLoginModel.registerUser(usernameInput, emailInput, passwordInput);
-
-
 
                 // auf Registrierungsscreen Ende weiterleiten
                 Intent intent = new Intent(this, RegistrierungEnde.class);
                 startActivity(intent);
                 this.finish();
+
+                break;
         }
+
     }
 }
 

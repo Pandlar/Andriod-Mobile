@@ -59,12 +59,10 @@ public class RegistrierungStep2 extends AppCompatActivity implements View.OnClic
 
                 if (signUpPLZHome.getText().toString().length() > 0 &
                         signUpStadtHome.getText().toString().length() > 0 &
-                        signUpTreffpunktHome.getText().toString().length() > 0 &
                         signUpStrWork.getText().toString().length() > 0 &
                         signUpStrHome.getText().toString().length() > 0 &
                         signUpHandynr.getText().toString().length() > 0 &
-                        signUpPLZWork.getText().toString().length() > 0 &
-                        signUpTreffpunktWork.getText().toString().length() > 0) {
+                        signUpPLZWork.getText().toString().length() > 0 ) {
 
                     //Eingaben in SharedPreferences speichern
                     SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -85,7 +83,7 @@ public class RegistrierungStep2 extends AppCompatActivity implements View.OnClic
                     this.finish();
 
                 } else {
-                    Toast.makeText(RegistrierungStep2.this, "Bitte fülle alle Felder aus", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrierungStep2.this, "Bitte fülle alle notwendigen Felder aus", Toast.LENGTH_LONG).show();
                 }
         }
     }

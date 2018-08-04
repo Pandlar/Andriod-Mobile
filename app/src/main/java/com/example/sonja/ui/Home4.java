@@ -18,8 +18,12 @@ import com.example.sonja.ui.asyncTasks.GetRequestParams;
 
 import org.json.JSONArray;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
@@ -30,8 +34,11 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     TextView bewertet2;
     TextView Fahrt_abgesagt2;
     Button kasten_aktuell;
-    public static int status_fahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
-    public static int status_mitfahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt
+
+    //erstes Feld
+    public static int status_fahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt 3: leer
+    //zweites Feld
+    public static int status_mitfahrer = 0; //0: bewerten 1: bewertet 2: Fahrt abgesagt 3: leer
 
     //Textviews für ersten Fahrteneintrag
     TextView textView_Ankunft_Ort;
@@ -157,59 +164,38 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
             String status1 = arr.getJSONObject(0).getString("status");
             System.out.println("Erster Datensatz: \nrole: " + role1 + ", home: " + home1 + ", work: " + work1 + ", date: " + date1 + ", Time: " + time1 + ", Direction: " +  direction1);
 
-            String role2 = arr.getJSONObject(1).getString("role");
-            String home2 = arr.getJSONObject(1).getString("homeAddress");
-            String work2 = arr.getJSONObject(1).getString("officeAddress");
-            String date2 = arr.getJSONObject(1).getString("date");
-            String time2 = arr.getJSONObject(1).getString("latestArrivalTime");
-            String direction2 = arr.getJSONObject(1).getString("direction");
-            String seats2 = arr.getJSONObject(1).getString("seats");
-            String status2 = arr.getJSONObject(1).getString("status");
+            System.out.println("Länge der Abfrage: " + arr.length());
 
-            System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2+ ", Direction: " +  direction2);
-            System.out.println(arr.length());
+            //Date formatieren
+            String dateTime1 = date1 + " " + time1;
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssX", Locale.GERMAN);
+            Date dateFormatted1 = format.parse(dateTime1);
+            System.out.println("Formatiertes Datum: " + dateFormatted1);
 
-            if(arr.length()==0){
-                status_fahrer=3;
-                status_mitfahrer=3;
-            }
-
-            if(arr.length()==1){
-                status_mitfahrer=3;
-            }
+            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
+            String dateView1 = DATE_FORMAT.format(dateFormatted1);
+            System.out.println("New Date Format: " + dateView1);
 
             if (role1.equals("driver")){
-                textView_Fahrer.setText("Du bist Fahrer!");
+                textView_Fahrer.setText("Fahrer");
                 textView_Freie_Sitzplaetze.setText("Freie Sitzplätze: ");
                 textView_Anzahl_Freie_Sitzplaetze.setText(seats1);
 
-                // es gibt momentan keine anderen Werte
-                switch (status1) {
-                    case "not answered": status_fahrer=0;
-                    break;
-                }
-                nachStatusAnzeigen_Fahrer();
             } else if (role1.equals("passenger")){
-                textView_Fahrer.setText("Du bist Mitfahrer!");
+                textView_Fahrer.setText("Mitfahrer");
                 textView_Freie_Sitzplaetze.setText("");
                 textView_Anzahl_Freie_Sitzplaetze.setText("");
 
                 // es gibt momentan keine anderen Werte
                 switch (status1) {
-                    case "not answered": status_mitfahrer=0;
+                    case "not answered": status_fahrer=0;
                         break;
                 }
-                nachStatusAnzeigen_Mitfahrer();
+                nachStatusAnzeigen_Fahrer();
             } else {
                 textView_Fahrer.setText("");
                 textView_Freie_Sitzplaetze.setText("");}
 
-            // es gibt momentan keine anderen Werte
-            switch (status2) {
-                case "not answered": status_mitfahrer=0;
-                    break;
-            }
-            nachStatusAnzeigen_Mitfahrer();
 
             if (direction1.equals("towards Home")){
                 textView_Abfahrt_Ort.setText(work1);
@@ -218,36 +204,73 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 textView_Abfahrt_Ort.setText(home1);
                 textView_Ankunft_Ort.setText(work1);
             }
-            textView_Uhrzeit.setText(date1 + ", " + time1);
+            textView_Uhrzeit.setText(dateView1 + " Uhr");
 
-            //TODO Wiebke: textView_Fahrer2, textView_Freie_Sitzplaetze2 und textView_Anzahl_Freie_Sitzplaetze2 anlegen
-            if (role2.equals("driver")){
-                textView_Fahrer2.setText("Du bist Fahrer!");
-                textView_Freie_Sitzplaetze2.setText("Freie Sitzplätze: ");
-                textView_Anzahl_Freie_Sitzplaetze2.setText(seats2);
-
-                // es gibt momentan keine anderen Werte
-                switch (status2) {
-                    //case "not answered": status_fahrer=0;
-                       // break;
-                }
-                nachStatusAnzeigen_Fahrer();
-            } else if (role2.equals("passenger")){
-                textView_Fahrer2.setText("Du bist Mitfahrer!");
-                textView_Freie_Sitzplaetze2.setText("");
-                textView_Anzahl_Freie_Sitzplaetze2.setText("");
-            } else {
-                textView_Fahrer2.setText("");
-                textView_Freie_Sitzplaetze2.setText("");
-                }
-            if (direction2.equals("towards Home")){
-                textView_Abfahrt_Ort2.setText(work2);
-                textView_Ankunft_Ort2.setText(home2);
-            } else if (direction2.equals("towards Office")){
-                textView_Abfahrt_Ort2.setText(home2);
-                textView_Ankunft_Ort2.setText(work2);
+            // es gibt momentan keine anderen Werte
+            switch (status1) {
+                case "not answered": status_fahrer=0;
+                    break;
             }
-            textView_Uhrzeit2.setText(date2 + ", " + time2);
+
+            if(arr.length()==0){
+                status_fahrer=3;
+                status_mitfahrer=3;
+                }
+
+            if(arr.length()==1){
+                status_mitfahrer=3;
+                }
+            nachStatusAnzeigen_Mitfahrer();
+            nachStatusAnzeigen_Fahrer();
+
+            if(arr.length()==2){
+                String role2 = arr.getJSONObject(1).getString("role");
+                String home2 = arr.getJSONObject(1).getString("homeAddress");
+                String work2 = arr.getJSONObject(1).getString("officeAddress");
+                String date2 = arr.getJSONObject(1).getString("date");
+                String time2 = arr.getJSONObject(1).getString("latestArrivalTime");
+                String direction2 = arr.getJSONObject(1).getString("direction");
+                String seats2 = arr.getJSONObject(1).getString("seats");
+                String status2 = arr.getJSONObject(1).getString("status");
+
+                // Date formatieren
+                String dateTime2 = date2 + " " + time2;
+                Date dateFormatted2 = format.parse(dateTime2);
+                System.out.println("Formatiertes Datum: " + dateFormatted2);
+
+                String dateView2 = DATE_FORMAT.format(dateFormatted2);
+                System.out.println("New Date Format: " + dateView2);
+
+                switch (status2) {
+                    case "not answered": status_mitfahrer=0;
+                        break;
+                }
+                nachStatusAnzeigen_Mitfahrer();
+
+                //TODO Wiebke: textView_Fahrer2, textView_Freie_Sitzplaetze2 und textView_Anzahl_Freie_Sitzplaetze2 anlegen
+                if (role2.equals("driver")){
+                    textView_Fahrer2.setText("Fahrer");
+                    textView_Freie_Sitzplaetze2.setText("Freie Sitzplätze: ");
+                    textView_Anzahl_Freie_Sitzplaetze2.setText(seats2);
+
+                } else if (role2.equals("passenger")){
+                    textView_Fahrer2.setText("Mitfahrer");
+                    textView_Freie_Sitzplaetze2.setText("");
+                    textView_Anzahl_Freie_Sitzplaetze2.setText("");
+                } else {
+                    textView_Fahrer2.setText("");
+                    textView_Freie_Sitzplaetze2.setText("");
+                }
+                if (direction2.equals("towards Home")){
+                    textView_Abfahrt_Ort2.setText(work2);
+                    textView_Ankunft_Ort2.setText(home2);
+                } else if (direction2.equals("towards Office")){
+                    textView_Abfahrt_Ort2.setText(home2);
+                    textView_Ankunft_Ort2.setText(work2);
+                }
+                textView_Uhrzeit2.setText(dateView2 + " Uhr");
+                System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2+ ", Direction: " +  direction2);
+            }
 
         } catch (Exception e ){
             e.printStackTrace();

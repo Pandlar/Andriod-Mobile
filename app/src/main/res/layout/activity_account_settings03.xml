@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_top"
+    android:background="@drawable/background_topn5"
     tools:context=".account01">
 
 
@@ -26,27 +26,21 @@
         android:id="@+id/menu_account"
         android:layout_width="190dp"
         android:layout_height="43dp"
-        android:layout_marginBottom="38dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="220dp"
-        app:layout_constraintBottom_toTopOf="@+id/handynummer_input"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="163dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_account" />
 
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButtonProfile"
         android:layout_width="96dp"
         android:layout_height="95dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="108dp"
         android:onClick="onClick"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/menu_account"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/camera_white" />
@@ -77,68 +71,70 @@
             android:layout_height="wrap_content"
             android:text="PUSH-BENACHRICHTIGUNGEN"
             android:textStyle="bold"
-            android:translationX="20dp"
-            android:translationY="270dp" />
+            android:translationX="2dp"
+            android:translationY="235dp" />
 
         <Switch
             android:id="@+id/email"
-            android:layout_width="266dp"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:text="E-MAIL NOTIFICATIONS"
             android:textStyle="bold"
-            android:translationX="20dp"
-            android:translationY="280dp" />
+            android:translationX="2dp"
+            android:translationY="245dp" />
 
         <Button
             android:id="@+id/passwortbutton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PASSWORT"
+            android:layout_height="24dp"
             android:background="@color/colorBlack"
+            android:text="PASSWORT"
             android:textStyle="bold"
-            android:translationX="-135dp"
-            android:translationY="285dp" />
+            android:translationX="-140dp"
+            android:translationY="255dp" />
 
         <Button
             android:id="@+id/btn_bezahlung2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="29dp"
+            android:background="@color/colorBlack"
             android:clickable="true"
             android:text="BEZAHLUNG"
-            android:background="@color/colorBlack"
             android:textStyle="bold"
-            android:translationX="-132dp"
-            android:translationY="270dp" />
+            android:translationX="-138dp"
+            android:translationY="265dp" />
+
         <Button
             android:id="@+id/btn_hilfe"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
+            android:background="@color/colorBlack"
             android:clickable="true"
             android:text="HILFE"
-            android:background="@color/colorBlack"
             android:textStyle="bold"
-            android:translationX="-154dp"
-            android:translationY="255dp" />
+            android:translationX="-160dp"
+            android:translationY="270dp" />
+
+
+        <Button
+        android:id="@+id/faq"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:background="@color/colorBlack"
+        android:text="FAQ"
+        android:textStyle="bold"
+        android:translationX="-165dp"
+        android:translationY="275dp" />
+
         <Button
             android:id="@+id/agbs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="AGB"
+            android:layout_height="34dp"
             android:background="@color/colorBlack"
+            android:text="AGBs"
             android:textStyle="bold"
-            android:translationX="-158dp"
-            android:translationY="240dp" />
-
-
-        <Button
-            android:id="@+id/faq"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="FAQ"
-            android:background="@color/colorBlack"
-            android:textStyle="bold"
-            android:translationX="-158dp"
-            android:translationY="225dp" />
+            android:translationX="-160dp"
+            android:translationY="275dp" />
 
     </LinearLayout>
 

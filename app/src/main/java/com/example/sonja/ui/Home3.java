@@ -81,7 +81,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
                     startActivityForResult(intentOffer, 0);
                     return true;
                 case R.id.navigation_profile:
-                    Intent intentProfile = new Intent(Home3.this, Confirm.class);
+                    Intent intentProfile = new Intent(Home3.this, account01.class);
                     startActivityForResult(intentProfile, 0);
                     return true;
             }

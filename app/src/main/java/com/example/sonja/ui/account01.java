@@ -36,6 +36,32 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
     };
 
 
+    /*
+    private BottomNavigationView.OnNavigationItemSelectedListener botNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    Intent intentHome = new Intent(account01.this, Home3.class);
+                    startActivityForResult(intentHome, 0);
+                    return true;
+                case R.id.navigation_offer:
+                    Intent intentOffer = new Intent(account01.this, NeueFahrt1.class);
+                    startActivityForResult(intentOffer, 0);
+                    return true;
+                case R.id.navigation_profile:
+                    Intent intentProfile = new Intent(account01.this, account01.class);
+                    startActivityForResult(intentProfile, 0);
+                    return true;
+            }
+            return false;
+        }
+    };
+    */
+
+
 
 
     @Override
@@ -43,9 +69,16 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account01);
 
-// Bottom Navigation initialisieren
+// top Navigation initialisieren
         BottomNavigationView menuAccount = (BottomNavigationView) findViewById(R.id.menu_account);
         menuAccount.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        /*
+        // bottom navigation initialisieren
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        menuAccount.setOnNavigationItemSelectedListener(botNavigationItemSelectedListener);
+        */
 
     }
 

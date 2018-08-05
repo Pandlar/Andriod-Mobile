@@ -57,7 +57,7 @@
     <EditText
         android:id="@+id/handynummer_input"
         android:layout_width="296dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="phone"
@@ -76,7 +76,7 @@
     <EditText
         android:id="@+id/name_input"
         android:layout_width="296dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -95,7 +95,7 @@
     <EditText
         android:id="@+id/vorname_input"
         android:layout_width="296dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -113,7 +113,7 @@
         android:text="Wohnort"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vorname" />
+        app:layout_constraintTop_toBottomOf="@+id/vorname_input" />
 
     <TextView
         android:id="@+id/strassehausnummer"
@@ -129,56 +129,17 @@
     <EditText
         android:id="@+id/strassehausnummer_input"
         android:layout_width="296dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/strassehausnummer" />
 
-    <TextView
-        android:id="@+id/plz"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="8dp"
-        android:text="Postleitzahl"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/strassehausnummer_input" />
-
-    <TextView
-        android:id="@+id/stadt"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="8dp"
-        android:text="Stadt"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/strassehausnummer_input" />
 
 
-    <EditText
-        android:id="@+id/plz_input"
-        android:layout_width="74dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="22dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plz" />
 
 
-    <EditText
-        android:id="@+id/stadt_input"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="120dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stadt" />
 
 
 </android.support.constraint.ConstraintLayout>

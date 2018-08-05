@@ -72,31 +72,13 @@
     <EditText
         android:id="@+id/marke_input"
         android:layout_width="296dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marke" />
 
-    <TextView
-        android:id="@+id/modell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:text="Modell:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/marke_input" />
-
-    <EditText
-        android:id="@+id/modell_input"
-        android:layout_width="296dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="22dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modell" />
 
     <TextView
         android:id="@+id/farbe"
@@ -105,50 +87,33 @@
         android:layout_marginStart="22dp"
         android:text="Farbe:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modell_input" />
+        app:layout_constraintTop_toBottomOf="@+id/marke_input" />
 
     <EditText
         android:id="@+id/farbe_input"
         android:layout_width="296dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/farbe" />
 
-    <TextView
-        android:id="@+id/baujahr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:text="Baujahr:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/farbe_input" />
 
-    <EditText
-        android:id="@+id/baujahr_input"
-        android:layout_width="296dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="22dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/baujahr" />
 
     <TextView
         android:id="@+id/kennzeichen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
-        android:text="Baujahr:"
+        android:text="Kennzeichen:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/baujahr_input" />
+        app:layout_constraintTop_toBottomOf="@+id/farbe_input" />
 
     <EditText
         android:id="@+id/kennzeichen_input"
         android:layout_width="296dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -167,7 +132,7 @@
     <EditText
         android:id="@+id/anzahlSitzplaetze_input"
         android:layout_width="296dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="22dp"
         android:ems="10"
         android:inputType="textPersonName"

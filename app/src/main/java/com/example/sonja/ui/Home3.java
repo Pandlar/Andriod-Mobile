@@ -157,7 +157,6 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         try {
 
-            System.out.println("Get Request für Locations wird gleich aufgerufen.");
             GetRequestParams paramsOfRequest = new GetRequestParams("ridesFuture", uuid, "&order=date.asc,latestArrivalTime.asc");
             GetRequestAsync asyncGetRequestFuture = new GetRequestAsync();
 

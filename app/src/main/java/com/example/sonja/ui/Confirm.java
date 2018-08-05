@@ -24,6 +24,7 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
     Button btn_confirm;
     TextView textView;
     View grey_background2;
+    TextView seats1;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -88,7 +89,7 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_confirm);
 
         //Anzeigetext befüllen (Du bist Fahrer/Mitfahrer)
-        textView = (TextView) findViewById(R.id.textView);
+        textView = findViewById(R.id.textView);
         //textView.setText("Du bist ..?");
            if (requestRole == NeueFahrt1.RequestRole.DRIVER){
                 textView.setText("Du bist Fahrer!");
@@ -109,7 +110,7 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         }*/
 
         // Bottom Navigation initialisieren
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         abfahrt1 = findViewById(R.id.txt_abfahrt1);
@@ -119,6 +120,8 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         abfahrt1.setText(addLeadingZeros(to_earliest_hour) + ":" + addLeadingZeros(to_earliest_minute)+" Uhr");
         ankunft1.setText(addLeadingZeros(to_latest_hour) + ":" + addLeadingZeros(to_latest_minute)+" Uhr");
         sitze1.setText("1");
+        String sitze1String = sitze1.getText().toString();
+        int seats1 = Integer.parseInt(sitze1String);
 
         abfahrt2 = findViewById(R.id.txt_abfahrt2);
         ankunft2 = findViewById(R.id.txt_ankunft2);
@@ -127,10 +130,12 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         abfahrt2.setText(addLeadingZeros(from_earliest_hour) + ":" + addLeadingZeros(from_earliest_minute)+" Uhr");
         ankunft2.setText(addLeadingZeros(from_latest_hour) + ":" + addLeadingZeros(from_latest_minute)+" Uhr");
         sitze2.setText("1");
+        sitze2 = findViewById(R.id.txt_sitze2);
 
         // Buttons OnClickListener
         btn_confirm = findViewById(R.id.btn_confirm);
         btn_confirm.setOnClickListener(this);
+
 
 
 
@@ -153,11 +158,11 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
                     SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
                     String id = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
 
-                    PostRequestParams paramsToOffice = new PostRequestParams(id,to_earliest_minute,to_earliest_hour, to_latest_minute, to_latest_hour, requestRole, "towards Office");
+                    PostRequestParams paramsToOffice = new PostRequestParams(id,to_earliest_minute,to_earliest_hour, to_latest_minute, to_latest_hour, requestRole, "towards Office", 1);
                     PostRequestAsync asyncRunnerToOffice = new PostRequestAsync();
                     asyncRunnerToOffice.execute(paramsToOffice);
 
-                    PostRequestParams paramsToHome = new PostRequestParams(id,from_earliest_minute,from_earliest_hour, from_latest_minute, from_latest_hour, requestRole, "towards Home");
+                    PostRequestParams paramsToHome = new PostRequestParams(id,from_earliest_minute,from_earliest_hour, from_latest_minute, from_latest_hour, requestRole, "towards Home", 1);
                     PostRequestAsync asyncRunnerToHome = new PostRequestAsync();
                     asyncRunnerToHome.execute(paramsToHome);
 

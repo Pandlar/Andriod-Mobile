@@ -94,6 +94,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home3);
 
+        System.out.println("Home3.java aufgerufen");
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -156,6 +157,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         try {
 
+            System.out.println("Get Request für Locations wird gleich aufgerufen.");
             GetRequestParams paramsOfRequest = new GetRequestParams("ridesFuture", uuid, "&order=date.asc,latestArrivalTime.asc");
             GetRequestAsync asyncGetRequestFuture = new GetRequestAsync();
 
@@ -180,7 +182,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
             String direction1 = arr.getJSONObject(0).getString("direction");
             String seats1 = arr.getJSONObject(0).getString("seats");
             String status1 = arr.getJSONObject(0).getString("status");
-            System.out.println("Erster Datensatz: \nrole: " + role1 + ", home: " + home1 + ", work: " + work1 + ", date: " + date1 + ", Time: " + time1 + ", Direction: " +  direction1);
+            System.out.println("Erster Datensatz: \nrole: " + role1 + ", home: " + home1 + ", work: " + work1 + ", date: " + date1 + ", Time: " + time1 + ", Direction: " +  direction1 + ", Sitzplätze: " + seats1);
 
             String dateTime1 = date1 + " " + time1;
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssX", Locale.GERMAN);
@@ -200,7 +202,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
             String seats2 = arr.getJSONObject(1).getString("seats");
             String status2 = arr.getJSONObject(1).getString("status");
 
-            System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2+ ", Direction: " +  direction2);
+            System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2+ ", Direction: " +  direction2+ ", Sitzplätze: " + seats2);
 
             //Date formatieren
             String dateTime2 = date2 + " " + time2;

@@ -24,6 +24,7 @@ public class PostRequestAsync extends AsyncTask<PostRequestParams, Void, Void> {
         int latest_minute = postRequestParams[0].latest_minute;
         NeueFahrt1.RequestRole requestRole = postRequestParams[0].requestRole;
         String direction = postRequestParams[0].direction;
+        int seats = postRequestParams[0].seats;
 
         try {
             String url = "http://13.58.210.65:3000/request";
@@ -49,7 +50,8 @@ public class PostRequestAsync extends AsyncTask<PostRequestParams, Void, Void> {
                     "&status=not answered" +
                     "&userId="+id +
                     "&earliestDepartureTime=" + earliestDepartureTime +
-                    "&date=" + date;
+                    "&date=" + date +
+                    "&seats=" + seats;
             // Send post request
             con.setDoOutput(true);
 

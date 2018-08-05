@@ -89,6 +89,8 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home4);
 
+        System.out.println("Home4.java aufgerufen");
+
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -223,7 +225,9 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
             nachStatusAnzeigen_Mitfahrer();
             nachStatusAnzeigen_Fahrer();
 
-            if(arr.length()==2){
+            System.out.println("Anfang Status Mitfahrer: " + status_mitfahrer);
+
+            if(arr.length()>=2){
                 String role2 = arr.getJSONObject(1).getString("role");
                 String home2 = arr.getJSONObject(1).getString("homeAddress");
                 String work2 = arr.getJSONObject(1).getString("officeAddress");
@@ -270,6 +274,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 }
                 textView_Uhrzeit2.setText(dateView2 + " Uhr");
                 System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2+ ", Direction: " +  direction2);
+                System.out.println("Ende Status Mitfahrer: " + status_mitfahrer);
             }
 
         } catch (Exception e ){

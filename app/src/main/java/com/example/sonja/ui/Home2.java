@@ -43,8 +43,10 @@ public class Home2 extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
 
+        System.out.println("Home2.java aufgerufen");
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         kasten_aktuell = findViewById(R.id.kasten_aktuell);

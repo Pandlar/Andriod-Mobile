@@ -44,8 +44,9 @@ public class Home1 extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home1);
 
+        System.out.println("Home1.java aufgerufen");
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         btn_Fahrt_anlegen = findViewById(R.id.btn_Fahrt_anlegen);

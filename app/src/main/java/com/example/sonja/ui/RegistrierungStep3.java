@@ -205,7 +205,7 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 String carNummernschild = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild), "");
                 String carSitzplaetze = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild), "");
 
-                System.out.println(userUsername);
+                System.out.println("Username direkt aus SharedPreferences: " +userUsername);
 
                 try {
                     PostUserParams paramsToUser = new PostUserParams(emailInput, userVorname, userNachname,
@@ -219,6 +219,7 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 }
                 String uuid = "";
                 try {
+                    System.out.println("Username for UUIDParams: " + userUsername);
                     UUIDParams paramsUUID = new UUIDParams(userUsername);
                     GetUUIDAsync asyncRunnerToUser = new GetUUIDAsync();
                     uuid = asyncRunnerToUser.execute(paramsUUID).get();

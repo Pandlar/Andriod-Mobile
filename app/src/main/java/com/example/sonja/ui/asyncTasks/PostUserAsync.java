@@ -62,6 +62,8 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
             if(car_nummernschild.equals("")){car_nummernschild="null";}
             if(car_marke.equals("")){car_marke="null";}
             if(car_farbe.equals("")){car_farbe="null";}
+            if(user_treffpunkt_home.equals("")){user_treffpunkt_home="null";}
+            if(user_treffpunkt_work.equals("")){user_treffpunkt_work="null";}
 
             String urlParameters = "name=" + user_vorname +
                     "&surname=" + user_nachname +
@@ -72,7 +74,9 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
                     "&vehicleLicensePlate=" + car_nummernschild +
                     "&vehicleBrand=" + car_marke +
                     "&vehicleColour=" + car_farbe +
-                    "&username=" + user_username;
+                    "&username=" + user_username +
+                    "&homeMeetingPointDescription=" + user_treffpunkt_home+
+                    "&officeMeetingPointDescription=" + user_treffpunkt_work;
 
             // Send post request
             con.setDoOutput(true);

@@ -1,5 +1,8 @@
 package com.example.sonja.ui;
 
+import android.location.Address;
+import android.location.Geocoder;
+
 import com.example.sonja.ui.HttpTest;
 import com.example.sonja.ui.asyncTasks.PostUserAsync;
 import com.example.sonja.ui.asyncTasks.PostUserParams;
@@ -10,6 +13,7 @@ import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -18,6 +22,7 @@ import java.util.Date;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 import static org.junit.Assert.*;
@@ -414,6 +419,25 @@ public class ExampleUnitTest {
             e.printStackTrace();
         }
     }
+
+    /*@Test
+    public void adressToCoordinates(String adresse) { //gibt Koordinaten einer eingegeben Adresse zurück
+        try {
+
+            adresse = "Trautenaustr. 14, 10717 Berlin";
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses;
+            addresses = geocoder.getFromLocationName(adresse, 1);
+            if (addresses.size() > 0) {
+                double latitude = addresses.get(0).getLatitude();
+                double longitude = addresses.get(0).getLongitude();
+                System.out.println("Koordinaten Test:" + latitude + longitude);
+            }
+        }catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }*/
 
 }
 

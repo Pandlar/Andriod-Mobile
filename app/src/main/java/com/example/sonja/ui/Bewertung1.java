@@ -23,6 +23,7 @@ public class Bewertung1 extends AppCompatActivity implements View.OnClickListene
     RatingBar stars;
     private Context mContext;
 
+
 //* Navigation Bar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){

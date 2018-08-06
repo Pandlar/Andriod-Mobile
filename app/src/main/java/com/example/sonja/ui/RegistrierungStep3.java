@@ -91,16 +91,16 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor saveSignUp = sharedPrefs.edit();
 
-            saveSignUp.putString(getString(R.string.inputSignUpCarMarke), signUpCarMarke.getText().toString()).apply();
-            saveSignUp.putString(getString(R.string.inputSignUpCarModell), signUpCarModell.getText().toString()).apply();
-            saveSignUp.putString(getString(R.string.inputSignUpCarFarbe), signUpCarFarbe.getText().toString()).apply();
-            saveSignUp.putString(getString(R.string.inputSignUpCarNummernschild), signUpCarNummernschild.getText().toString()).apply();
-            saveSignUp.putString(getString(R.string.inputSignUpCarSitzplaetze), signUpCarSitzplätze.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarMarke),signUpCarMarke.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarModell),signUpCarModell.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarFarbe),signUpCarFarbe.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarNummernschild),signUpCarNummernschild.getText().toString()).apply();
+            saveSignUp.putString(getString(R.string.inputSignUpCarSitzplaetze),signUpCarSitzplätze.getText().toString()).apply();
 
-            Log.d("Preferences Marke", sharedPrefs.getString(getString(R.string.inputSignUpCarMarke), "keine Handynr vorhanden."));
-            Log.d("Preferences Modell", sharedPrefs.getString(getString(R.string.inputSignUpCarModell), "keine Stadt vorhanden."));
-            Log.d("Preferences Farbe", sharedPrefs.getString(getString(R.string.inputSignUpCarFarbe), "keine plz vorhanden."));
-            Log.d("Preferences Nummer", sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild), "keine plz vorhanden."));
+            Log.d("Preferences Marke", sharedPrefs.getString(getString(R.string.inputSignUpCarMarke),"keine Handynr vorhanden."));
+            Log.d("Preferences Modell", sharedPrefs.getString(getString(R.string.inputSignUpCarModell),"keine Stadt vorhanden."));
+            Log.d("Preferences Farbe", sharedPrefs.getString(getString(R.string.inputSignUpCarFarbe),"keine plz vorhanden."));
+            Log.d("Preferences Nummer", sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"keine plz vorhanden."));
 
 
             Toast.makeText(RegistrierungStep3.this, "Almost done! Confirm code to complete registration", Toast.LENGTH_LONG).show();
@@ -149,16 +149,16 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
 
         boolean checked = ((RadioButton) view).isChecked();
 
-        switch (view.getId()) {
+        switch(view.getId()) {
             case R.id.rbAutocheck:
                 if (checked)
                     System.out.println("radioButtonOnClick aufgerufen");
-                signUpCarSitzplätze.setEnabled(false);
-                signUpCarFarbe.setEnabled(false);
-                signUpCarModell.setEnabled(false);
-                signUpCarNummernschild.setEnabled(false);
-                signUpCarMarke.setEnabled(false);
-                break;
+                    signUpCarSitzplätze.setEnabled(false);
+                    signUpCarFarbe.setEnabled(false);
+                    signUpCarModell.setEnabled(false);
+                    signUpCarNummernschild.setEnabled(false);
+                    signUpCarMarke.setEnabled(false);
+                    break;
 
         }
 
@@ -204,47 +204,47 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 String passwordInput = sharedPrefs.getString(getString(R.string.inputSignUpPassword), "");
                 String usernameInput = sharedPrefs.getString(getString(R.string.inputSignUpUsername), "");
                 String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "keine Email vorhanden");
-                String userVorname = sharedPrefs.getString(getString(R.string.inputSignUpVorname), "");
-                String userNachname = sharedPrefs.getString(getString(R.string.inputSignUpNachname), "");
-                String userUsername = sharedPrefs.getString(getString(R.string.inputSignUpUsername), "");
-                String userPassword = sharedPrefs.getString(getString(R.string.inputSignUpPassword), "");
-                String userStadtHome = sharedPrefs.getString(getString(R.string.inputSignUpStadtHome), "");
-                String userTreffpunktHome = sharedPrefs.getString(getString(R.string.inputSignUpTreffpunktHome), "");
-                String userTreffpunktWork = sharedPrefs.getString(getString(R.string.inputSignUpTreffpunktWork), "");
-                String userStrHome = sharedPrefs.getString(getString(R.string.inputSignUpStrHome), "");
-                String userStrWork = sharedPrefs.getString(getString(R.string.inputSignUpStrWork), "");
-                String userPLZHome = sharedPrefs.getString(getString(R.string.inputSignUpPLZHome), "");
-                String userPLZWork = sharedPrefs.getString(getString(R.string.inputSignUpPLZWork), "");
-                String userHandyNr = sharedPrefs.getString(getString(R.string.inputSignUpHandynr), "");
-                String carMarke = sharedPrefs.getString(getString(R.string.inputSignUpCarMarke), "");
-                String carFarbe = sharedPrefs.getString(getString(R.string.inputSignUpCarFarbe), "");
-                String carModell = sharedPrefs.getString(getString(R.string.inputSignUpCarModell), "");
-                String carNummernschild = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild), "");
-                String carSitzplaetze = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild), "");
+                String userVorname = sharedPrefs.getString(getString(R.string.inputSignUpVorname),"");
+                String userNachname = sharedPrefs.getString(getString(R.string.inputSignUpNachname),"");
+                String userUsername = sharedPrefs.getString(getString(R.string.inputSignUpUsername),"");
+                String userPassword = sharedPrefs.getString(getString(R.string.inputSignUpPassword),"");
+                String userStadtHome = sharedPrefs.getString(getString(R.string.inputSignUpStadtHome),"");
+                String userTreffpunktHome = sharedPrefs.getString(getString(R.string.inputSignUpTreffpunktHome),"");
+                String userTreffpunktWork = sharedPrefs.getString(getString(R.string.inputSignUpTreffpunktWork),"");
+                String userStrHome = sharedPrefs.getString(getString(R.string.inputSignUpStrHome),"");
+                String userStrWork = sharedPrefs.getString(getString(R.string.inputSignUpStrWork),"");
+                String userPLZHome = sharedPrefs.getString(getString(R.string.inputSignUpPLZHome),"");
+                String userPLZWork = sharedPrefs.getString(getString(R.string.inputSignUpPLZWork),"");
+                String userHandyNr = sharedPrefs.getString(getString(R.string.inputSignUpHandynr),"");
+                String carMarke = sharedPrefs.getString(getString(R.string.inputSignUpCarMarke),"");
+                String carFarbe = sharedPrefs.getString(getString(R.string.inputSignUpCarFarbe),"");
+                String carModell = sharedPrefs.getString(getString(R.string.inputSignUpCarModell),"");
+                String carNummernschild = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"");
+                String carSitzplaetze = sharedPrefs.getString(getString(R.string.inputSignUpCarNummernschild),"");
 
-                System.out.println("Username direkt aus SharedPreferences: " +userUsername);
+
 
                 try {
-                    PostUserParams paramsToUser = new PostUserParams(emailInput, userVorname, userNachname,
+                    PostUserParams paramsToUser = new PostUserParams( emailInput, userVorname, userNachname,
                             userUsername, userPassword, userStadtHome, userTreffpunktHome, userTreffpunktWork,
                             userStrHome, userStrWork, userPLZHome, userPLZWork, userHandyNr, carMarke, carFarbe,
                             carModell, carNummernschild, carSitzplaetze);
                     PostUserAsync asyncRunnerToUser = new PostUserAsync();
-                    asyncRunnerToUser.execute(paramsToUser);
-                } catch (Exception e) {
+                    asyncRunnerToUser.execute(paramsToUser);}
+
+                catch (Exception e){
                     e.printStackTrace();
                 }
-                String uuid = "";
-                try {
-                    System.out.println("Username for UUIDParams: " + userUsername);
+                String uuid="";
+                try{
                     UUIDParams paramsUUID = new UUIDParams(userUsername);
                     GetUUIDAsync asyncRunnerToUser = new GetUUIDAsync();
                     uuid = asyncRunnerToUser.execute(paramsUUID).get();
-                } catch (Exception e) {
+                }catch(Exception e){
                     e.printStackTrace();
                 }
 
-                try {
+                try{
 
                     String adresseHome = userStrHome + ", " + userPLZHome + " " + userStadtHome;
                     System.out.println("Adresse Home: " + adresseHome);
@@ -256,7 +256,7 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                     PostCacheLocationsParams params = new PostCacheLocationsParams(uuid, homeCoordinates, officeCoordinates);
                     PostCacheLocationAsync async = new PostCacheLocationAsync();
                     async.execute(params);
-                } catch (Exception e) {
+                }catch(Exception e){
                     e.printStackTrace();
                 }
 
@@ -272,6 +272,5 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
 
     }
 }
-
 
 

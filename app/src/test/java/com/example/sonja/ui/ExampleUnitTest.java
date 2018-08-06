@@ -297,16 +297,16 @@ public class ExampleUnitTest {
 
     @Test
     public void postUserTest(){
-        String user_email = "maria.rest@web.de";
+        String user_email = "sonderzeichen1.rest@web.de";
         String user_vorname = "Maria";
         String user_nachname = "Test";
-        String user_username = "mariaT";
+        String user_username = "sonderzeichen1";
         String user_password = "xxxxxx";
 
         String user_stadt_home = "Berlin";
         String user_treffpunkt_home = "schnittstelle";
         String user_treffpunkt_work = "workki";
-        String user_str_home = "hauptstr";
+        String user_str_home = "hauptstr?";
         String user_str_work = "marina lanke 14";
         String user_plz_home = "19273";
         String user_plz_work = "14194";
@@ -318,6 +318,9 @@ public class ExampleUnitTest {
         String car_nummernschild = "BTC5000";
         String car_sitzplaetze = "5";
 
+        String adresse_home = user_str_home + ", " + user_plz_home + " " + user_stadt_home;
+        String adresse_office = user_str_work + ", " + user_plz_work + " " + user_stadt_home;
+        System.out.println("############# user post username: "+user_username);
         try {
             String url = "http://13.58.210.65:3000/user";
             URL obj = new URL(url);
@@ -329,7 +332,8 @@ public class ExampleUnitTest {
             con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
             if(user_vorname.equals("")){user_vorname="null";}
-            if(user_nachname.equals("")){user_vorname="null";}
+            if(user_nachname.equals("")){user_nachname="null";}
+            if(user_username.equals("")){user_username="null";}
             if(user_handynr.equals("")){user_handynr="null";}
             if(user_email.equals("")){user_email="null";}
             if(user_str_home.equals("")){user_str_home="null";}
@@ -342,11 +346,12 @@ public class ExampleUnitTest {
                     "&surname=" + user_nachname +
                     "&phoneNumber=" + user_handynr +
                     "&email=" + user_email +
-                    "&homeAddress="+ user_str_home+
-                    "&officeAddress=" + user_str_work +
+                    "&homeAddress="+ adresse_home+
+                    "&officeAddress=" + adresse_office +
                     "&vehicleLicensePlate=" + car_nummernschild +
                     "&vehicleBrand=" + car_marke +
-                    "&vehicleColour=" + car_farbe;
+                    "&vehicleColour=" + car_farbe +
+                    "&username=" + user_username;
 
             // Send post request
             con.setDoOutput(true);
@@ -363,7 +368,7 @@ public class ExampleUnitTest {
             System.out.println("Post parameters : " + urlParameters);
             System.out.println("Response Code : " + responseCode);
             BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
+                    new InputStreamReader(con.getInputStream(),"UTF-8"));
             String inputLine;
             StringBuffer response = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -371,9 +376,11 @@ public class ExampleUnitTest {
             }
             in.close();
             System.out.println(response.toString());
+            System.out.println("############# postUser beendet: "+user_username);
         }catch(Exception e){
             e.printStackTrace();
         }
+
     }
 
     @Test

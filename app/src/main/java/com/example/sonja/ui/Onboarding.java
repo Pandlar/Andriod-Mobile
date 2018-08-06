@@ -104,7 +104,9 @@ public class Onboarding extends Activity {
         }
     }
 
-    // Second Page of Onboarding Slides
+    /**
+     * Second Page of Onboarding Slides
+      */
     public static class Onboarding2 extends Fragment {
 
         @Override
@@ -116,7 +118,9 @@ public class Onboarding extends Activity {
 
     }
 
-    // Third Page of Onboarding Slides
+    /**
+     * Third Page of Onboarding Slides
+      */
     public static class Onboarding3 extends Fragment {
 
         @Override
@@ -128,7 +132,9 @@ public class Onboarding extends Activity {
 
     }
 
-    // Fourth Page of Onboarding Slides
+    /**
+     * Fourth Page of Onboarding Slides
+      */
     public static class Onboarding4 extends Fragment {
 
         @Override
@@ -140,7 +146,9 @@ public class Onboarding extends Activity {
         }
     }
 
-    // Fifth and final Page of Onboarding Slides
+    /**
+     * Fifth and final Page of Onboarding Slides
+      */
     public static class Onboarding5 extends Fragment {
 
         @Override
@@ -153,7 +161,9 @@ public class Onboarding extends Activity {
     }
 
 
-    // At the end of the last onboarding slide this method is called
+    /**
+     * At the end of the last onboarding slide this method is called
+      */
     public void onClickGetStarted (View v) {
             System.out.println("onClick_GetStarted aufgerufen");
             Intent intent = new Intent(this, MainActivity.class);
@@ -161,7 +171,8 @@ public class Onboarding extends Activity {
             this.finish();
     }
 
-    // Any time you press back in the onboarding process you get redirected to the starting screen.
+    /** Any time you press back in the onboarding process you get redirected to the starting screen.
+     */
     public void onBackPressed(){
         System.out.println("Onboarding onBackPressed() aufgerufen.");
         Intent intent = new Intent(this, MainActivity.class);
@@ -203,12 +214,20 @@ public class Onboarding extends Activity {
             }
         }
 
+        /**
+         * Total number of pages = 5.
+         * @return
+         */
         @Override
         public int getCount() {
-            // Show 5 total pages.
             return 5;
         }
 
+        /**
+         * Get different sections of the slides.
+         * @param position
+         * @return
+         */
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {

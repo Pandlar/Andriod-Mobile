@@ -12,6 +12,12 @@ import java.net.URL;
 public class PostCacheLocationAsync extends AsyncTask<PostCacheLocationsParams, Void, Void> {
     private final String USER_AGENT = "Mozilla/5.0";
 
+    /**
+     * Methode zieht sich alle Parameter aus PostCacheLocationsParams und vollführt die HTTP-Post-Funktion in die
+     * CacheLocations-Tabelle der Datenbank
+     * @param params
+     * @return
+     */
     @Override
     protected Void doInBackground(PostCacheLocationsParams... params) {
         String userId = params[0].userId;

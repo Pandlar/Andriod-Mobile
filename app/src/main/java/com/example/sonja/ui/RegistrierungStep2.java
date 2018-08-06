@@ -32,6 +32,10 @@ public class RegistrierungStep2 extends AppCompatActivity implements View.OnClic
     EditText signUpStrWork;
     EditText signUpPLZWork;
 
+    /**
+     * Zieht sich die Werte aus den EditText-Feldern.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,11 @@ public class RegistrierungStep2 extends AppCompatActivity implements View.OnClic
 
     }
 
+    /**
+     * Überprüft, ob alle mandatory Felder ausgefüllt sind. Erst dann wird auf den dritten Registrierungsscreen weitergeleitet
+     * und die Werte in die SharedPreferences übertragen.
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 

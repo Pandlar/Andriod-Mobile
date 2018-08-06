@@ -25,6 +25,27 @@ public class PostUserParams {
     String car_nummernschild;
     String car_sitzplaetze;
 
+    /**
+     * Bereitet die Parameter vor, damit sie an die asynchrone HTTP-Post-Abfrage gesendet werden können.
+     * @param user_email
+     * @param user_vorname
+     * @param user_nachname
+     * @param user_username
+     * @param user_password
+     * @param user_stadt_home
+     * @param user_treffpunkt_home
+     * @param user_treffpunkt_work
+     * @param user_str_home
+     * @param user_str_work
+     * @param user_plz_home
+     * @param user_plz_work
+     * @param user_handynr
+     * @param car_marke
+     * @param car_farbe
+     * @param car_modell
+     * @param car_nummernschild
+     * @param car_sitzplaetze
+     */
     public PostUserParams( String user_email, String user_vorname, String user_nachname, String user_username, String user_password,String user_stadt_home,
             String user_treffpunkt_home, String user_treffpunkt_work, String user_str_home, String user_str_work, String user_plz_home,
             String user_plz_work, String user_handynr, String car_marke, String car_farbe, String car_modell, String car_nummernschild,

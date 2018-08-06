@@ -24,6 +24,10 @@ public class AccountCar02 extends AppCompatActivity implements View.OnClickListe
     public EditText kennzeichenET;
     public EditText sitzplätzeET;
 
+    /**
+     * Top Navigation Bar.
+     * Weiterleitung an Hauptprofilscreen und die Account Settings.
+     */
         private BottomNavigationView.OnNavigationItemSelectedListener XXOnNavigationItemSelectedListener
                 = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -47,6 +51,9 @@ public class AccountCar02 extends AppCompatActivity implements View.OnClickListe
             }
         };
 
+    /**
+     * Bottom Navigation View mit Weiterleitung an Home3.class, NeueFahrt1.class und account01.class
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -71,6 +78,10 @@ public class AccountCar02 extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+    /**
+     * Zieht Autoinformationen aus Datenbank, indem auf die User-Tabelle zugegriffen wird.
+     * @param savedInstanceState
+     */
             @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -92,21 +103,18 @@ public class AccountCar02 extends AppCompatActivity implements View.OnClickListe
                 String uuid = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
 
                 try{
-
                     GetUserParams paramsOfRequest = new GetUserParams(uuid);
                     GetUserAsync asyncGetRequestFuture = new GetUserAsync();
 
                     JSONArray arr = asyncGetRequestFuture.execute(paramsOfRequest).get();
 
                     String marke = arr.getJSONObject(0).getString("vehicleBrand");
-
                     String farbe = arr.getJSONObject(0).getString("vehicleColour");
                     String kennzeichen = arr.getJSONObject(0).getString("vehicleLicensePlate");
 
                     System.out.println("Daten zurückgegeben: Marke: "+ marke +  ", Farbe: " + farbe + ", Kennzeichen: " + kennzeichen);
 
                     markeET.setText(marke);
-
                     farbeET.setText(farbe);
                     kennzeichenET.setText(kennzeichen);
                     sitzplätzeET.setText("1");
@@ -114,8 +122,6 @@ public class AccountCar02 extends AppCompatActivity implements View.OnClickListe
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-
-
             }
 
 

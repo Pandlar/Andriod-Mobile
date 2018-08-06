@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
     // Fahrten updaten
 
     @Override
-    /**
+    /**First run auf true gesetzt, um von SharedPreferences bei erneutem Aufruf überschrieben zu werden.
      *
      */
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +79,6 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         System.out.println("############### MainActivity - uuid : "+currentUser);
 
         firstRun = sharedPrefs.getString(getString(R.string.sharedPrefsFirstRunString), "true");
-
-        // Um erstes Mal App-Öffnen zu simulieren, den Code aus Line 52-54 und 77-78 aktivieren,
-        // einmal laufen lassen, anschließen wieder auskommentieren und nun richtig laufen lassen.
-
-        /*SharedPreferences.Editor clear = sharedPrefs.edit();
-          clear.clear().apply();
-          System.out.println("reset firstrun: " + getString(R.string.sharedPrefsFirstRunString));*/
-
     }
 
     @Override
@@ -127,7 +119,9 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
     }
 
 
-// testet, ob die App zum ersten Mal aufgerufen wurde.
+    /**
+     * Test, ob die App zum ersten Mal geöffnet wurde, um im Zweifelsfall die Onboarding-Slides darzustellen.
+     */
   @Override
     protected void onResume() {
         super.onResume();
@@ -144,50 +138,61 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
             Intent intent = new Intent(this, Onboarding.class);
             startActivity(intent);
             this.finish();
-
-            /*SharedPreferences.Editor clear = sharedPrefs.edit();
-            clear.clear().apply();*/
         }
     }
 
+    /**
+     * ruft loginAction() auf.
+     * @param v
+     * @throws Exception
+     */
     public void onClickLogin(View v) throws Exception {
-        //ruft NeueFahrt1 auf
-        //Intent intent = new Intent(this, NeueFahrt1.class);
-        //startActivity(intent);
-        //this.finish();
         loginAction();
     }
 
+    /** Weiterleitung in die App mit dem Startscreen NeueFahrt1
+     * @param v
+     */
     public void onClick(View v) {
         //ruft NeueFahrt1 auf
         Intent intent = new Intent(this, NeueFahrt1.class);
-
         startActivity(intent);
         this.finish();
     }
 
+    /**
+     * wenn Passwort vergessen wurde, wird Spezialscreen (ForgotPassword1) aufgerufen.
+     * @param v
+     */
     public void onClick_ForgotPassword(View v) {
         //if password is forgotten (ruft jetzt erstmal Screen2 auf, solange es keine anderen gibt)
         Intent intent = new Intent(this, ForgotPassword1.class);
         startActivity(intent);
         this.finish();
     }
+    /**
+     * Abrufen der Onboarding-Slides
+     */
     public void onClickOnboarding(View v) {
-
-        System.out.println("OnClickOnboarding");
         Intent intent = new Intent(this, Onboarding.class);
         startActivity(intent);
         this.finish();
-
     }
-    public void onClick_CreateAccount (View v) {
 
-        System.out.println("onClick_CreateAccount");
+    /**
+     * Leitet weiter an Registrierung1 --> Erstellung eines neuen Accounts.
+     * @param v
+     */
+    public void onClick_CreateAccount (View v) {
         Intent intent = new Intent(this, RegistrierungStep1.class);
         startActivity(intent);
         this.finish();
     }
 
+    /**
+     * Zieht die UUID aus der Datenbank, nachdem Login-Daten eingegeben wurden.
+     * @throws Exception
+     */
     private void loginAction() throws Exception{
 
         EditText userOrEmail = findViewById(R.id.Username);
@@ -196,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         String username = userOrEmail.getText().toString();
         System.out.println("Username: " + username);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "enrico.boos@test.com");
+        String emailInput = sharedPrefs.getString(getString(R.string.saveEmail), "");
         System.out.println(emailInput);
         String json = null;
 
@@ -204,15 +209,11 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         GetUUIDAsync asyncRunnerToUser = new GetUUIDAsync();
         String uuid = asyncRunnerToUser.execute(paramsUUID).get();
 
-        System.out.println("aus async gezogen = " + uuid);
-
         SharedPreferences.Editor saveSignUp = sharedPrefs.edit();
         saveSignUp.putString(getString(R.string.uuid),uuid).apply();
 
-
         String uuidDB = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
         System.out.println("uuid aus DB von SharedPreferences "+ uuidDB);
-
 
         // do sign in and handles on interface
         awsLoginModel.signInUser(userOrEmail.getText().toString(), password.getText().toString());

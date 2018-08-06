@@ -27,7 +27,10 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
     public EditText vornameET;
     public EditText adresseET;
 
-
+    /**
+     * Top Navigation Liste.
+     * Weiterleitung an Darstellung der Auto-Informationen und die Account-Einstellungen.
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -52,7 +55,10 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
         }
     };
 
-
+    /**
+     * Bottom Navigation Leiste.
+     * Weiterleitung an Home3.java (bevorstehende Fahrten), NeueFahrt1.java (Neue Fahrt erstellen) oder den Account-Screen.
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mListenerBottomBar
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -77,9 +83,10 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
         }
     };
 
-
-
-
+    /**
+     * Zieht sich die Nutzerdaten aus der Datenbank mit dern GetUserAsync Abfrage.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,24 +98,16 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
 
         BottomNavigationView menuBottom = findViewById(R.id.navigation);
         menuBottom.setOnNavigationItemSelectedListener(mListenerBottomBar);
-        /*
-        // bottom navigation initialisieren
-
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        menuAccount.setOnNavigationItemSelectedListener(botNavigationItemSelectedListener);
-        */
 
         handynummerET = findViewById(R.id.handynummer_input);
         nameET = findViewById(R.id.name_input);
         vornameET = findViewById(R.id.vorname_input);
         adresseET = findViewById(R.id.strassehausnummer_input);
 
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String uuid = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
 
         try{
-
             GetUserParams paramsOfRequest = new GetUserParams(uuid);
             GetUserAsync asyncGetRequestFuture = new GetUserAsync();
 
@@ -132,13 +131,9 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
-
     @Override
     public void onClick(View v) {
 
     }
-
-
 
 }

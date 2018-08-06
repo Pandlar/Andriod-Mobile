@@ -89,18 +89,17 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         }
     };
 
-
     /**
-     * spannt das Layout auf.
-     * Holt alle TextViews, EditTexts und Buttons aus dem Layout und initialisiert diese.
+     * Home3.java ist für das Anzeigen der noch in der Zukunft liegenden Fahrten verantwortlich.
+     * Diese Methode holt alle TextViews, EditTexts und Buttons aus dem Layout und initialisiert diese.
+     * HTTP-Request an ridesFuture und Abbildung in den entsprechenden Feldern auf dem Screen.
+     * Situationsentsprechende Anzeige der Buttons.
      * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home3);
-
-        System.out.println("Home3.java aufgerufen");
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -134,7 +133,6 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
         nachStatusAnzeigen_Fahrer();
         nachStatusAnzeigen_Mitfahrer();
-
 
         //erster Eintrag auf Screen
         textView_Fahrer = findViewById(R.id.textView_Fahrer);
@@ -192,11 +190,9 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
             String dateTime1 = date1 + " " + time1;
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssX", Locale.GERMAN);
             Date dateFormatted1 = format.parse(dateTime1);
-            System.out.println("Formatiertes Datum: " + dateFormatted1);
 
             SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
             String dateView1 = DATE_FORMAT.format(dateFormatted1);
-            System.out.println("New Date Format: " + dateView1);
 
             String role2 = arr.getJSONObject(1).getString("role");
             String home2 = arr.getJSONObject(1).getString("homeAddress");
@@ -212,10 +208,8 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
             //Date formatieren
             String dateTime2 = date2 + " " + time2;
             Date dateFormatted2 = format.parse(dateTime2);
-            System.out.println("Formatiertes Datum: " + dateFormatted2);
 
             String dateView2 = DATE_FORMAT.format(dateFormatted2);
-            System.out.println("New Date Format: " + dateView2);
 
             // TODO es gibt momentan keine anderen Werte (dafür müsste der View um den Status des Ratings ergänzt werden
             switch (status1) {
@@ -285,11 +279,12 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
             nachStatusAnzeigen_Fahrer();
             nachStatusAnzeigen_Mitfahrer();
         }
-
-
     }
 
-
+    /**
+     * onClick-Events der Buttons. Weiterleitung an Home4.java oder Updaten der Status.
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -310,7 +305,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
     }
 
     /**
-     * zeigt den Status der Fahrt an für Fahrer(noch offen, bestätigt, noch bestätigen, Fahrt abgesagt)
+     * zeigt den Status der Fahrt an für den ersten Eintrag (noch offen, bestätigt, noch bestätigen, Fahrt abgesagt)
      */
     public void nachStatusAnzeigen_Fahrer(){
         switch(status_fahrer){
@@ -348,7 +343,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         }}
 
     /**
-     * zeigt den Status der Fahrt an für Mitfahrer(noch offen, bestätigt, jetzt bestätigen, Fahrt abgesagt)
+     * zeigt den Status der Fahrt an für den zweiten Eintrag (noch offen, bestätigt, jetzt bestätigen, Fahrt abgesagt)
      */
     public void nachStatusAnzeigen_Mitfahrer(){
         switch(status_mitfahrer){

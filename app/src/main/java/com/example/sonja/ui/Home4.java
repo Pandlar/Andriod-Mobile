@@ -61,6 +61,10 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     TextView textView_Uhrzeit2;
 
 
+    /**
+     * Navigation-Bar zu den Screens: Home3.java (noch bevorstehende Fahrten), NeueFahrt1.java (Neue Fahrt erstellen),
+     * Account01 (Darstellung des Nutzeraccounts)
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -84,13 +88,17 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         }
     };
 
+    /**
+     * Home4.java ist für das Anzeigen der in der Vergangenheit liegenden Fahrten verantwortlich.
+     * Diese Methode holt alle TextViews, EditTexts und Buttons aus dem Layout und initialisiert diese.
+     * HTTP-Request an ridesPast und Abbildung in den entsprechenden Feldern auf dem Screen.
+     * Situationsentsprechende Anzeige der Buttons.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home4);
-
-        System.out.println("Home4.java aufgerufen");
-
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -141,17 +149,10 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         textView_Anzahl_Freie_Sitzplaetze2 = findViewById(R.id.textView_Anzahl_Freie_Sitzplaetze2);
         textView_Keine_Sitzplaetze2 = findViewById(R.id.textView_Keine_Sitzplaetze2);
 
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String uuid = sharedPrefs.getString(getString(R.string.uuid), "keine UUID vorhanden");
 
-        System.out.println("We are in Home4.java now and the uuid is " + uuid);
-
         try {
-
-            HttpTest httpUUIDTest = new HttpTest();
-            //String json = httpUUIDTest.sendGet("ridesPast", "userId", uuid, "eq", "&order=date.desc,latestArrivalTime.desc");
-
             GetRequestParams paramsOfRequest = new GetRequestParams("ridesPast", uuid, "&order=date.desc,latestArrivalTime.desc");
             GetRequestAsync asyncGetRequestFuture = new GetRequestAsync();
             JSONArray arr = asyncGetRequestFuture.execute(paramsOfRequest).get();
@@ -172,11 +173,9 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
             String dateTime1 = date1 + " " + time1;
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssX", Locale.GERMAN);
             Date dateFormatted1 = format.parse(dateTime1);
-            System.out.println("Formatiertes Datum: " + dateFormatted1);
 
             SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
             String dateView1 = DATE_FORMAT.format(dateFormatted1);
-            System.out.println("New Date Format: " + dateView1);
 
             if (role1.equals("driver")){
                 textView_Fahrer.setText("Fahrer");
@@ -197,7 +196,6 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
             } else {
                 textView_Fahrer.setText("");
                 textView_Freie_Sitzplaetze.setText("");}
-
 
             if (direction1.equals("towards Home")){
                 textView_Abfahrt_Ort.setText(work1);
@@ -225,8 +223,6 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
             nachStatusAnzeigen_Mitfahrer();
             nachStatusAnzeigen_Fahrer();
 
-            System.out.println("Anfang Status Mitfahrer: " + status_mitfahrer);
-
             if(arr.length()>=2){
                 String role2 = arr.getJSONObject(1).getString("role");
                 String home2 = arr.getJSONObject(1).getString("homeAddress");
@@ -240,10 +236,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 // Date formatieren
                 String dateTime2 = date2 + " " + time2;
                 Date dateFormatted2 = format.parse(dateTime2);
-                System.out.println("Formatiertes Datum: " + dateFormatted2);
-
                 String dateView2 = DATE_FORMAT.format(dateFormatted2);
-                System.out.println("New Date Format: " + dateView2);
 
                 switch (status2) {
                     case "not answered": status_mitfahrer=0;
@@ -251,7 +244,6 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 }
                 nachStatusAnzeigen_Mitfahrer();
 
-                //TODO Wiebke: textView_Fahrer2, textView_Freie_Sitzplaetze2 und textView_Anzahl_Freie_Sitzplaetze2 anlegen
                 if (role2.equals("driver")){
                     textView_Fahrer2.setText("Fahrer");
                     textView_Freie_Sitzplaetze2.setText("Freie Sitzplätze: ");
@@ -274,7 +266,6 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 }
                 textView_Uhrzeit2.setText(dateView2 + " Uhr");
                 System.out.println("Zweiter Datensatz: \nrole: " + role2 + ", home: " + home2 + ", work: " + work2 + ", date: " + date2+ ", Time: " + time2+ ", Direction: " +  direction2);
-                System.out.println("Ende Status Mitfahrer: " + status_mitfahrer);
             }
 
         } catch (Exception e ){
@@ -286,6 +277,12 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         }
 
     }
+
+    /**
+     * onClick-Events der Buttons.
+     * Weiterleitung an die Bewertungsscreens oder die Anzeige der noch bevorstehenden Fahrten (home3.java).
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bewerten:
@@ -307,6 +304,9 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 this.finish();
         }}
 
+    /**
+     * zeigt den Status der Fahrt an für den ersten Eintrag(noch offen, bestätigt, noch bestätigen, Fahrt abgesagt)
+     */
     public void nachStatusAnzeigen_Fahrer(){
         switch(status_fahrer){
             case 0:
@@ -336,6 +336,9 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
+    /**
+     * zeigt den Status der Fahrt an für den zweiten Eintrag (noch offen, bestätigt, jetzt bestätigen, Fahrt abgesagt)
+     */
     public void nachStatusAnzeigen_Mitfahrer(){
         switch(status_mitfahrer){
             case 0:
@@ -363,7 +366,6 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
                 Fahrt_abgesagt2.setVisibility(View.INVISIBLE);
                 break;
         }
-
         }
     }
 

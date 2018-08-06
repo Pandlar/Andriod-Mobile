@@ -11,10 +11,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
 
-
 public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
     private final String USER_AGENT = "Mozilla/5.0";
 
+    /**
+     * Methode zieht sich alle Parameter aus PostUserParams und vollführt die HTTP-Post-Funktion in die User-Tabelle
+     * der Datenbank
+     * @param postUserParams
+     * @return
+     */
     @Override
     protected Void doInBackground(PostUserParams... postUserParams) {
 

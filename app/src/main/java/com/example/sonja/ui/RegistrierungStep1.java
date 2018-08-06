@@ -63,6 +63,11 @@ public class RegistrierungStep1 extends AppCompatActivity implements View.OnClic
         return matcher.find();
     }
 
+    /**
+     * Überprüft, ob alle Felder ausgefüllt sind und die zwei Passwörter übereinstimmen,
+     * sonst wird nicht auf den nächsten Registrierungsscreen weitergeleitet.
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 

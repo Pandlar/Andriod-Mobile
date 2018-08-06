@@ -89,6 +89,12 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
         }
     };
 
+
+    /**
+     * spannt das Layout auf.
+     * Holt alle TextViews, EditTexts und Buttons aus dem Layout und initialisiert diese.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

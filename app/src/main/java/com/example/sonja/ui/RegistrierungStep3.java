@@ -53,6 +53,10 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
     private static final String PREFERENCE_SIGNUP_USER_USERNAME = "signupUserUsername";
     private static final String PREFERENCE_SIGNUP_USER_PASSWORD = "signupUserPassword";
 
+    /**
+     * onCreate() setzt das Layout.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,16 +78,12 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
 
         rbAutocheck = findViewById(R.id.rbAutocheck);
 
-        /*rbAutocheck.addActionListener(new WifiP2pManager.ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textField.setEditable(true);
-
-            }
-        });*/
-
     }
 
+    /**
+     * Wenn Registrierung bestätigt, werden die Autodaten in die SharedPreferences übernommen.
+     * @param mustConfirmToComplete     will be {@code true} if there's the need to confirm registration,
+     */
     @Override
     public void onRegisterSuccess(boolean mustConfirmToComplete) {
         if (mustConfirmToComplete) {
@@ -109,6 +109,9 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         }
     }
 
+    /**
+     * Bestätigt Registrierung mit Toast-Nachricht.
+     */
     @Override
     public void onRegisterConfirmed() {
         Toast.makeText(RegistrierungStep3.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();
@@ -137,6 +140,11 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         Toast.makeText(RegistrierungStep3.this, whatProcess + exception.getMessage(), Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Checkt, ob der RadioButton, ob man ein Auto hat oder nicht, angewählt ist, und blockiert dementsprechend die Textfelder
+     * für die Autodaten oder gibt sie frei.
+     * @param view
+     */
     public void radioButtonOnClick(View view) {
 
         boolean checked = ((RadioButton) view).isChecked();
@@ -157,6 +165,11 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
 
     }
 
+    /**
+     * Wandelt die Adressen in Geokoordinaten um, die dann in die CacheLocations in der DB geschrieben werden.
+     * @param adresse
+     * @return
+     */
     public String adressToCoordinates(String adresse) { //gibt Koordinaten einer eingegeben Adresse zurück
         String latlong=null;
         try {
@@ -177,6 +190,10 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         return latlong;
     }
 
+    /**
+     * Zieht alle Userdaten aus den SharedPreferences und schreibt diese nach erfolgreicher Registrierung in die DB.
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 

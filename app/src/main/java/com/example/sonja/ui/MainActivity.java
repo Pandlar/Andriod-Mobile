@@ -75,9 +75,10 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
         btnONB.getBackground().setAlpha(1);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String currentUser = sharedPrefs.getString("uuid","");
+        System.out.println("############### MainActivity - uuid : "+currentUser);
 
         firstRun = sharedPrefs.getString(getString(R.string.sharedPrefsFirstRunString), "true");
-        System.out.println("First run (String): " + firstRun);
 
         // Um erstes Mal App-Öffnen zu simulieren, den Code aus Line 52-54 und 77-78 aktivieren,
         // einmal laufen lassen, anschließen wieder auskommentieren und nun richtig laufen lassen.

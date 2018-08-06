@@ -18,6 +18,7 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
     @Override
     protected Void doInBackground(PostUserParams... postUserParams) {
 
+
         String user_email = postUserParams[0].user_email;
         String user_vorname = postUserParams[0].user_vorname;
         String user_nachname = postUserParams[0].user_nachname;
@@ -41,7 +42,7 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
 
         String adresse_home = user_str_home + ", " + user_plz_home + " " + user_stadt_home;
         String adresse_office = user_str_work + ", " + user_plz_work + " " + user_stadt_home;
-
+        System.out.println("############# user post username: "+user_username);
         try {
             String url = "http://13.58.210.65:3000/user";
             URL obj = new URL(url);
@@ -93,7 +94,7 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
             System.out.println("Post parameters : " + urlParameters);
             System.out.println("Response Code : " + responseCode);
             BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
+                    new InputStreamReader(con.getInputStream(),"UTF-8"));
             String inputLine;
             StringBuffer response = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -101,6 +102,7 @@ public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
             }
             in.close();
             System.out.println(response.toString());
+            System.out.println("############# postUser beendet: "+user_username);
         }catch(Exception e){
             e.printStackTrace();
         }

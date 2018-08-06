@@ -2,7 +2,9 @@ package com.example.sonja.ui;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -83,20 +85,23 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neue_fahrt1);
-
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String currentUser = sharedPrefs.getString("uuid","");
+        System.out.println("############### NeueFahrt1 - uuid : "+currentUser);
         // instantiating AWSLoginModel(context, callback)
         awsLoginModel = new AWSLoginModel(this, this);
 
         btn_log_out = (Button) findViewById(R.id.btn_log_out);
-
+        //SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         btn_log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("myTag", "Log Out function called!");
 
+                //pref.edit().clear().commit();
                 // do sign out and handles on interface
                 awsLoginModel.signOutUser();
-
+                System.out.println("############## NeueFahrt1 - Logout...");
                 NeueFahrt1.this.startActivity(new Intent(NeueFahrt1.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });

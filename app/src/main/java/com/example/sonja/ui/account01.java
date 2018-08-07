@@ -16,6 +16,9 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
         @Override
+        /**
+         *initialisiert die Navigation-Bar am oberen Rand und weist den einzelnen Buttons Funktionen bzw. xhtml-Dateien zu, die bei Klick ausgewaehlt werden
+         */
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.menu_avatar:
@@ -32,39 +35,25 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
                     return true;
             }
             return false;
+
+
+
+
         }
     };
 
 
-    /*
-    private BottomNavigationView.OnNavigationItemSelectedListener botNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent intentHome = new Intent(account01.this, Home3.class);
-                    startActivityForResult(intentHome, 0);
-                    return true;
-                case R.id.navigation_offer:
-                    Intent intentOffer = new Intent(account01.this, NeueFahrt1.class);
-                    startActivityForResult(intentOffer, 0);
-                    return true;
-                case R.id.navigation_profile:
-                    Intent intentProfile = new Intent(account01.this, account01.class);
-                    startActivityForResult(intentProfile, 0);
-                    return true;
-            }
-            return false;
-        }
-    };
-    */
+
+
 
 
 
 
     @Override
+    /**
+     * Erstellt das Layout der angegebenen xhtml-Datei
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account01);
@@ -73,12 +62,12 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
         BottomNavigationView menuAccount = (BottomNavigationView) findViewById(R.id.menu_account);
         menuAccount.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        /*
+
         // bottom navigation initialisieren
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        menuAccount.setOnNavigationItemSelectedListener(botNavigationItemSelectedListener);
-        */
+
+
+
 
     }
 

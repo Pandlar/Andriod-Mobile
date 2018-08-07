@@ -11,6 +11,9 @@ public class Passwort extends AppCompatActivity implements View.OnClickListener 
     Button back_to_settings_pw;
 
     @Override
+    /**
+     * Erstellt das Layout der angegebenen xhtml-Datei
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passwort);

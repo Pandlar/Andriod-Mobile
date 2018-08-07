@@ -11,6 +11,9 @@ public class Bezahlung extends AppCompatActivity implements View.OnClickListener
     Button ok_button;
 
     @Override
+    /**
+     * Erstellt das Layout der angegebenen xhtml-Datei
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bezahlung);
@@ -24,7 +27,9 @@ public class Bezahlung extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        //ruft AccountSettings03 wieder auf
+        /**
+         * Erstellt das Layout der angegebenen xhtml-Datei und ruft AccountSettings03 auf
+         */
         Intent intent = new Intent(this, AccountSettings03.class);
         startActivity(intent);
         this.finish();

@@ -11,6 +11,9 @@ import android.view.View;
 
 public class AccountCar02 extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     *initialisiert die Navigation-Bar am oberen Rand und weist den einzelnen Buttons Funktionen bzw. xhtml-Dateien zu, die bei Klick ausgewaehlt werden
+     */
         private BottomNavigationView.OnNavigationItemSelectedListener XXOnNavigationItemSelectedListener
                 = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -35,6 +38,9 @@ public class AccountCar02 extends AppCompatActivity implements View.OnClickListe
         };
 
             @Override
+            /**
+             * Erstellt das Layout der angegebenen xhtml-Datei
+             */
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_account_car02);

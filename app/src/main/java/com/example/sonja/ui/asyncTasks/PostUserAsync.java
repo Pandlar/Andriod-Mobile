@@ -11,6 +11,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
 
+/**
+ * Klasse um einen User ansynchron in die Datenbank zu posten. Dies ist notwending, da sonst der Main Thread überlastet ist.
+ */
 public class PostUserAsync extends AsyncTask<PostUserParams, Void, Void> {
     private final String USER_AGENT = "Mozilla/5.0";
 

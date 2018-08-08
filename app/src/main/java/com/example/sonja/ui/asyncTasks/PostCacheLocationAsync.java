@@ -65,18 +65,4 @@ public class PostCacheLocationAsync extends AsyncTask<PostCacheLocationsParams, 
         }
         return null;
     }
-
-    public String timeFormatter(int hour, int min){
-        String formattedTime = "";
-        String formattedHour = hour+"";
-        String formattedMin = min+"";
-        if(hour<10){
-            formattedHour = "0"+hour;
-        }
-        if(min<10){
-            formattedMin = "0"+min;
-        }
-        formattedTime=formattedHour+":"+formattedMin+":00";
-        return formattedTime;
-    }
 }

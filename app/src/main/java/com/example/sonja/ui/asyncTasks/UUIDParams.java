@@ -1,7 +1,8 @@
 package com.example.sonja.ui.asyncTasks;
 
-import com.example.sonja.ui.NeueFahrt1;
-
+/**
+ * Klasse zur Übertragung der Parameter in den gleichnamigen asynchronen Task
+ */
 public class UUIDParams {
     String username;
 

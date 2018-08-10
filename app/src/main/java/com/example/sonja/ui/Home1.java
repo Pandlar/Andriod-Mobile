@@ -56,6 +56,11 @@ public class Home1 extends AppCompatActivity implements View.OnClickListener{
         kasten_chronik.setOnClickListener(this);
 
     }
+
+    /**
+     * Ermöglicht es Fahren anzulegen oder in die Chronik zu gehen.
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_Fahrt_anlegen:

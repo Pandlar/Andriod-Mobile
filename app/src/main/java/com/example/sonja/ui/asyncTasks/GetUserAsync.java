@@ -14,7 +14,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
+/**
+ * Klasse um einen User ansynchron aus der DB zu ziehen. Dies ist notwending, da sonst der Main Thread überlastet ist.
+ */
 public class GetUserAsync extends AsyncTask<GetUserParams, Void, JSONArray> {
     private final String USER_AGENT = "Mozilla/5.0";
     public String urlip = "http://13.58.210.65:3000/";

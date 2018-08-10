@@ -11,7 +11,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
+/**
+ * Klasse um die UUID ansynchron aus der DB zu ziehen. Dies ist notwending, da sonst der Main Thread überlastet ist.
+ */
 public class GetUUIDAsync extends AsyncTask<UUIDParams, Void, String> {
     private final String USER_AGENT = "Mozilla/5.0";
 

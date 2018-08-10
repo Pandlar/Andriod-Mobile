@@ -87,7 +87,6 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_neue_fahrt1);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String currentUser = sharedPrefs.getString("uuid","");
-        System.out.println("############### NeueFahrt1 - uuid : "+currentUser);
         // instantiating AWSLoginModel(context, callback)
         awsLoginModel = new AWSLoginModel(this, this);
 
@@ -96,12 +95,8 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         btn_log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("myTag", "Log Out function called!");
-
-                //pref.edit().clear().commit();
                 // do sign out and handles on interface
                 awsLoginModel.signOutUser();
-                System.out.println("############## NeueFahrt1 - Logout...");
                 NeueFahrt1.this.startActivity(new Intent(NeueFahrt1.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
@@ -118,7 +113,6 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         // When radio button "Female" checked change.
         radio_nurHinfahrt.setOnCheckedChangeListener(new RadioButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                System.out.println("nur Hinfahrt, keine Rückfahrt");
                 radio = 1;
             }});
 
@@ -329,17 +323,18 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
 
     }
 
-
-    // When clicking back you get redirected to starting screen.
+    /**
+     *     When clicking back you get redirected to starting screen.
+     */
     public void onBackPressed(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
     }
     /**
-     * adds a leading zero to integers lower than 10
-     * @param x
-     * @return
+     * Fügt eine führende 0 für Zahlen kleiner als 10 hinzu und gibt einen String aus
+     * @param x Zahl
+     * @return String der Zahl + eventuelle führende 0
      */
     public String addLeadingZeros(int x){
         if(x<10){

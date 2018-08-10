@@ -27,12 +27,6 @@ public class RegistrierungStep1 extends AppCompatActivity implements View.OnClic
     EditText signUpPassword;
     EditText signUpPassword2;
 
-    private Context mContext;
-    private static final String SHARED_PREFERENCE = "SavedValues";
-    private static final String PREFERENCE_SIGNUP_USER_EMAIL = "signupUserEmail";
-    private static final String PREFERENCE_SIGNUP_USER_USERNAME = "signupUserUsername";
-    private static final String PREFERENCE_SIGNUP_USER_PASSWORD = "signupUserPassword";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

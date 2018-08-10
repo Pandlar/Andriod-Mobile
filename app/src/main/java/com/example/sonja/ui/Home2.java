@@ -53,6 +53,11 @@ public class Home2 extends AppCompatActivity implements View.OnClickListener{
         kasten_aktuell.setOnClickListener(this);
 
     }
+
+    /**
+     * Ermöglicht es in den Homescreen zu gehen und wieder aktuelle Fahrten zu sehen.
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 

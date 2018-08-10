@@ -35,7 +35,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     EditText txt_ankunftszeit;
     Button btn_switch_back;
     TextView txt_anzahl_sitze;
-    HttpTest httpCon;
     Spinner spinner_anzahl_sitze;
 
     // Bottom Navigation aktivieren
@@ -135,9 +134,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             to_latest_hour = extras.getInt("to_latest_hour");
             requestRole = NeueFahrt1.RequestRole.valueOf(extras.getString("requestRole"));
         }
-        System.out.println("###### empfange, neuefahrt2, to earliest" +to_earliest_hour+":"+to_earliest_minute);
-        System.out.println("###### empfange, neuefahrt2, to latest" +to_latest_hour+":"+to_latest_minute);
-
         if (requestRole == NeueFahrt1.RequestRole.DRIVER){
             txt_anzahl_sitze.setVisibility(View.VISIBLE);
             btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
@@ -159,7 +155,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
             requestRole = NeueFahrt1.RequestRole.NOTDECIDED;
         }
 
-
         //get the spinner from the xml.
         Spinner dropdown = findViewById(R.id.spinner_anzahl_sitze);
         //create a list of items for the spinner.
@@ -171,7 +166,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
 
-        httpCon = new HttpTest();
     }
 
     @Override
@@ -272,7 +266,10 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    // When clicking back you get redirected to starting screen.
+    /**
+     *     Wenn man auf "Zurück" klickt kommt man zum Start screen
+
+     */
     public void onBackPressed(){
         Intent intent = new Intent(this, NeueFahrt1.class);
         startActivity(intent);
@@ -280,9 +277,9 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     }
 
     /**
-     * adds a leading zero to integers lower than 10
-     * @param x
-     * @return
+     * Fügt eine führende 0 für Zahlen kleiner als 10 hinzu und gibt einen String aus
+     * @param x Zahl
+     * @return String der Zahl + eventuelle führende 0
      */
     public String addLeadingZeros(int x){
         if(x<10){

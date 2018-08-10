@@ -11,7 +11,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
 
-
+/**
+ * Klasse um einen Request ansynchron in die Datenbank zu posten. Dies ist notwending, da sonst der Main Thread überlastet ist.
+ */
 public class PostRequestAsync extends AsyncTask<PostRequestParams, Void, Void> {
     private final String USER_AGENT = "Mozilla/5.0";
 
@@ -81,6 +83,12 @@ public class PostRequestAsync extends AsyncTask<PostRequestParams, Void, Void> {
         return null;
     }
 
+    /**
+     * Die Methode hilft eine Uhrzeit in das richtige Format für PostgreSQL zu bekommen
+     * @param hour Anzahl der Stunden
+     * @param min Anzahl der Minuten
+     * @return Formattierte Zeit
+     */
     public String timeFormatter(int hour, int min){
         String formattedTime = "";
         String formattedHour = hour+"";

@@ -28,6 +28,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    /**
+     * Überprüft ob der Nutzer registriert ist.
+     * @param mustConfirmToComplete     will be {@code true} if there's the need to confirm registration,
+     */
     @Override
     public void onRegisterSuccess(boolean mustConfirmToComplete) {
         if (mustConfirmToComplete) {
@@ -37,6 +41,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * Toast wenn der User bestätigt ist.
+     */
     @Override
     public void onRegisterConfirmed() {
         Toast.makeText(LoginActivity.this, "Registered! Login Now!", Toast.LENGTH_LONG).show();

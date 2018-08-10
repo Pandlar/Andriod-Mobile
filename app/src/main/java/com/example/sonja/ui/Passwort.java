@@ -19,6 +19,10 @@ public class Passwort extends AppCompatActivity implements View.OnClickListener 
         back_to_settings_pw.setOnClickListener(this);
     }
 
+    /**
+     * Leitet weiter an einen Screen um das Passwort zu ändern.
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 

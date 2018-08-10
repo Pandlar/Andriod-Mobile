@@ -15,7 +15,9 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
@@ -93,34 +95,12 @@ public class ExampleUnitTest {
    }
 
     @Test
-    public void httpPOst(){
-        HttpTest http = new HttpTest();
-        try{
-            http.postRequest("",11,11,11,11, NeueFahrt1.RequestRole.DRIVER,"towards Home");
-        }catch(Exception e){
-
-        }
-
-    }
-    @Test
     public void httpTime(){
         Date date = new Date();
         HttpTest http = new HttpTest();
         System.out.println(date);
     }
-    @Test
-    public void httppost(){
-        HttpTest http = new HttpTest();
-        /**
-         * earliestDepartureTime=00:00:00&latestArrivalTime=00:00:00&direction=towards Office&role=driver&status=not answered&userId=01c62ef0-84ff-11e8-adc0-fa7ae01bbebc&earliestDepartureTime=00:00:00&date=2018-7-11
-         */
-        try{
-            http.postRequest("",0,0,0,0, NeueFahrt1.RequestRole.DRIVER,"towards Office");
-        }catch(Exception e){
 
-        }
-
-    }
     @Test
     public void firstDoubleFromPoint(){
         String s = "(52.48643,13.4247398)";
@@ -225,24 +205,6 @@ public class ExampleUnitTest {
             System.out.println("Das sind alle gefundenen Matches: " + matches);
 
         }
-
-    }
-
-
-
-
-
-    @Test
-    public void http_postRatingComplete() throws Exception {
-        HttpTest httpRatingTest = new HttpTest();
-        String ratingText = "Großartig!";
-        String createdBy = "1b4a0156-7a2f-11e8-a8c9-0a181e304e34";
-        String ratedUserId = "6a737ef5-4095-4ce3-9e02-0c3d4b9c0539";
-        String matchID = "cbbb7972-97a6-4a12-b6a1-864f2dd7f2e3";
-        int stars = 5;
-
-        httpRatingTest.sendPostRating("rating", ratingText, createdBy,
-                ratedUserId, matchID, stars);
 
     }
 
@@ -427,24 +389,59 @@ public class ExampleUnitTest {
         }
     }
 
-    /*@Test
-    public void adressToCoordinates(String adresse) { //gibt Koordinaten einer eingegeben Adresse zurück
-        try {
 
-            adresse = "Trautenaustr. 14, 10717 Berlin";
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            List<Address> addresses;
-            addresses = geocoder.getFromLocationName(adresse, 1);
-            if (addresses.size() > 0) {
-                double latitude = addresses.get(0).getLatitude();
-                double longitude = addresses.get(0).getLongitude();
-                System.out.println("Koordinaten Test:" + latitude + longitude);
+    @Test
+    public void putTestSarah()  {
+        String id = "b939fe1a-8288-4abc-8eae-481620b2ba6e";
+        String name= "Ex Machina";
+
+        String ip = "http://13.58.210.65:3000/Test";
+        String urlString = ip + "?id=eq." + id;
+        try{
+            URL url = new URL(urlString);
+            HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+            httpCon.setDoOutput(true);
+            httpCon.setRequestMethod("PUT");
+            httpCon.setRequestProperty("User-Agent", USER_AGENT);
+            httpCon.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            DataOutputStream wr = new DataOutputStream(httpCon.getOutputStream());
+
+            wr.writeBytes("{\"id\":\""+id+"\",\"name\":\""+name+"\"}");
+            //wr.writeBytes("test");
+            wr.flush();
+            wr.close();
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(httpCon.getInputStream(),"UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
             }
-        }catch (IOException e) {
-            // TODO Auto-generated catch block
+            in.close();
+        }catch(Exception e){
             e.printStackTrace();
         }
-    }*/
+
+    }
+
+    @Test
+    public void putTest() throws Exception{
+       try{
+           URL url = new URL("http://13.58.210.65:3000/Test");
+           HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+           httpCon.setDoOutput(true);
+           httpCon.setRequestMethod("PUT");
+           OutputStreamWriter out = new OutputStreamWriter(
+                   httpCon.getOutputStream());
+           out.write("{\"uuid\":\"\"b939fe1a-8288-4abc-8eae-481620b2ba6e\"\",\"name\"=\"erfolgreicherPut\"");
+           out.close();
+           httpCon.getInputStream();
+       }catch(Exception e) {
+
+       }
+    }
+
 
 }
 

@@ -23,8 +23,9 @@ public class Bewertung1 extends AppCompatActivity implements View.OnClickListene
     RatingBar stars;
     private Context mContext;
 
-
-//* Navigation Bar
+    /**
+     * NavigationBar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -63,7 +64,9 @@ public class Bewertung1 extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    //* Die Bewertung wird in die Datenbank gespeichert zu der zugehörigen Fahrt.
+    /**
+     *     Die Bewertung wird in die Datenbank gespeichert zu der zugehörigen Fahrt.
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 

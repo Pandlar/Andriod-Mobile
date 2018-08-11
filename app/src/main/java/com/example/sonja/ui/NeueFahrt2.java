@@ -1,9 +1,7 @@
 package com.example.sonja.ui;
 
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -12,20 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.TextView;
 
-import com.example.sonja.ui.asyncTasks.PostRequestAsync;
-import com.example.sonja.ui.asyncTasks.PostRequestParams;
-import com.example.sonja.ui.threads.PostRequestThread;
-
 import java.util.Calendar;
 
+/**
+ * Anlegen der Rückfahrt
+ */
 public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListener {
-
 
     Button btn_weiter_screen3;
     Button btn_search;
@@ -61,7 +56,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
         }
     };
 
-
     // Zwischenspeicher Variablen
     int to_earliest_minute;
     int to_earliest_hour;
@@ -74,7 +68,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     int from_latest_minute ;
     int from_latest_hour ;
 
-
     /**
      *
      * @param savedInstanceState
@@ -84,23 +77,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neue_fahrt2);
-/* Daten aus NeueFahrt1 auslesen - nicht ready
-        Intent intent = new Intent();
-        NeueFahrt1 f = new NeueFahrt1();
-        if (NeueFahrt1.mitfahrer == 1){
-            mitfahrer = 1;
-            btn_search.setBackgroundResource(R.drawable.button_style_clicked);
-        }
-        if (NeueFahrt1.fahrer == 1){
-            fahrer = 1;
-            btn_offer.setBackgroundResource(R.drawable.button_style_clicked);
-        }
-        if (NeueFahrt1.both == 1){
-            both = 1;
-            btn_both.setBackgroundResource(R.drawable.button_style_clicked);
-        }
-*/
-        // Buttons OnClickListener
+
         btn_weiter_screen3 = findViewById(R.id.btn_weiter_screen3);
         btn_weiter_screen3.setOnClickListener(this);
 
@@ -268,7 +245,6 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
     /**
      *     Wenn man auf "Zurück" klickt kommt man zum Start screen
-
      */
     public void onBackPressed(){
         Intent intent = new Intent(this, NeueFahrt1.class);

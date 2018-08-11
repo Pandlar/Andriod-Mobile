@@ -17,6 +17,9 @@ import android.widget.TextView;
 import com.example.sonja.ui.asyncTasks.PostRequestAsync;
 import com.example.sonja.ui.asyncTasks.PostRequestParams;
 
+/**
+ * Bestätigung nach der Erstellung eines Angebots oder einer Anfrage.
+ */
 public class Confirm extends AppCompatActivity implements View.OnClickListener {
 
     TextView abfahrt1, ankunft1, sitze1;

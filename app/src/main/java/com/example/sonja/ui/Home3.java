@@ -26,6 +26,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+/**
+ * Home3.java ist für das Anzeigen der noch in der Zukunft liegenden Fahrten verantwortlich.
+ */
 public class Home3 extends AppCompatActivity implements View.OnClickListener{
 
     Button btn_jetzt_bestätigen;
@@ -90,7 +93,7 @@ public class Home3 extends AppCompatActivity implements View.OnClickListener{
     };
 
     /**
-     * Home3.java ist für das Anzeigen der noch in der Zukunft liegenden Fahrten verantwortlich.
+     *
      * Diese Methode holt alle TextViews, EditTexts und Buttons aus dem Layout und initialisiert diese.
      * HTTP-Request an ridesFuture und Abbildung in den entsprechenden Feldern auf dem Screen.
      * Situationsentsprechende Anzeige der Buttons.

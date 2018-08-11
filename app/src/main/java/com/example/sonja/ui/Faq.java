@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * FAQ
+ */
 public class Faq extends AppCompatActivity implements View.OnClickListener{
 
     Button faq_back_to_settings;

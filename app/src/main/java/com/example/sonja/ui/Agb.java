@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * AGB
+ */
 public class Agb extends AppCompatActivity implements View.OnClickListener{
 
     Button agb_back_to_settings;

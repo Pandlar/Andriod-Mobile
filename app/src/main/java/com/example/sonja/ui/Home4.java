@@ -25,6 +25,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Home4.java ist für das Anzeigen der in der Vergangenheit liegenden Fahrten verantwortlich.
+ */
 public class Home4 extends AppCompatActivity implements View.OnClickListener{
 
     Button bewerten;
@@ -60,7 +63,6 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     TextView textView_Mitfahrer2;
     TextView textView_Uhrzeit2;
 
-
     /**
      * Navigation-Bar zu den Screens: Home3.java (noch bevorstehende Fahrten), NeueFahrt1.java (Neue Fahrt erstellen),
      * Account01 (Darstellung des Nutzeraccounts)
@@ -89,7 +91,7 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
     };
 
     /**
-     * Home4.java ist für das Anzeigen der in der Vergangenheit liegenden Fahrten verantwortlich.
+     *
      * Diese Methode holt alle TextViews, EditTexts und Buttons aus dem Layout und initialisiert diese.
      * HTTP-Request an ridesPast und Abbildung in den entsprechenden Feldern auf dem Screen.
      * Situationsentsprechende Anzeige der Buttons.
@@ -275,7 +277,6 @@ public class Home4 extends AppCompatActivity implements View.OnClickListener{
             nachStatusAnzeigen_Fahrer();
             nachStatusAnzeigen_Mitfahrer();
         }
-
     }
 
     /**

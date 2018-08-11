@@ -28,6 +28,9 @@ import com.example.sonja.ui.aws.AWSLoginModel;
 
 import java.util.Calendar;
 
+/**
+ * Anlegen der Hinfahrt
+ */
 public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListener, AWSLoginHandler {
 
 

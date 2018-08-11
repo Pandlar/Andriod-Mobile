@@ -17,13 +17,18 @@ import android.widget.RatingBar;
 
 import org.json.JSONArray;
 
+/**
+ * Screen um eine Bewertung zu veröffentlichen
+ */
 public class Bewertung2 extends AppCompatActivity implements View.OnClickListener{
 
     Button btn_Veroeffentlichen2;
     EditText bewertung;
     RatingBar stars;
 
-    //* Navigation Bar
+    /**
+     *     Navigation Bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -52,7 +57,6 @@ public class Bewertung2 extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bewertung2);
 
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -61,7 +65,9 @@ public class Bewertung2 extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    //* Die Bewertung wird in die Datenbank gespeichert zu der zugehörigen Fahrt.
+    /**
+     * Die Bewertung wird in die Datenbank gespeichert zu der zugehörigen Fahrt.
+      */
     public void onClick(View v)  {
         switch (v.getId()) {
 
@@ -88,13 +94,6 @@ public class Bewertung2 extends AppCompatActivity implements View.OnClickListene
                 String createdBy = id;
                 String ratedUserId = "6a737ef5-4095-4ce3-9e02-0c3d4b9c0539";
                 String matchID = "cbbb7972-97a6-4a12-b6a1-864f2dd7f2e3";
-
-                Log.d("Bewertung", " " + bewertungString);
-                System.out.println("Stars: " + starsInt);
-
-                httpRatingPost.sendPostRating("rating", bewertungString, createdBy,
-                        ratedUserId, matchID, starsInt);
-
 
                 } catch (Exception e) {
                     e.printStackTrace();

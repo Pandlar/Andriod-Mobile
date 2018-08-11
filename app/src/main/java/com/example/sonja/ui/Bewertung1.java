@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 
+/**
+ * Screen um eine Bewertung zu veröffentlichen
+ */
 public class Bewertung1 extends AppCompatActivity implements View.OnClickListener{
 
     Button btn_Veroeffentlichen;

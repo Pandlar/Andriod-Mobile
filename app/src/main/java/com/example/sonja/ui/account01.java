@@ -19,6 +19,9 @@ import com.example.sonja.ui.asyncTasks.GetUserParams;
 
 import org.json.JSONArray;
 
+/**
+ * Übersicht über den Account
+ */
 public class account01 extends AppCompatActivity implements View.OnClickListener{
 
 

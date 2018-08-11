@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Hilfe
+ */
 public class Hilfe extends AppCompatActivity implements View.OnClickListener{
 
 

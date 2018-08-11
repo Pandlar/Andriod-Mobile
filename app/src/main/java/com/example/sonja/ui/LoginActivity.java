@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.example.sonja.ui.aws.AWSLoginHandler;
 import com.example.sonja.ui.aws.AWSLoginModel;
 
+/**
+ * Login und damit verbunde Überprüfung der Nutzereingaben
+ */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, AWSLoginHandler {
 
     AWSLoginModel awsLoginModel;

@@ -1,6 +1,5 @@
 package com.example.sonja.ui;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +28,9 @@ import com.example.sonja.ui.aws.AWSLoginModel;
 
 import org.json.JSONArray;
 
+/**
+ * Mainactivity startet die gesamte App.
+ */
 public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
     AWSLoginModel awsLoginModel;
@@ -76,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements AWSLoginHandler {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String currentUser = sharedPrefs.getString("uuid","");
-        System.out.println("############### MainActivity - uuid : "+currentUser);
 
         firstRun = sharedPrefs.getString(getString(R.string.sharedPrefsFirstRunString), "true");
     }

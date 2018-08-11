@@ -1,6 +1,5 @@
 package com.example.sonja.ui;
 
-import android.accounts.Account;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -17,6 +16,9 @@ import com.example.sonja.ui.asyncTasks.GetUserParams;
 
 import org.json.JSONArray;
 
+/**
+ * Übersicht über das Auto
+ */
 public class AccountCar02 extends AppCompatActivity implements View.OnClickListener {
 
     public EditText markeET;

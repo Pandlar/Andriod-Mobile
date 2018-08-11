@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+/**
+ * Die Chronik vergangenger Fahrten.
+ */
 public class Home2 extends AppCompatActivity implements View.OnClickListener{
 
     Button kasten_aktuell;
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -43,15 +45,11 @@ public class Home2 extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
 
-        System.out.println("Home2.java aufgerufen");
-
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         kasten_aktuell = findViewById(R.id.kasten_aktuell);
         kasten_aktuell.setOnClickListener(this);
-
     }
 
     /**

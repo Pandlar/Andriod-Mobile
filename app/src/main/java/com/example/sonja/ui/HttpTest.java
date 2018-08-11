@@ -1,31 +1,18 @@
 package com.example.sonja.ui;
-import android.app.DownloadManager;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Calendar;
 
-import javax.net.ssl.HttpsURLConnection;
-
+/**
+ * Zuständig für synchrone Http Requests.
+ */
 public class HttpTest {
 
     public String urlip = "http://13.58.210.65:3000/";
 
     private final String USER_AGENT = "Mozilla/5.0";
-
-    public enum Table{
-        TEST, USER, MATCH, REQUEST, RATINGS, CACHELOCATIONS
-    }
 
     public HttpTest(){
 
@@ -42,11 +29,6 @@ public class HttpTest {
      * @throws Exception
      */
     public String sendGet(String table, String attr, String value, String compare, String select) throws Exception {
-        if(table==null){
-            //TODO
-            throw new Exception();
-        }
-
         // If you do not want to filter, put "" in select
         String url = urlip+table+"?"+attr+"="+compare+"."+value+select;
         System.out.println(url);

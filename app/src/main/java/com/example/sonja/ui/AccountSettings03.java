@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Account Einstellungen
+ */
 public class AccountSettings03 extends AppCompatActivity implements View.OnClickListener {
 
     Button btn_bezahlung_java;

@@ -15,6 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Das Onboarding, also Screens, die einem die Funktionsweise der App beim ersten Öffnen der App erklären.
+ */
 public class Onboarding extends Activity {
 
     /**

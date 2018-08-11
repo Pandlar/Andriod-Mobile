@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Passwort vergessen.
+ */
 public class ForgotPassword2 extends AppCompatActivity implements View.OnClickListener {
 
     Button btn_confirm_ok;

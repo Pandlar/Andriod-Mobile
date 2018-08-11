@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * Passwort vergessen.
+ */
 public class ForgotPassword1 extends AppCompatActivity implements View.OnClickListener {
 
     Button btn_passBack;

@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-
+/**
+ * Erfolgsmeldung, dass eine Anfrage oder ein Angebot erstellt wurde.
+ */
 public class Confirm2 extends AppCompatActivity {
 
 

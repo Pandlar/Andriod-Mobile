@@ -10,11 +10,13 @@ package com.example.sonja.ui;
         import android.widget.Button;
         import android.widget.ImageButton;
 
+/**
+ * Erster Home-Screen auf dem man aktuelle Fahrten sehen kann oder zur Chronik kommt, sowie eine neue Fahrt anlegen kann.
+ */
 public class Home1 extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton btn_Fahrt_anlegen;
     Button kasten_chronik;
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -43,8 +45,6 @@ public class Home1 extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home1);
-
-        System.out.println("Home1.java aufgerufen");
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -75,7 +75,4 @@ public class Home1 extends AppCompatActivity implements View.OnClickListener{
                 startActivity(intent2);
                 this.finish();
         }}
-
-
-
 }

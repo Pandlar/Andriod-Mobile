@@ -15,13 +15,6 @@ import android.widget.EditText;
 public class RegistrierungStep2 extends AppCompatActivity implements View.OnClickListener {
 
     Button btnWeiter2;
-    EditText signUpStraße;
-    EditText signUpPlz;
-    EditText signUpStadt;
-    EditText signUpTreffpunkt2;
-    EditText signUpStraßeAO;
-    EditText signUpPlzAO;
-    EditText signUpTreffpunkt;
     EditText signUpStadtHome;
     EditText signUpTreffpunktHome;
     EditText signUpStrHome;

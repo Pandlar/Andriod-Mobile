@@ -152,17 +152,18 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
         switch(view.getId()) {
             case R.id.rbAutocheck:
                 if (checked)
-                    System.out.println("radioButtonOnClick aufgerufen");
                     signUpCarSitzplätze.setEnabled(false);
                     signUpCarFarbe.setEnabled(false);
                     signUpCarModell.setEnabled(false);
                     signUpCarNummernschild.setEnabled(false);
                     signUpCarMarke.setEnabled(false);
+                    signUpCarSitzplätze.setText("");
+                    signUpCarFarbe.setText("");
+                    signUpCarModell.setText("");
+                    signUpCarNummernschild.setText("");
+                    signUpCarMarke.setText("");
                     break;
-
         }
-
-
     }
 
     /**
@@ -247,12 +248,10 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 try{
 
                     String adresseHome = userStrHome + ", " + userPLZHome + " " + userStadtHome;
-                    System.out.println("Adresse Home: " + adresseHome);
                     String adresseWork = userStrWork + ", " + userPLZWork + " " + userStadtHome;
-                    System.out.println("Adresse Work: " + adresseWork);
-
                     String homeCoordinates = adressToCoordinates(adresseHome);
                     String officeCoordinates = adressToCoordinates(adresseWork);
+
                     PostCacheLocationsParams params = new PostCacheLocationsParams(uuid, homeCoordinates, officeCoordinates);
                     PostCacheLocationAsync async = new PostCacheLocationAsync();
                     async.execute(params);
@@ -268,6 +267,7 @@ public class RegistrierungStep3 extends AppCompatActivity implements View.OnClic
                 this.finish();
 
                 break;
+
         }
 
     }

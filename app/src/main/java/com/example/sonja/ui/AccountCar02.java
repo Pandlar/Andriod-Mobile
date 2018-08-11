@@ -85,6 +85,9 @@ public class AccountCar02 extends AppCompatActivity implements View.OnClickListe
      * @param savedInstanceState
      */
             @Override
+            /**
+             * Erstellt das Layout der angegebenen xhtml-Datei
+             */
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_account_car02);
@@ -125,7 +128,6 @@ public class AccountCar02 extends AppCompatActivity implements View.OnClickListe
                     e.printStackTrace();
                 }
             }
-
 
     @Override
     public void onClick(View v) {

@@ -14,6 +14,9 @@ public class Agb extends AppCompatActivity implements View.OnClickListener{
     Button agb_back_to_settings;
 
     @Override
+    /**
+     * erstellt die angegebene xhtml-Datei und weist dem Button einen onClickListener zu
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agb);
@@ -23,6 +26,9 @@ public class Agb extends AppCompatActivity implements View.OnClickListener{
     }
 
     @Override
+    /**
+     * beschreibt, was bei einem Click auf den Button funktioniert; die angegebene xhtml-Datei wird aufgerufen
+     */
     public void onClick(View v) {
         Intent intent = new Intent(Agb.this, AccountSettings03.class);
         startActivity(intent);

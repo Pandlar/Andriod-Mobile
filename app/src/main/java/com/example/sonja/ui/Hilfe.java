@@ -15,6 +15,9 @@ public class Hilfe extends AppCompatActivity implements View.OnClickListener{
     Button button_hilfe;
 
     @Override
+    /**
+     * Erstellt das Layout der angegebenen xhtml-Datei
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hilfe);
@@ -25,6 +28,9 @@ public class Hilfe extends AppCompatActivity implements View.OnClickListener{
     }
 
     @Override
+    /**
+     * Erstellt das Layout der angegebenen xhtml-Datei und ruft AccountSettings03 auf
+     */
     public void onClick(View v) {
         Intent intent = new Intent(Hilfe.this, AccountSettings03.class);
         startActivity(intent);

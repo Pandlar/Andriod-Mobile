@@ -14,6 +14,9 @@ public class Faq extends AppCompatActivity implements View.OnClickListener{
     Button faq_back_to_settings;
 
     @Override
+    /**
+     * Erstellt das Layout der angegebenen xhtml-Datei
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
@@ -24,6 +27,9 @@ public class Faq extends AppCompatActivity implements View.OnClickListener{
     }
 
     @Override
+    /**
+     * Erstellt das Layout der angegebenen xhtml-Datei und ruft AccountSettings03 auf
+     */
     public void onClick(View v) {
         Intent intent = new Intent(Faq.this, AccountSettings03.class);
         startActivity(intent);

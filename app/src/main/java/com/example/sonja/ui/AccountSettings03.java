@@ -20,7 +20,9 @@ public class AccountSettings03 extends AppCompatActivity implements View.OnClick
     Button btn_faqs;
     Button btn_passwort;
 
-
+    /**
+     *initialisiert die Navigation-Bar am oberen Rand und weist den einzelnen Buttons Funktionen bzw. xhtml-Dateien zu, die bei Klick ausgewaehlt werden
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener YYOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -45,6 +47,9 @@ public class AccountSettings03 extends AppCompatActivity implements View.OnClick
     };
 
     @Override
+    /**
+     * Erstellt das Layout der angegebenen xhtml-Datei
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings03);

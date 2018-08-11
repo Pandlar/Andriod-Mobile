@@ -37,8 +37,10 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
-
         @Override
+        /**
+         *initialisiert die Navigation-Bar am oberen Rand und weist den einzelnen Buttons Funktionen bzw. xhtml-Dateien zu, die bei Klick ausgewaehlt werden
+         */
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.menu_avatar:
@@ -99,9 +101,9 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
         BottomNavigationView menuAccount = findViewById(R.id.menu_account);
         menuAccount.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
         BottomNavigationView menuBottom = findViewById(R.id.navigation);
         menuBottom.setOnNavigationItemSelectedListener(mListenerBottomBar);
-
         handynummerET = findViewById(R.id.handynummer_input);
         nameET = findViewById(R.id.name_input);
         vornameET = findViewById(R.id.vorname_input);

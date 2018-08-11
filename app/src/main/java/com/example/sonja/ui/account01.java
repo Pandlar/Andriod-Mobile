@@ -71,7 +71,6 @@ public class account01 extends AppCompatActivity implements View.OnClickListener
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    System.out.println("Switch-Case für Home aufgerufen");
                     Intent intentHome = new Intent(account01.this, Home3.class);
                     startActivityForResult(intentHome, 0);
                     return true;

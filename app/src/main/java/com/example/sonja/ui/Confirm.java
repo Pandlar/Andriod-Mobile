@@ -29,6 +29,9 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
     View grey_background2;
     TextView seats1;
 
+    /**
+     * Bottom Navigation Bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -66,7 +69,10 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
 
     //int radio;
 
-    @Override
+    /**
+     * startet Activity Confirm und zeigt zuvor eingegebene Daten in einer Übersicht
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -112,7 +118,10 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
             System.out.println("nicht nur Mitfahrer");
         }*/
 
-        // Bottom Navigation initialisieren
+        /**
+         * Bottom Navigation Bar
+         */
+
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -139,10 +148,6 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         btn_confirm = findViewById(R.id.btn_confirm);
         btn_confirm.setOnClickListener(this);
 
-
-
-
-        // Daten übernehmen aus NeueFahrt1
 
     }
 
@@ -180,7 +185,9 @@ public class Confirm extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-        // When clicking back you get redirected to starting screen.
+    /**
+     * Bei Klick auf zurück wird man zum Starting screen weitergeleitet
+     */
         public void onBackPressed() {
             Intent intent = new Intent(this, NeueFahrt2.class);
             startActivity(intent);

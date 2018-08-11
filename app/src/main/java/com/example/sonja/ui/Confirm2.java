@@ -15,6 +15,9 @@ import android.widget.Button;
 public class Confirm2 extends AppCompatActivity {
 
 
+    /**
+     * Bottom Navigation Bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -38,7 +41,10 @@ public class Confirm2 extends AppCompatActivity {
         }
     };
 
-    @Override
+    /**
+     * startet die Activity Confirm2
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm2);
@@ -48,6 +54,10 @@ public class Confirm2 extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    /**
+     * Initialisiert den "weiter"-Button
+     * @param v
+     */
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -67,7 +77,7 @@ public class Confirm2 extends AppCompatActivity {
        this.finish();
    }
 
-    // When clicking back you get redirected to starting screen.
+    // Bei Klick auf "zurück" wird man zum starting screen weitergeleitet
     public void onBackPressed(){
         System.out.println("Confirm onBackPressed() aufgerufen.");
         Intent intent = new Intent(this, Confirm.class);

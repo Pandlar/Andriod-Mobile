@@ -32,7 +32,9 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     TextView txt_anzahl_sitze;
     Spinner spinner_anzahl_sitze;
 
-    // Bottom Navigation aktivieren
+    /**
+     * Bottom Navigation Bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -69,7 +71,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     int from_latest_hour ;
 
     /**
-     *
+     *  Startet die Activity NeueFahrt2
      * @param savedInstanceState
      */
     @Override
@@ -145,7 +147,10 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    @Override
+    /**
+     * definiert die jeweiligen Aktivitäten bei Klick auf Buttons oder Textfelder
+     * @param v
+     */
     public void onClick(View v) {
 
         Intent intent = new Intent(this, Confirm.class);
@@ -244,7 +249,7 @@ public class NeueFahrt2 extends AppCompatActivity implements View.OnClickListene
     }
 
     /**
-     *     Wenn man auf "Zurück" klickt kommt man zum Start screen
+     *     Wenn man auf "Zurück" klickt, wird man zum Start screen weitergeleitet
      */
     public void onBackPressed(){
         Intent intent = new Intent(this, NeueFahrt1.class);

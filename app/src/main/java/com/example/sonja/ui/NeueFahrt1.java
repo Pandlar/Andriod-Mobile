@@ -113,7 +113,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
         radio_Hinfahrt = (RadioButton) this.findViewById(R.id.radio_Hinfahrt);
         radio_nurHinfahrt  =  (RadioButton)this.findViewById(R.id.radio_nurHinfahrt);
 
-        // When radio button "Female" checked change.
+        // When radio button "1" checked change.
         radio_nurHinfahrt.setOnCheckedChangeListener(new RadioButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 radio = 1;
@@ -197,7 +197,10 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    @Override
+    /**
+     * definiert die jeweiligen Aktivitäten bei Klick auf Buttons oder Textfelder
+     * @param v
+     */
     public void onClick(View v) {
 
         Intent intent = new Intent(this, NeueFahrt2.class);
@@ -327,7 +330,7 @@ public class NeueFahrt1 extends AppCompatActivity implements View.OnClickListene
     }
 
     /**
-     *     When clicking back you get redirected to starting screen.
+     *     Bei Klick auf "zurück" wird man zum starting screen weitergeleitet.
      */
     public void onBackPressed(){
         Intent intent = new Intent(this, MainActivity.class);
